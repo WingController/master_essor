@@ -1,0 +1,19 @@
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {3.1}{\ignorespaces 合成数据集的数据分布情况和投影结果。$x^{1d}$ 和 $x^{2d}$ 分别对应样例的两个属性；$p^{l}(x)$是KDLOR算法的投影函数，其中$\alpha _{i}^{l}$是第$i$个有标签样例的系数。\relax }}{17}{figure.caption.11}
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {有标签数据在原始空间的分布情况}}}{17}{subfigure.1.1}
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {加权策略估计的类中心情况}}}{17}{subfigure.1.2}
+\contentsline {subfigure}{\numberline {(c)}{\ignorespaces {KDLOR算法的投影结果}}}{17}{subfigure.1.3}
+\contentsline {subfigure}{\numberline {(d)}{\ignorespaces {WKFDOR算法的投影结果}}}{17}{subfigure.1.4}
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {4.1}{\ignorespaces 以不同\(u\)值为底数的指数函数\relax }}{21}{figure.caption.14}
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\contentsfinish 

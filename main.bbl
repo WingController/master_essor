@@ -1,0 +1,384 @@
+\begin{thebibliography}{10}
+
+\bibitem{kwon1997ordinal}
+Kwon Y~S, Han I, Lee K~C.
+\newblock Ordinal pairwise partitioning (OPP) approach to neural networks
+  training in bond rating.
+\newblock International journal of intelligent systems in accounting finance
+  and management, 1997, 6:23--40
+\unskip.
+
+\bibitem{kim2012corporate}
+Kim K~j, Ahn H.
+\newblock A corporate credit rating model using multi-class support vector
+  machines with an ordinal pairwise partitioning approach.
+\newblock Computers \& Operations Research, 2012, 39(8):1800--1811
+\unskip.
+
+\bibitem{dikkers2005support}
+Dikkers H, Rothkrantz L.
+\newblock Support vector machines in ordinal classification: An application to
+  corporate credit scoring.
+\newblock Neural Network World, 2005, 15(6):491
+\unskip.
+
+\bibitem{fernandez2013addressing}
+Fernandez-Navarro F, Campoy-Munoz P, Paz-Marin M~d, et~al.
+\newblock Addressing the EU sovereign ratings using an ordinal regression
+  approach.
+\newblock Cybernetics, IEEE Transactions on, 2013, 43(6):2228--2240
+\unskip.
+
+\bibitem{bender1997ordinal}
+Bender R, Grouven U.
+\newblock Ordinal logistic regression in medical research.
+\newblock Journal of the Royal College of Physicians of London, 1997,
+  31(5):546--551
+\unskip.
+
+\bibitem{bender1998using}
+Bender R, Grouven U.
+\newblock Using binary logistic regression models for ordinal data with
+  non-proportional odds.
+\newblock Journal of clinical epidemiology, 1998, 51(10):809--816
+\unskip.
+
+\bibitem{jang2011effect}
+Jang W~M, Eun S~J, Lee C~E, et~al.
+\newblock Effect of repeated public releases on cesarean section rates.
+\newblock J Prev Med Public Health, 2011, 44(1):2--8
+\unskip.
+
+\bibitem{doyle2014predicting}
+Doyle O~M, Westman E, Marquand A~F, et~al.
+\newblock Predicting progression of Alzheimer’s disease using ordinal
+  regression.
+\newblock PloS one, 2014, 9(8):e105542
+\unskip.
+
+\bibitem{perez2011ordinal}
+P{\'e}rez-Ortiz M, Guti{\'e}rrez P~A, Garcia-Alonso C, et~al.
+\newblock Ordinal classification of depression spatial hot-spots of prevalence.
+\newblock Proceedings of Intelligent Systems Design and Applications (ISDA),
+  2011 11th International Conference on. IEEE, 2011.
+\newblock  1170--1175
+\unskip.
+
+\bibitem{cardoso2005modelling}
+Cardoso J~S, Costa J~F~P, Cardoso M~J.
+\newblock Modelling ordinal relations with SVMs: An application to objective
+  aesthetic evaluation of breast cancer conservative treatment.
+\newblock Neural Networks, 2005, 18(5):808--817
+\unskip.
+
+\bibitem{perez2014organ}
+P{\'e}rez-Ortiz M, Cruz-Ram{\'\i}rez M, Ayllon-Ter{\'a}n M, et~al.
+\newblock An organ allocation system for liver transplantation based on ordinal
+  regression.
+\newblock Applied Soft Computing, 2014, 14:88--98
+\unskip.
+
+\bibitem{wu2015evolutionary}
+Wu Y, Sun Y, Liang X, et~al.
+\newblock Evolutionary semi-supervised ordinal regression using weighted kernel
+  Fisher discriminant analysis.
+\newblock Proceedings of Evolutionary Computation (CEC), 2015 IEEE Congress on.
+  IEEE, 2015.
+\newblock  3279--3286
+\unskip.
+
+\bibitem{torra2006regression}
+Torra V, Domingo-Ferrer J, Mateo-Sanz J~M, et~al.
+\newblock Regression for ordinal variables without underlying continuous
+  variables.
+\newblock Information Sciences, 2006, 176(4):465--474
+\unskip.
+
+\bibitem{bishop2006pattern}
+Bishop C~M.
+\newblock Pattern Recognition and Machine Learning.
+\newblock Springer, 2006
+\unskip.
+
+\bibitem{murphy2012machine}
+Murphy K~P.
+\newblock Machine learning: a probabilistic perspective.
+\newblock MIT press, 2012
+\unskip.
+
+\bibitem{kramer2001prediction}
+Kramer S, Widmer G, Pfahringer B, et~al.
+\newblock Prediction of ordinal classes using regression trees.
+\newblock Fundamenta Informaticae, 2001, 47(1-2):1--13
+\unskip.
+
+\bibitem{kotsiantis2004cost}
+Kotsiantis S~B, Pintelas P~E.
+\newblock A cost sensitive technique for ordinal classification problems.
+\newblock Proceedings of Methods and applications of artificial intelligence.
+  Springer, 2004: 220--229
+\unskip.
+
+\bibitem{lin2012reduction}
+Lin H~T, Li L.
+\newblock Reduction from cost-sensitive ordinal ranking to weighted binary
+  classification.
+\newblock Neural Computation, 2012, 24(5):1329--1367
+\unskip.
+
+\bibitem{frank2001simple}
+Frank E, Hall M.
+\newblock A simple approach to ordinal classification.
+\newblock Springer, 2001
+\unskip.
+
+\bibitem{li2006ordinal}
+Li L, Lin H~T.
+\newblock Ordinal regression by extended binary classification.
+\newblock Proceedings of Advances in neural information processing systems,
+  2006.
+\newblock  865--872
+\unskip.
+
+\bibitem{cardoso2007learning}
+Cardoso J~S, Da~Costa J~F~P.
+\newblock Learning to Classify Ordinal Data: The Data Replication Method.
+\newblock Journal of Machine Learning Research, 2007, 8(1393-1429):6
+\unskip.
+
+\bibitem{cortes1995support}
+Cortes C, Vapnik V.
+\newblock Support vector machine.
+\newblock Machine learning, 1995, 20(3):273--297
+\unskip.
+
+\bibitem{herbrich1999support}
+Herbrich R, Graepel T, Obermayer K.
+\newblock Support vector learning for ordinal regression.
+\newblock Proceedings of Artificial Neural Networks, 1999. ICANN 99. Ninth
+  International Conference on (Conf. Publ. No. 470), volume~1. IET, 1999.
+\newblock  97--102
+\unskip.
+
+\bibitem{herbrich1999large}
+Herbrich R, Graepel T, Obermayer K.
+\newblock Large margin rank boundaries for ordinal regression.
+\newblock Advances in neural information processing systems, 1999. 115--132
+\unskip.
+
+\bibitem{shashua2002ranking}
+Shashua A, Levin A.
+\newblock Ranking with large margin principle: Two approaches.
+\newblock Proceedings of Advances in neural information processing systems,
+  2002.
+\newblock  937--944
+\unskip.
+
+\bibitem{chu2007support}
+Chu W, Keerthi S~S.
+\newblock Support vector ordinal regression.
+\newblock Neural computation, 2007, 19(3):792--815
+\unskip.
+
+\bibitem{chu2005new}
+Chu W, Keerthi S~S.
+\newblock New approaches to support vector ordinal regression.
+\newblock Proceedings of Proceedings of the 22nd international conference on
+  Machine learning. ACM, 2005.
+\newblock  145--152
+\unskip.
+
+\bibitem{scholkopft1999fisher}
+Scholkopft B, Mullert K~R.
+\newblock Fisher discriminant analysis with kernels.
+\newblock Neural networks for signal processing IX, 1999, 1(1):1
+\unskip.
+
+\bibitem{sun2010kernel}
+Sun B~Y, Li J, Wu D~D, et~al.
+\newblock Kernel discriminant learning for ordinal regression.
+\newblock Knowledge and Data Engineering, IEEE Transactions on, 2010,
+  22(6):906--910
+\unskip.
+
+\bibitem{chu2005gaussian}
+Chu W, Ghahramani Z.
+\newblock Gaussian processes for ordinal regression.
+\newblock Proceedings of Journal of Machine Learning Research, 2005.
+\newblock  1019--1041
+\unskip.
+
+\bibitem{rasmussen2006gaussian}
+Rasmussen C~E.
+\newblock Gaussian processes for machine learning.
+\newblock 2006.
+\unskip.
+
+\bibitem{cheng2008neural}
+Cheng J, Wang Z, Pollastri G.
+\newblock A neural network approach to ordinal regression.
+\newblock Proceedings of Neural Networks, 2008. IJCNN 2008.(IEEE World Congress
+  on Computational Intelligence). IEEE International Joint Conference on. IEEE,
+  2008.
+\newblock  1279--1284
+\unskip.
+
+\bibitem{fernandez2013negative}
+Fernandez-Navarro F, Guti{\'e}rrez P~A, Hervas-Martinez C, et~al.
+\newblock Negative correlation ensemble learning for ordinal regression.
+\newblock Neural Networks and Learning Systems, IEEE Transactions on, 2013,
+  24(11):1836--1849
+\unskip.
+
+\bibitem{jain1996artificial}
+Jain A~K, Mao J, Mohiuddin K.
+\newblock Artificial neural networks: A tutorial.
+\newblock Computer, 1996, (3):31--44
+\unskip.
+
+\bibitem{deng2010ordinal}
+Deng W~Y, Zheng Q~H, Lian S, et~al.
+\newblock Ordinal extreme learning machine.
+\newblock Neurocomputing, 2010, 74(1):447--456
+\unskip.
+
+\bibitem{huang2006extreme}
+Huang G~B, Zhu Q~Y, Siew C~K.
+\newblock Extreme learning machine: theory and applications.
+\newblock Neurocomputing, 2006, 70(1):489--501
+\unskip.
+
+\bibitem{seah2012transductive}
+Seah C~W, Tsang I~W, Ong Y~S.
+\newblock Transductive ordinal regression.
+\newblock Neural Networks and Learning Systems, IEEE Transactions on, 2012,
+  23(7):1074--1086
+\unskip.
+
+\bibitem{joachims1999transductive}
+Joachims T.
+\newblock Transductive inference for text classification using support vector
+  machines.
+\newblock Proceedings of ICML, volume~99, 1999.
+\newblock  200--209
+\unskip.
+
+\bibitem{liu2011semi}
+Liu Y, Liu Y, Zhong S, et~al.
+\newblock Semi-supervised manifold ordinal regression for image ranking.
+\newblock Proceedings of Proceedings of the 19th ACM international conference
+  on Multimedia. ACM, 2011.
+\newblock  1393--1396
+\unskip.
+
+\bibitem{srijith2013semi}
+Srijith P, Shevade S, Sundararajan S.
+\newblock Semi-supervised gaussian process ordinal regression.
+\newblock Proceedings of Machine Learning and Knowledge Discovery in Databases.
+  Springer, 2013: 144--159
+\unskip.
+
+\bibitem{dorado2012ordinal}
+Dorado-Moreno M, Guti{\'e}rrez P~A, Herv{\'a}s-Mart{\'\i}nez C.
+\newblock Ordinal classification using hybrid artificial neural networks with
+  projection and kernel basis functions.
+\newblock Proceedings of Hybrid Artificial Intelligent Systems. Springer, 2012:
+  319--330
+\unskip.
+
+\bibitem{cruz2014metrics}
+Cruz-Ram{\'\i}rez M, Herv{\'a}s-Mart{\'\i}nez C, S{\'a}nchez-Monedero J, et~al.
+\newblock Metrics to guide a multi-objective evolutionary algorithm for ordinal
+  classification.
+\newblock Neurocomputing, 2014, 135:21--31
+\unskip.
+
+\bibitem{cruz2013multiobjective}
+Cruz-Ram{\'\i}rez M, Fern{\'a}ndez J, Valero A, et~al.
+\newblock Multiobjective Pareto ordinal classification for predictive
+  microbiology.
+\newblock Proceedings of Soft Computing Models in Industrial and Environmental
+  Applications. Springer, 2013: 153--162
+\unskip.
+
+\bibitem{becerra2012evolutionary}
+Becerra-Alonso D, Carbonero-Ruz M, Mart{\'\i}nez-Estudillo F~J, et~al.
+\newblock Evolutionary extreme learning machine for ordinal regression.
+\newblock Proceedings of Neural Information Processing. Springer, 2012.
+\newblock  217--227
+\unskip.
+
+\bibitem{sanchez2013evolutionary}
+S{\'a}nchez-Monedero J, Guti{\'e}rrez P~A, Herv{\'a}s-Mart{\'\i}nez C.
+\newblock Evolutionary ordinal extreme learning machine.
+\newblock Proceedings of Hybrid Artificial Intelligent Systems. Springer, 2013:
+  500--509
+\unskip.
+
+\bibitem{deb2001multi}
+Deb K.
+\newblock Multi-objective optimization using evolutionary algorithms,
+  volume~16.
+\newblock John Wiley \& Sons, 2001
+\unskip.
+
+\bibitem{chapelle2006semi}
+Chapelle O, Sch{\"o}lkopf B, Zien A.
+\newblock Semi-Supervised Learning.
+\newblock MIT Press Cambridge, 2006
+\unskip.
+
+\bibitem{zhu2005semi}
+Zhu X.
+\newblock Semi-Supervised Learning Literature Survey.
+\newblock Technical report, Technical Report 1530, Department of Computer
+  Sciences, University of Wisconsin, Madison, 2006
+\unskip.
+
+\bibitem{zhou2004learning}
+Zhou D, Bousquet O, Lal T~N, et~al.
+\newblock Learning with Local and Global Consistency.
+\newblock Proceedings of Advances in Neural Information Processing Systems 16.
+  MIT Press, 2004: 321--328
+\unskip.
+
+\bibitem{Bache+Lichman:2013}
+Lichman M.
+\newblock {UCI} Machine Learning Repository, 2013.
+\newblock  {\url{http://archive.ics.uci.edu/ml}}
+\unskip.
+
+\bibitem{ben2006generating}
+Ben-David A, Sterling L.
+\newblock Generating rules from examples of human multiattribute decision
+  making should be simple.
+\newblock Expert Systems with Applications, 2006, 31(2):390--396
+\unskip.
+
+\bibitem{storn1997differential}
+Storn R, Price K.
+\newblock Differential evolution--a simple and efficient heuristic for global
+  optimization over continuous spaces.
+\newblock Journal of Global Optimization, 1997, 11(4):341--359
+\unskip.
+
+\bibitem{price2006differential}
+Price K, Storn R~M, Lampinen J~A.
+\newblock Differential Evolution: A Practical Approach to Global Optimization.
+\newblock Secaucus, NJ, USA: Springer-Verlag New York, Inc., 2005
+\unskip.
+
+\bibitem{liu2000evolutionary}
+Liu C, Wechsler H.
+\newblock Evolutionary pursuit and its application to face recognition.
+\newblock Pattern Analysis and Machine Intelligence, IEEE Transactions on,
+  2000, 22(6):570--582
+\unskip.
+
+\bibitem{liu2003evolutionary}
+Liu H, Huang S~T.
+\newblock Evolutionary semi-supervised fuzzy clustering.
+\newblock Pattern Recognition Letters, 2003, 24(16):3105--3113
+\unskip.
+
+\end{thebibliography}

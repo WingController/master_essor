@@ -1,0 +1,61 @@
+
+\chapter{绪论}
+\label{chap:introduction}
+
+序回归问题作为机器学习领域里一个比较有代表性的问题，它和传统的分类问题、回归问题都有一定的相似性。本章将首先介绍序回归问题的特点，以及与之相关的一些实际应用。其次，在文献综述中将简单将介绍处理序回归问题的常用方法。最后，我们将概述本文的研究内容和主要贡献。
+
+\section{研究内容背景及意义}
+\label{intro_back}
+在许多实际应用中，数据的不同类别之间存在一个自然的序关系。例如，消费者在评价服务质量时，会使用“非常不满意”、“不满意”、“一般”、“满意”、“非常满意”等来描述自己的感受。这些不同的描述之间存在一个自然的序关系。相对于标称数据（norminal data），这种类型的数据称为有序数据（ordinal data）。有序数据具有以下一些特点：
+\begin{enumerate}
+\item[1.] 有序数据的类别之间可以做一个排序。在这个例子当中，按照消费者的评价由坏到好，依次为“非常不满意”、“不满意”、“一般”、“满意”、“非常满意”，则其对应的序（rank）依次为1到5。这里的序指的是该类别在所有类别中所处的位置，在序回归问题中，通常我们也使用“序”来指相应的类别。
+\item[2.] 通常情况下，有序数据的序的个数（即类别的个数）是有限的。例如在这个消费者评价服务质量的应用中，共有5个序。
+\item[3.] 类别之间的差别没有精确的定义。例如，我们不知道“满意”比“一般”究竟好多少，也不知道“非常满意”的一半是否等价于“满意”。
+\end{enumerate}
+预测这种有序数据的序的学习问题就称为序回归（ordinal regression）。序回归有着广泛的实际应用场景。金融行业经常需要对用户进行信用评级：应用场景里给定一些用户的属性数据（性别、年龄、收入、历史消费记录等）以及相应的信用等级，假设信用等级从低到高有三个类别，依次为1、2、3。使用已有的用户数据可以建立一个信用评级模型，当需要对一个新用户进行信用评价时，向模型输入该用户的属性数据，输出信用等级。可以看到，信用等级具有明显的序关系，因此这可以作为一个典型的序回归问题来处理\citep{kwon1997ordinal}\citep{kim2012corporate}\citep{dikkers2005support}\citep{fernandez2013addressing}。
+%［Y. Kwon, I. Han and K. Lee, "Ordinal pairwise partitioning (OPP) approach to neural networks training in bond rating,"Intell. Syst. Accounting Finance Manag., vol. 6, no. 1, pp. 23-40, 1997 [CrossRef] 
+%K.-j. Kim and H. Ahn, "A corporate credit rating model using multi-class support vector machines with an ordinal pairwise partitioning approach,"Comput. Oper. Res., vol. 39, no. 8, pp. 1800-1811, 2012 [CrossRef] 
+%H. Dikkers and L. Rothkrantz, "Support vector machines in ordinal classification: An application to corporate credit scoring,"Neural Netw. World, vol. 15, no. 6, pp. 491-507, 2005
+%F. Fernández-Navarro, P. Campoy-Muõoz, M.-D. La Paz-Marín, C. Hervás-Martínez and X. Yao, "Addressing the EU sovereign ratings using an ordinal regression approach,"IEEE Trans. Cybern., vol. 43, no. 6, pp. 2228-2240, 2013］
+此外，序回归还应用在情感分析、信息检索、推荐系统、心理学、医学\citep{bender1997ordinal}\citep{bender1998using}\citep{jang2011effect}\citep{doyle2014predicting}\citep{perez2011ordinal}\citep{cardoso2005modelling}\citep{perez2014organ}等领域。
+%［R. Bender and U. Grouven, "Ordinal logistic regression in medical research,"J. R. Coll. Phys. Lond., vol. 31, no. 5, pp. 546-551, 1997
+%R. Bender and U. Grouven, "Using binary logistic regression models for ordinal data with non-proportional odds,"J. Clin. Epidemiol., vol. 51, no. 10, pp. 809-816, 1998 [CrossRef] 
+%W. M. Jang, S. J. Eun, C.-E. Lee and Y. Kim, "Effect of repeated public releases on cesarean section rates,"J. Prev. Med. Pub. Health, vol. 44, no. 1, pp. 2-8, 2011 [CrossRef] 
+%O. M. Doyle, E. Westman, A. F. Marquand, P. Mecocci, B. Vellas, M. Tsolaki, I. Kłoszewska, H. Soininen, S. Lovestone, S. C. Williams and A. Simmons, "Predicting progression of alzheimers disease using ordinal regression,"PloS one, vol. 9, no. 8, pp. e105542, 2014 [CrossRef] 
+%M. Pérez-Ortiz, P. A. Gutiérrez, C. García-Alonso, L. Salvador-Carulla, J. A. Salinas-Pérez and C. Hervás-Martínez, "Ordinal classification of depression spatial hot-spots of prevalence,"Proc. 11th Int. Conf. Intell. Syst. Des. Appl., pp. 1170-1175, 2011
+%J. S. Cardoso, J. F. P. da Costa and M. Cardoso, "Modelling ordinal relations with SVMs: An application to objective aesthetic evaluation of breast cancer conservative treatment,"Neural Netw., vol. 18, no. 5/6, pp. 808-817, 2005 [CrossRef] 
+%M. Pérez-Ortiz, M. Cruz-Ramírez, M. Ayllón-Terán, N. Heaton, R. Ciria and C. Hervás-Martínez, "An organ allocation system for liver transplantation based on ordinal regression,"Appl. Soft Comput. J., vol. 14, pp. 88-98, 2014 [CrossRef] 
+
+%此处可以加上一些实际的例子，或者引用
+%TKDE2016 Some of the fields where ordinal regression is found are medical research [5], [6], [7], [8], [9], [10], [11], age estimation [12], brain computer inter- face [13], credit rating [14], [15], [16], [17], econometric modelling [18], face recognition [19], [20], [21], facial beauty assessment [22], image classification [23], wind speed pre- diction [24], social sciences [25], text classification [26], and more. 
+
+%引入这个序信息往往会导致问题是非凸、不可导，或者没有明确的数学形式，而演化算法（EA） 能够帮助我们更好地处理序回归问题。
+
+\section{文献综述及研究成果}
+%可以写一些序回归研究的历史
+%写OR和learning to rank, preference learning, sorting 等问题的不同
+在早期的机器学习工作当中，研究者并不考虑类别之间的序关系，因此在处理序回归问题时，仅当做传统的分类问题来处理。序回归问题从2000年左右开始，逐渐受到研究者的关注，并涌现了许多序回归技术。
+
+在序回归问题中，由于序的个数是有限的，所以序回归和传统分类问题有一定的相似性。此外，数据的类别之间是有序的，所以序回归和传统的回归问题也有一定的相似性。对于这两方面的相似性，研究者分别从两个角度考虑了如何更好地处理序回归问题。从分类的角度来说，直接使用传统的分类技术来处理序回归问题会忽略数据本身所具有的序信息，而这个序信息提供了一种先验信息，忽略这个信息会使得结果并不理想。从回归的角度来说，有序数据比传统的回归数据更复杂，不同类别之间虽然有序，但是这个序却不能准确地度量类别之间的差别，这使得数据分布更不规则，从而比传统的回归问题更难处理。因此，为了更好地处理序回归问题，我们需要设计专门的序回归技术，而不能仅仅直接使用传统的分类、回归技术。如何使用序信息，从而达到比传统分类、回归技术更优的效果，将是研究序回归问题的一个重点，同时也是难点。此外，在数据量日益增加的今天，很多实际应用需要获取大量的标签数据，而获取标签将耗费大量的人力、物力。因此，如何使用大量存在的无标签数据将具有重要的研究价值。在序回归问题中，随着序个数的增加，有监督学习模型将需要更多有标签数据来确定不同序的类别之间的边界。对于这个挑战，已有一些研究者提出了半监督序回归技术。我们将在第二章中详细介绍序回归技术的发展历程和已有的研究成果，并指出其中不足。本文将以此为切入点，提出我们对于序回归问题所做的一些探索和研究成果。
+
+%In ordinal regression, the labels of data not only show the categories they belong to but also indicate their ranks in the whole data set. Therefore, it is more challenging to use the unlabeled data in this learning task. Specifically, due to the need for including the order information, it is difficult to estimate the potential distribution of ordinal data accurately. Besides, the models are usually non- convex and non-differentiable after involving the unlabeled data, since a rank constraint is typically employed to preserve the order information (e.g., see the models in [5, 7]).
+
+\section{本文概述及主要贡献}
+\subsection{本文研究内容}
+本文首先回顾并梳理序回归技术的发展历程，分别从基于有监督学习方式的序回归技术、基于半监督学习方式的序回归技术、基于演化算法的序回归技术三个大类入手，介绍一些有代表性的算法，并总结发展趋势及不足之处。对有监督序回归技术的研究时间较长、较为深入，而对半监督序回归技术的研究尚浅，近几年才出现一些。在序回归中，数据的标签不仅体现它所属的类别，同时也表示了它在整个数据集上的序信息。因此，相比较于传统的分类问题，序回归中的无标签数据缺失了更多的信息，如何在半监督学习方式下使用无标签数据将更具挑战性。针对该难点，本文提出了一种有效的基于半监督学习方式的序回归技术——基于加权核判别分析的半监督序回归技术（WKFDOR\citep{wu2015evolutionary}）。
+%Wu Y, Sun Y, Liang X, et al. Evolutionary semi-supervised ordinal regression using weighted kernel Fisher discriminant analysis[C]//Evolutionary Computation (CEC), 2015 IEEE Congress on. IEEE, 2015: 3279-3286.
+此外，为了更有效地利用无标签数据和序信息，本文又在WKFDOR算法的基础上做了改进，提出了基于演化算法的半监督序回归技术（ESSOR\citep{wu2015evolutionary}）。通过对比实验，我们验证了提出的算法能够有效地利用无标签数据提升处理序回归问题的效果。
+
+\subsection{本文主要贡献}
+本文的主要贡献包括如下几点：
+主要针对已有序回归技术研究中的不足，做出了以下几点贡献：
+\begin{enumerate}
+\item[1.]梳理并总结了序回归技术的发展，指出其中待完善之处。
+\item[2.]提出了一种有效的半监督序回归技术，能够利用无标签数据提升处理序回归问题的效果。
+\item[3.]提出了一种基于演化算法的半监督序回归技术，通过演化算法的迭代优化过程，更有效地利用了无标签数据以及序信息。
+%［wu等人 引用essor］本文首次提出了基于演化算法的半监督序回归技术，其效果显著。
+\item[4.]近年来，有相当多的将演化算法和机器学习结合起来的工作，并取得了积极的结果。本工作也是将演化算法和机器学习结合起来，是对这二者结合使用的一个很好的实例研究。
+\end{enumerate}
+
+\subsection{本文结构}
+第二章回顾了序回归技术的发展；第三章研究了半监督序回归问题，并提出了半监督序回归技术——WKFDOR；第四章在第三章的基础上做了改进，提出了基于演化算法的半监督序回归技术——ESSOR；第五章总结了本文的研究工作并提出了未来的研究方向。
