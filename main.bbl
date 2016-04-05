@@ -278,6 +278,31 @@ Srijith P, Shevade S, Sundararajan S.
   Springer, 2013: 144--159
 \unskip.
 
+\bibitem{back1996evolutionary}
+B{\"a}ck T.
+\newblock Evolutionary algorithms in theory and practice.
+\newblock 1996.
+\unskip.
+
+\bibitem{liu2000evolutionary}
+Liu C, Wechsler H.
+\newblock Evolutionary pursuit and its application to face recognition.
+\newblock Pattern Analysis and Machine Intelligence, IEEE Transactions on,
+  2000, 22(6):570--582
+\unskip.
+
+\bibitem{tang2005linear}
+Tang E~K, Suganthan P~N, Yao X, et~al.
+\newblock Linear dimensionality reduction using relevance weighted {LDA}.
+\newblock Pattern Recognition, 2005, 38(4):485--493
+\unskip.
+
+\bibitem{liu2000ensemble}
+Liu Y, Yao X, Higuchi T.
+\newblock Evolutionary ensembles with negative correlation learning.
+\newblock IEEE Transactions on Evolutionary Computation, 2000, 4(4):380--387
+\unskip.
+
 \bibitem{dorado2012ordinal}
 Dorado-Moreno M, Guti{\'e}rrez P~A, Herv{\'a}s-Mart{\'\i}nez C.
 \newblock Ordinal classification using hybrid artificial neural networks with
@@ -366,13 +391,6 @@ Storn R, Price K.
 Price K, Storn R~M, Lampinen J~A.
 \newblock Differential Evolution: A Practical Approach to Global Optimization.
 \newblock Secaucus, NJ, USA: Springer-Verlag New York, Inc., 2005
-\unskip.
-
-\bibitem{liu2000evolutionary}
-Liu C, Wechsler H.
-\newblock Evolutionary pursuit and its application to face recognition.
-\newblock Pattern Analysis and Machine Intelligence, IEEE Transactions on,
-  2000, 22(6):570--582
 \unskip.
 
 \bibitem{liu2003evolutionary}

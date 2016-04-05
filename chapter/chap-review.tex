@@ -1,5 +1,6 @@
 \chapter{序回归技术发展回顾}
 \label{chap:review}
+
 序回归问题在过去十几年的时间里，受到了研究者的广泛关注，涌现了一系列序回归技术。本章将对序回归技术的发展做回顾，对已有的比较有代表性的研究成果根据方法的特点进行分类。首先我们将给出序回归问题的形式化定义，以及常用的算法评估指标。接着我们从三个方向分别回顾已有的序回归技术：基于有监督学习方式的序回归技术、基于半监督学习方式的序回归技术、基于演化算法的序回归技术。最后我们总结了序回归技术发展的趋势和不足。
 
 \section{序回归问题定义和评估指标}
@@ -238,10 +239,7 @@ Sun等人\citep{sun2010kernel}
 \end{enumerate}
 第一种情况下，如果优化问题是凸优化或者可导，可以使用拉格朗日乘数法、梯度下降等优化算法。但如果优化问题不可导或者有多个局部最优解，传统的优化算法将无法处理或者难以给出一个较好的解。第二种情况下，现有的最常见的调参方法是使用网格搜索，但这种类似于蛮力搜素的方法通常速度慢，尤其是在搜索空间很大的时候。对于这些棘手的情况，演化算法（evolutionary algorithms, EA）\citep{back1996evolutionary}是一类值得考虑的算法。EA是一类类似于生物种群进化的启发式优化算法，它能够有效地求解非凸、不可导、甚至没有明确数学形式的优化问题。EA已经被广泛应用在机器学习问题中\citep{liu2000evolutionary}\citep{tang2005linear}\citep{liu2000ensemble}。
 
-在序回归问题中，当我们引入无标签数据时，往往使得问题非凸且不可导
-不幸的是，找到这些参数的最优值往往是一个非凸、不可导，甚至是没有明确数学形式的优化问题。传统的优化算法（例如梯度下降）无法解决此类问题，而演化算法是一类能有效处理该问题的算法。
-
-例如，Dorado-Moreno 等人\citep{dorado2012ordinal}
+在序回归问题中，当我们引入无标签数据时，往往使得问题非凸且不可导。例如在\citep{chu2005new}\citep{sun2010kernel}的模型中加入无标签数据。EA适用于解决这种问题，它能够得到一个近似的全局最优解。此外，当我们还可以使用EA来优化序回归模型的参数。例如，Dorado-Moreno 等人\citep{dorado2012ordinal}
 %[Dorado-Moreno M, Gutiérrez P A, Hervás-Martínez C. Ordinal classification using hybrid artificial neural networks with projection and kernel basis functions[M]//Hybrid Artificial Intelligent Systems. Springer Berlin Heidelberg, 2012: 319-330.]，
 、Cruz-Ramirez等人\citep{cruz2014metrics}\citep{cruz2013multiobjective}
 %[Cruz-Ramírez M, Hervás-Martínez C, Sánchez-Monedero J, et al. Metrics to guide a multi-objective evolutionary algorithm for ordinal classification[J]. Neurocomputing, 2014, 135: 21-31.] 
@@ -254,11 +252,15 @@ Sun等人\citep{sun2010kernel}
 %[Cruz-Ramírez M, Hervás-Martínez C, Sánchez-Monedero J, et al. Metrics to guide a multi-objective evolutionary algorithm for ordinal classification[J]. Neurocomputing, 2014, 135: 21-31.] 
 %[Cruz-Ramírez M, Fernández J C, Valero A, et al. Multiobjective Pareto ordinal classification for predictive microbiology[M]//Soft Computing Models in Industrial and Environmental Applications. Springer Berlin Heidelberg, 2013: 153-162. ]。
 
-基于演化算法的序回归技术的研究近两三年才出现，已有的方法比较少，有很多值得挖掘的东西。
+%基于演化算法的序回归技术近两三年才出现，已有的方法比较少，有很多值得挖掘的东西。
 
 %\section{小结}
 \section{发展趋势及不足}
-对于序回归技术的研究，从最开始的用传统的分类和回归技术来处理，发展到利用序信息设计专门的序回归技术，再到使用无标记数据来设计半监督序回归技术来提升性能并拓宽其应用场景，一直到将演化算法和机器学习结合起来处理。可以看到，半监督序回归技术还有待更多更深的研究，而且目前还没有使用演化算法来处理半监督序回归的相关工作。此外，目前基于演化算法的序回归技术大多是使用演化算法来优化传统模型的参数，而不是直接面向有序数据。如何更深层次地挖掘有序数据的特点，基于演化算法设计更直接的序回归技术将是一个值得探索的问题。
+对于序回归技术的研究，从最开始的用传统的分类和回归技术来处理，发展到利用序信息设计专门的序回归技术，再到使用无标记数据来设计半监督序回归技术来提升性能并拓宽其应用场景，一直到将演化算法和机器学习结合起来处理。可以看到，半监督序回归技术还有待更多更深的研究，而且目前还没有使用演化算法来处理半监督序回归的相关工作。在互联网时代，应用数据剧增，并且在很多序回归的实际应用场景下有标签数据难以获得。针对这个现状，本文将研究半监督序回归问题。
+%此外，目前基于演化算法的序回归技术大多是使用演化算法来优化传统模型的参数，而不是直接面向有序数据。如何更深层次地挖掘有序数据的特点，基于演化算法设计更直接的序回归技术将是一个值得探索的问题。
+
+\section{小结}
+本章我们介绍了序回归问题的形式化定义以及常用的算法评估指标，并回顾了序回归技术的发展历程。对有监督序回归问题的研究已比较完善，根据方法的特点，我们将有监督序回归技术分成三类：直接用传统分类或回归方法处理的序回归技术、先分解成二分类问题再进行处理的序回归技术、拓展传统分类模型引入序信息的序回归技术。半监督序回归问题具有重要的研究意义和实际应用价值，因此我们还介绍了一些已有的半监督序回归技术。由于对半监督序回归问题的研究尚浅，因此后面章节我们将进一步研究半监督序回归问题，并提出我们的半监督序回归算法。此外，我们还介绍了利用演化算法来处理序回归问题的一些相关工作。在处理序回归问题时，演化算法会在传统优化算法难以处理的优化问题上有所帮助。
 
 %封面是按照制本厂的要求制作的，其中行宽和行高都是固定的，中文标题最多占两行，英文标题最多占三行。如果您的题目超过了这个限制，请缩减题目长度，不要擅自修改模板中的相关配置参数。
 
