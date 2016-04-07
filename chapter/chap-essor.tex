@@ -10,19 +10,35 @@
 
 %然而，当权重作为\autoref{wkfdor}中的优化变量时，该优化问题是一个非凸且不可导的问题。传统的优化算法（例如梯度下降算法）难以处理这种类型的问题，而演化算法（evolutionary algorithm, EA）适用于处理。所以，在这一章中我们使用了演化算法来改善权重，具体的说是差分进化（differential evolution, DE）算法[R. Storn and K. Price, “Differential evolution–a simple and effi- cient heuristic for global optimization over continuous spaces,” Journal of Global Optimization, vol. 11, no. 4, pp. 341–359, 1997.]。差分进化算法是一种高效的处理连续优化问题的演化算法，它简单易用，并且容易并行化。此外，差分进化算法具有收敛好和实现快的属性[K. Price, R. M. Storn, and J. A. Lampinen, Differential Evolu- tion: A Practical Approach to Global Optimization. Secaucus, NJ, USA: Springer-Verlag New York, Inc., 2005.]。因此，我们采用差分进化算法。下面我们首先介绍个体表示（individual representation）方法，即如何表示我们需要优化的变量；其次我们介绍适应度评估函数（fitness function），最后介绍我们提出的基于演化算法的半监督核判别分析序回归算法（evolutionary semi-supervised ordinal regression using weighted kernel Fisher discriminant analysis, ESSOR）。
 
-%\section{演化算法及演化机器学习}
+% \section{演化算法及演化机器学习}
+% 在人工智能领域，演化算法（EA）是演化计算的一个子集，是一类基于种群的元启发式优化算法。用种群中的个体来表示优化问题中的候选解，而适应度函数（fitness function）用于决定个体的质量。EA使用类似于生物进化的机制，例如交叉、变异、选择等来实现种群的进化，最终得到满足一定条件的优化问题的解。\autoref{alg_EA}给出了演化算法的基本框架。其中，终止条件一般是代数达到预设的最大代数，或者是计算时间达到限制，或者是适应度达到一定的标准。
+
+% \IncMargin{1em}
+% \begin{algorithm}
+% \SetKwData{Left}{left}\SetKwData{This}{this}\SetKwData{Up}{up}
+% \SetKwFunction{Union}{Union}\SetKwFunction{FindCompress}{FindCompress}
+% \SetKwInOut{Input}{input}\SetKwInOut{Output}{output}
+% \emph{初始化种群$P(0) = \{x_{1},x_{2},\dots ,x_{N_{p}}\}$}\;
+% \emph{令代数计数器$g = 0$}\;
+% \emph{评估$P(0)$中每个个体的适应度}\;
+% \Repeat{满足EA的终止条件}{
+%     \emph{通过交叉、变异、选择等算子，由$P(g)$生成新的种群$P(g+1)$}\;
+%     \emph{评估$P(g)$中每个个体的适应度}\;
+%     \emph{$g=g+1$}\;
+% }
+% \caption{演化算法的基本框架}\label{alg_EA}
+% \end{algorithm}\DecMargin{1em}
+
+% 优化算法通常可以分为三类：解析法（calculus-based）、枚举法（enumerative）和随机法\citep{潘正君1998演化计算}。解析法在求解过程中需要使用目标函数的解析性质，例如一阶导数、二阶导数等。通常，解析法根据目标函数的梯度信息来确定下一步的搜索方向，如Newton法、共轭梯度下降法等。此外，解析法在求解非凸问题时，往往会根据最陡的方向找到一个局部最优点，而难以找到一个全局最优解。枚举法是一种暴力搜索的方法，它不使用启发信息，而直接对候选的解空间进行逐一枚举计算。对于大规模的优化问题，枚举法速度慢，难以适用。演化算法属于随机法的一种，它使用随机性的转移规则而不是确定性的转移规则，因而能跳出局部最优，搜索到全局较优的解。相比较于解析法，演化算法不需要目标的解析性质，因此它能够处理目标函数不可导的优化问题。此外，相比较于枚举法，演化算法是一种元启发式算法，它能够通过适应度函数和进化算子引导种群的进化，以较快地速度找到全局较优的解。
+
+% EA在求解各种优化问题时，通常都能得到不错的近似解，因为它没有对潜在的适应度曲面做任何假设。尤其是在求解一些非凸、目标函数不可导、甚至连优化目标都难以形式化定义的优化问题时，演化算法具有明显的优势。
+
 %可以把这一小节放到上面去。
 %In this circumstance, evolutionary algorithms (EA) are ac- claimed, since they perform well for this type of problems. Recently, EA have been used in many machine learning problems, such as feature extraction [13], pattern recognition [14] and ensemble learning [15].
 
 \section{基于演化算法的半监督核判别分析序回归算法}
 %当权重作为\autoref{wkfdor}中的优化变量时，该优化问题是一个非凸且不可导的问题。传统的优化算法（例如梯度下降算法）难以处理这种类型的问题，而演化算法（evolutionary algorithm, EA）适用于处理。
-根据前面的分析可知，我们需要借助演化算法来优化权重，进而提升WKFDOR算法的性能。这里，我们选择差分进化（differential evolution, DE）算法\citep{storn1997differential}。
-% 详细介绍差分进化算法
-%[R. Storn and K. Price, “Differential evolution–a simple and effi- cient heuristic for global optimization over continuous spaces,” Journal of Global Optimization, vol. 11, no. 4, pp. 341–359, 1997.]。
-差分进化算法是一种高效的处理连续优化问题的演化算法，它简单易用，并且容易并行化。此外，差分进化算法具有收敛好和实现快的特点\citep{price2006differential}。
-%[K. Price, R. M. Storn, and J. A. Lampinen, Differential Evolu- tion: A Practical Approach to Global Optimization. Secaucus, NJ, USA: Springer-Verlag New York, Inc., 2005.]。
-因此，我们采用差分进化算法。下面我们首先介绍个体表示（individual representation）方法，即如何表示我们需要优化的变量；其次我们介绍适应度评估函数（fitness function），最后介绍应用差分进化算法进行优化的算法步骤。
-%我们提出的基于演化算法的半监督核判别分析序回归算法（evolutionary semi-supervised ordinal regression using weighted kernel Fisher discriminant analysis, ESSOR）
+根据前面的分析可知，我们需要借助演化算法来优化权重，进而提升WKFDOR算法的性能。本节我们基于WKFDOR提出改进的算法——ESSOR。下面我们首先介绍个体表示方法，即如何表示我们需要优化的变量；其次介绍适应度评估函数；最后根据问题特点，我们选择了一种处理连续优化问题的演化算法——差分进化算法（differential evolution, DE），并给出了ESSOR的算法步骤。
 
 \subsection{个体表示}
 最简单直接的方法就是将整个无标签数据的权重矩阵作为一个个体，但是这样的话每个个体的维度将是\((N-L)\times K\)（注意，有标签数据的权重是固定的，我们只需要去优化无标签数据的权重），即和无标签数据量成正比。可以想象，当我们使用大量的无标签数据时，每个个体的维度将非常高，这对演化算法来说无疑是个灾难。因此，我们提出了一个新颖的个体表示方法，它能够将个体大小减小到\(K\)（即序的个数）。
@@ -102,7 +118,82 @@ u_{jk}^{'}=\frac{u_{jk}^{\lambda_{k}}}{\Sigma_{k=1}^{K} u_{jk}^{\lambda_{k}}}
 因此，由\autoref{alg_fitness}的适应度函数所驱动的演化过程可以达到良好的学习性能和泛化能力。
 
 \subsection{差分进化}
-我们使用差分进化算法来优化参数向量\(\lambda\)，由此来间接获得微调的权重。在初代种群中引入一个个体\(\lambda=(1,1,\dots,1)\)，用来表示初始权重。初代种群的其它个体将在一个给定范围内随机生成。基于上面的介绍和分析，我们在\autoref{alg_ESSOR}提出了基于演化算法的半监督序回归算法（evolutionary semi-supervised ordinal regression using weighted kernel Fisher discriminant analysis, ESSOR）。其中，\(\lambda_{g}^{t}\)是通过DE的交叉（crossover）和变异（mutation）算子产生的新的个体，用于探索解空间。权重更新规则见\autoref{mem_updateRule}，适应度函数见\autoref{alg_fitness}。在这里，DE的停止准则是迭代次数达到预设的最大代数（maximum generation）。
+
+我们选择差分进化（differential evolution, DE）算法\citep{storn1995differential}来优化参数向量\(\lambda\)，由此来间接获得微调的权重。差分进化算法是由Storn和Price在1995年提出\citep{storn1995differential}，当时是为了处理Chebychev问题。与传统的演化算法不同，DE从当前种群获得距离和方向信息用以指导搜索方向。这主要体现在差分进化的变异步长受当前种群的个体间差异影响，而在遗传算法、演化策略等演化算法中变异步长以相同的概率分布函数抽样。
+
+\begin{equation}
+\label{DE_mutation}
+u_{i}(g) = x_{i_{1}}(g)+\beta(x_{i_{2}}(g)-x_{i_{3}}(g))
+\end{equation}
+
+\begin{equation}
+\label{DE_crossover}
+x^{'}_{ij}(g)=
+\begin{cases}
+u_{ij}(g)& j \in J \\
+x_{ij}(g)& \text{其他情况}
+\end{cases}
+\end{equation}
+
+在差分进化算法中，通过变异、交叉、选择三种算子来产生新的种群。
+\begin{enumerate}
+\item[1.变异：]\autoref{DE_mutation}给出了差分进化的变异算子。对于每一个父代个体\(x_{i}(g)\)，通过该变异算子产生测试向量\(u_{i}(g)\)。其中，\(x_{i_{1}}(g)\)、\((x_{i_{2}}(g)\)、\(x_{i_{3}}(g)\)是从第\(g\)代种群中随机选择的个体，且\(i \neq i_{1} \neq i_{2} \neq i_{3}\)。比例因子\(\beta > 0\)，用来控制差分变量的放大程度。
+
+\item[2.交叉：]通过父代个体\(x_{i}(g)\)与测试个体\(u_{i}(g)\)的离散重组产生子代个体\(x^{'}_{i}(g)\)，\autoref{DE_crossover}给出了差分进化的交叉算子。其中，\(x_{ij}(g)\)表示\(x_{i}(g)\)的第\(j\)个元素，\(J\)是交叉位的集合。常见的交叉方式有二项式交叉和指数交叉，\autoref{alg_DE_crossover}给出了二项式交叉方式生成交叉位集合的算法，其中\(p_{r}\)是重组概率。
+
+\item[3.选择：]对每个个体进行适应度评估，如果子代个体的适应度优于其父代个体，则用子代替换其父代；否则父代个体继续存活至下一代。
+
+\end{enumerate}
+
+%二项式交叉
+\IncMargin{1em}
+\begin{algorithm}
+\SetKwData{Left}{left}\SetKwData{This}{this}\SetKwData{Up}{up}
+\SetKwFunction{Union}{Union}\SetKwFunction{FindCompress}{FindCompress}
+\SetKwInOut{Input}{input}\SetKwInOut{Output}{output}
+\Input{问题维度$n_{x}$}
+\Output{交叉位集合$J$}
+\emph{$j^{*}\sim U \left( 1,n_{x} \right)$}\;
+\emph{$J = \{j^{*}\}$}\;
+\For{$j = 1$ to $n_{x}$}{
+    \If{$U(0,1)<p_{r}$且$j\neq j^{*}$}{
+        \emph{$J=J\cup \{j\}$}\;
+    }
+}
+\caption{二项式交叉方式生成交叉位集合算法}\label{alg_DE_crossover}
+\end{algorithm}\DecMargin{1em}
+
+%差分进化算法
+\IncMargin{1em}
+\begin{algorithm}
+\SetKwData{Left}{left}\SetKwData{This}{this}\SetKwData{Up}{up}
+\SetKwFunction{Union}{Union}\SetKwFunction{FindCompress}{FindCompress}
+\SetKwInOut{Input}{input}\SetKwInOut{Output}{output}
+\emph{初始化种群大小$NP$、比例因此$\beta$和重组概率$p_{r}$}\;
+\emph{$g=0$}\;
+\emph{初始化初代种群$P(0)$}\;
+        \Repeat{满足DE的停止准则}{
+            \For{每个个体$x_{i}(g) \in P(g)$}{
+                \emph{用变异算子产生测试个体$u_{i}(g)$}\;
+                \emph{用交叉算子产生子代个体$x^{'}_{i}(g)$}\;
+                \emph{评估$x_{i}(g)$和$x^{'}_{i}(g)$的适应度}\;
+                \eIf{$f(x^{'}_{i}(g))$优于$f(x_{i}(g))$}{
+                    \emph{将$x^{'}_{i}(g)$加入$P(g+1)$}\;
+                }{
+                    \emph{将$x_{i}(g)$加入$P(g+1)$}\;
+                }
+}
+        \emph{$g=g+1$}\;
+}
+\emph{返回适应度最好的个体}\;
+\caption{差分进化算法}\label{alg_DE}
+\end{algorithm}\DecMargin{1em}
+% 详细介绍差分进化算法
+%[R. Storn and K. Price, “Differential evolution–a simple and effi- cient heuristic for global optimization over continuous spaces,” Journal of Global Optimization, vol. 11, no. 4, pp. 341–359, 1997.]。
+
+\autoref{alg_DE}给出了一般差分进化算法的步骤。差分进化是一种高效的处理连续优化问题的演化算法，简单易用，并且容易并行化。此外，差分进化算法还具有收敛好和实现快的特点\citep{price2006differential}。
+%[K. Price, R. M. Storn, and J. A. Lampinen, Differential Evolu- tion: A Practical Approach to Global Optimization. Secaucus, NJ, USA: Springer-Verlag New York, Inc., 2005.]。
+因此，我们采用差分进化算法来求解我们的优化问题，以进一步提升算法性能。在初代种群中引入一个个体\(\lambda=(1,1,\dots,1)\)，用来表示初始权重。初代种群的其它个体将在一个给定范围内随机生成。基于上面的介绍和分析，我们在\autoref{alg_ESSOR}提出了基于演化算法的半监督序回归算法——ESSOR。其中，\(\lambda_{g}^{t}\)是通过DE的交叉和变异算子产生的新的个体，用于探索解空间。权重更新规则见\autoref{mem_updateRule}，适应度函数见\autoref{alg_fitness}。在这里，DE的停止准则是迭代次数达到预设的最大代数。
 
 \IncMargin{1em}
 \begin{algorithm}
@@ -136,12 +227,14 @@ u_{jk}^{'}=\frac{u_{jk}^{\lambda_{k}}}{\Sigma_{k=1}^{K} u_{jk}^{\lambda_{k}}}
 \end{algorithm}\DecMargin{1em}
 
 \section{实验验证}
-ESSOR算法是在WKFDOR算法基础上做了改进，它基于演化算法去优化无标签数据属于每个类别的权重，使学习器最终拥有更好的泛化性能。 我们在这一节通过实验来验证ESSOR算法的性能，具体的做法是在\autoref{table_realSets}列出的数据集上比较KDLOR算法、WKFDOR算法、ESSOR算法的性能。
+ESSOR算法是在WKFDOR算法基础上做了改进，它基于演化算法去优化无标签数据属于每个类别的权重，使学习器最终拥有更好的泛化性能。 我们在这一节通过实验来验证ESSOR算法的性能，具体的做法是在\autoref{table_realSets}列出的数据集上比较KDLOR、WKFDOR、ESSOR三个算法的性能。
 
 \subsection{实验设置}
-对于KDLOR算法和WKFDOR算法，采用和\autoref{wkfdor_expSet}相同的实验设置。对于ESSOR算法，我们也使用和KDLOR、WKFDOR相同的\(\mu\)、\(C\) 和 \(\sigma\) ，并使用和WKFDOR相同的 \(\alpha\) 和\(\varepsilon\)（\textit{mConsistency}算法中的参数）。对于演化部分，我们将DE中的参数设置如下：\(population\;size = 10 \times K\)；\(scale\;factor = 0.85\)；\(crossover\;rate=0.9\)；\(\lambda_{k} \in [0,2]\)；\(maximum\;generation = 300\)。
+对于KDLOR算法和WKFDOR算法，采用和\autoref{wkfdor_expSet}相同的实验设置。对于ESSOR算法，我们也使用和KDLOR、WKFDOR相同的\(\mu\)、\(C\) 和 \(\sigma\) ，并使用和WKFDOR相同的 \(\alpha\) 和\(\varepsilon\)（\textit{mConsistency}算法中的参数）。对于演化部分，我们将DE中的参数设置如下：\(NP = 10 \times K\)；\(\beta = 0.85\)；\(p_{r} = 0.9\)；\(\lambda_{k} \in [0,2]\)；\(maximum\_generation = 300\)。
 
-和\label{wkfdor_realData}中的做法相同，对于每个数据集，取一半的训练数据作为有标签数据，剩下的一半作为无标签数据。
+%\(population\;size = 10 \times K\)；\(scale\;factor = 0.85\)；\(crossover\;rate=0.9\)；\(\lambda_{k} \in [0,2]\)；\(maximum\;generation = 300\)。
+
+和\autoref{wkfdor_realData}中的做法相同，对于每个数据集，取一半的训练数据作为有标签数据，剩下的一半作为无标签数据。
 
 \subsection{处理大数据}
 ESSOR使用演化算法来优化权重，而演化算法需要通过迭代来产生新的更优的个体。对于大数据集，例如\autoref{table_realSets}中的Connect-4数据集（有7000个训练样例），如果对每代种群的每个个体都使用全部训练样例来建模、评估适应度，将会使计算量变得非常大。因此，我们使用随机采样方法来降低建模和适应度评估的计算代价。具体算法见\autoref{alg_ESSOR_sampling}，我们将其命名为ESSOR-Sampling，简称为ESSOR-S。步骤2—4从原来的数据集中随机抽取一部分用于在差分进化时建模和评估适应度。由于实验设置中有标签数据和无标签数据数量相同，所以我们在步骤2—3中使用相同的采样参数，并令\(sampling\_size = 300\)。

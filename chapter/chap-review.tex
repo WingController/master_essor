@@ -232,12 +232,43 @@ Sun等人\citep{sun2010kernel}
 %对于有序数据来说，无标记数据不仅缺失了类别信息，同时也缺失了在整个数据集上的序信息。如何在序回归中使用无标记数据是一大挑战。
 
 \section{基于演化算法的序回归技术}
+
+\subsection{演化算法及演化机器学习}
+
+在人工智能领域，演化算法（evolutionary algorithms, EA）\citep{back1996evolutionary}是演化计算的一个子集，是一类基于种群的元启发式优化算法。用种群中的个体（individual）来表示优化问题中的候选解，而适应度函数（fitness function）用于决定个体的质量。EA使用类似于生物进化的机制，例如交叉、变异、选择等来实现种群的进化，最终得到满足一定条件的优化问题的解。常见的演化算法有遗传算法（genetic algorithm，GA）、演化规划（evolutionary programming，EP）、演化策略（evolution strategy，ES）、差分进化（differential evolution, DE）等。\autoref{alg_EA}给出了演化算法的基本框架。其中，\(NP\)是种群大小，终止条件一般是代数达到预设的最大代数，或者是计算时间达到限制，或者是适应度达到一定的标准。
+
+\IncMargin{1em}
+\begin{algorithm}
+\SetKwData{Left}{left}\SetKwData{This}{this}\SetKwData{Up}{up}
+\SetKwFunction{Union}{Union}\SetKwFunction{FindCompress}{FindCompress}
+\SetKwInOut{Input}{input}\SetKwInOut{Output}{output}
+\emph{初始化种群$P(0) = \{x_{1},x_{2},\dots ,x_{NP}\}$}\;
+\emph{令代数计数器$g = 0$}\;
+\emph{评估$P(0)$中每个个体的适应度}\;
+\Repeat{满足EA的终止条件}{
+    \emph{通过交叉、变异、选择等算子，由$P(g)$生成新的种群$P(g+1)$}\;
+    \emph{评估$P(g)$中每个个体的适应度}\;
+    \emph{$g=g+1$}\;
+}
+\caption{演化算法的基本框架}\label{alg_EA}
+\end{algorithm}\DecMargin{1em}
+
+优化算法通常可以分为三类：解析法（calculus-based）、枚举法（enumerative）和随机法\citep{潘正君1998演化计算}。解析法在求解过程中需要使用目标函数的解析性质，例如一阶导数、二阶导数等。通常，解析法根据目标函数的梯度信息来确定下一步的搜索方向，如Newton法、共轭梯度下降法等。此外，解析法在求解非凸问题时，往往会根据最陡的方向找到一个局部最优点，而难以找到一个全局最优解。枚举法是一种暴力搜索的方法，它不使用启发信息，而直接对候选的解空间进行逐一枚举计算。对于大规模的优化问题，枚举法速度慢，难以适用。演化算法属于随机法的一种，它使用随机性的转移规则而不是确定性的转移规则，因而能跳出局部最优，搜索到全局较优的解。相比较于解析法，演化算法不需要目标的解析性质，因此它能够处理目标函数不可导的优化问题。此外，相比较于枚举法，演化算法是一种元启发式算法，它能够通过适应度函数和进化算子引导种群的进化，以较快地速度找到全局较优的解。
+
+EA在求解各种优化问题时，通常都能得到不错的近似解，因为它没有对潜在的适应度曲面做任何假设。尤其是在求解一些非凸、目标函数不可导、甚至连优化目标都难以形式化定义的优化问题时，演化算法具有明显的优势。
+
 “优化”是机器学习领域经常听到的一个词，最常见的主要有两方面：
 \begin{enumerate}
 \item[1.]很多机器学习模型的学习过程就是求解一个优化问题。例如，SVM通过优化一个目标函数使得分类器能够尽可能分对训练数据同时能够获得一个最大的间隔，线性回归通过优化一个目标函数使得模型能够尽可能拟合训练数据同时又具有良好的泛化性能。
 \item[2.]机器学习中通常会存在一些令人头疼的参数，而这些参数的设置将会影响模型的性能。例如，神经网络中隐层结点的个数，核函数中的参数。
 \end{enumerate}
-第一种情况下，如果优化问题是凸优化或者可导，可以使用拉格朗日乘数法、梯度下降等优化算法。但如果优化问题不可导或者有多个局部最优解，传统的优化算法将无法处理或者难以给出一个较好的解。第二种情况下，现有的最常见的调参方法是使用网格搜索，但这种类似于蛮力搜素的方法通常速度慢，尤其是在搜索空间很大的时候。对于这些棘手的情况，演化算法（evolutionary algorithms, EA）\citep{back1996evolutionary}是一类值得考虑的算法。EA是一类类似于生物种群进化的启发式优化算法，它能够有效地求解非凸、不可导、甚至没有明确数学形式的优化问题。EA已经被广泛应用在机器学习问题中\citep{liu2000evolutionary}\citep{tang2005linear}\citep{liu2000ensemble}。
+第一种情况下，如果优化问题是凸优化或者目标函数可导，可以使用拉格朗日乘数法、梯度下降等优化算法。但如果优化问题目标函数不可导或者有多个局部最优解（非凸），传统的优化算法将无法处理或者难以给出一个较好的解。第二种情况下，现有的最常见的调参方法是使用网格搜索，但这种类似于蛮力搜素的方法通常速度慢，尤其是在搜索空间很大的时候。对于这些棘手的情况，演化算法是一类值得考虑的算法。
+%（evolutionary algorithms, EA）\citep{back1996evolutionary}
+%EA是一类类似于生物种群进化的启发式优化算法，它能够有效地求解非凸、不可导、甚至没有明确数学形式的优化问题。
+EA已经被广泛应用在机器学习问题中\citep{liu2000evolutionary}\citep{tang2005linear}\citep{liu2000ensemble}。
+
+
+\subsection{演化算法在序回归问题中的应用}
 
 在序回归问题中，当我们引入无标签数据时，往往使得问题非凸且不可导。例如在\citep{chu2005new}\citep{sun2010kernel}的模型中加入无标签数据。EA适用于解决这种问题，它能够得到一个近似的全局最优解。此外，当我们还可以使用EA来优化序回归模型的参数。例如，Dorado-Moreno 等人\citep{dorado2012ordinal}
 %[Dorado-Moreno M, Gutiérrez P A, Hervás-Martínez C. Ordinal classification using hybrid artificial neural networks with projection and kernel basis functions[M]//Hybrid Artificial Intelligent Systems. Springer Berlin Heidelberg, 2012: 319-330.]，

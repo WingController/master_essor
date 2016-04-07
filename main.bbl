@@ -284,6 +284,12 @@ B{\"a}ck T.
 \newblock 1996.
 \unskip.
 
+\bibitem{潘正君1998演化计算}
+潘正君, 康立山, 陈毓屏, et~al.
+\newblock 演化计算, volume~1.
+\newblock 清华大学出版社, 1998
+\unskip.
+
 \bibitem{liu2000evolutionary}
 Liu C, Wechsler H.
 \newblock Evolutionary pursuit and its application to face recognition.
@@ -380,11 +386,17 @@ Ben-David A, Sterling L.
 \newblock Expert Systems with Applications, 2006, 31(2):390--396
 \unskip.
 
-\bibitem{storn1997differential}
+\bibitem{liu2003evolutionary}
+Liu H, Huang S~T.
+\newblock Evolutionary semi-supervised fuzzy clustering.
+\newblock Pattern Recognition Letters, 2003, 24(16):3105--3113
+\unskip.
+
+\bibitem{storn1995differential}
 Storn R, Price K.
-\newblock Differential evolution--a simple and efficient heuristic for global
-  optimization over continuous spaces.
-\newblock Journal of Global Optimization, 1997, 11(4):341--359
+\newblock Differential evolution-a simple and efficient adaptive scheme for
+  global optimization over continuous spaces, volume~3.
+\newblock ICSI Berkeley, 1995
 \unskip.
 
 \bibitem{price2006differential}
@@ -393,10 +405,11 @@ Price K, Storn R~M, Lampinen J~A.
 \newblock Secaucus, NJ, USA: Springer-Verlag New York, Inc., 2005
 \unskip.
 
-\bibitem{liu2003evolutionary}
-Liu H, Huang S~T.
-\newblock Evolutionary semi-supervised fuzzy clustering.
-\newblock Pattern Recognition Letters, 2003, 24(16):3105--3113
+\bibitem{storn1997differential}
+Storn R, Price K.
+\newblock Differential evolution--a simple and efficient heuristic for global
+  optimization over continuous spaces.
+\newblock Journal of Global Optimization, 1997, 11(4):341--359
 \unskip.
 
 \end{thebibliography}
