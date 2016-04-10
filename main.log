@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99992 (TeX Live 2015) (preloaded format=xelatex 2016.2.23)  10 APR 2016 12:39
+This is XeTeX, Version 3.14159265-2.6-0.99992 (TeX Live 2015) (preloaded format=xelatex 2016.2.23)  10 APR 2016 16:29
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -2497,31 +2497,31 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 
 ]
 第五章
-) [33] [34
+[33] [34]) [35] [36
 
 
-] (./main.bbl [35
+] (./main.bbl [37
 
-] [36]) [37]
+] [38]) [39]
 \openout2 = `chapter/chap-req.aux'.
 
  (./chapter/chap-req.tex)
 \openout2 = `chapter/thanks.aux'.
 
 
-(./chapter/thanks.tex [38
+(./chapter/thanks.tex [40
 
-
-
-
-]) [39]
-\openout2 = `chapter/pub.aux'.
-
- (./chapter/pub.tex [40
 
 
 
 ]) [41]
+\openout2 = `chapter/pub.aux'.
+
+ (./chapter/pub.tex [42
+
+
+
+]) [43]
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 183.
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 183.
  (./main.aux
@@ -2551,4 +2551,4 @@ Here is how much of TeX's memory you used:
  1328 hyphenation exceptions out of 8191
  71i,18n,79p,10411b,15840s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on main.pdf (61 pages).
+Output written on main.pdf (63 pages).
