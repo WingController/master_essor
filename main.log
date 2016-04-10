@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99992 (TeX Live 2015) (preloaded format=xelatex 2016.2.23)  10 APR 2016 16:29
+This is XeTeX, Version 3.14159265-2.6-0.99992 (TeX Live 2015) (preloaded format=xelatex 2016.2.23)  10 APR 2016 22:32
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1945,11 +1945,10 @@ LaTeX Info: Redefining \LaTeXe on input line 219.
 \l__xetex_show_hyphens_final_box=\box100
 \g__xetex_show_hyphens_word_box=\box101
 )
-(./main.aux (./chapter/abstract.aux) (./chapter/denotation.aux)
-(./chapter/chap-intro.aux) (./chapter/chap-review.aux)
-(./chapter/chap-wkfdor.aux) (./chapter/chap-essor.aux)
-(./chapter/chap-conclusion.aux) (./chapter/chap-req.aux) (./chapter/thanks.aux)
-(./chapter/pub.aux))
+(./main.aux (./chapter/abstract.aux) (./chapter/chap-intro.aux)
+(./chapter/chap-review.aux) (./chapter/chap-wkfdor.aux)
+(./chapter/chap-essor.aux) (./chapter/chap-conclusion.aux)
+(./chapter/thanks.aux) (./chapter/pub.aux))
 \openout1 = `main.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 70.
@@ -2265,22 +2264,13 @@ LaTeX Font Warning: Font shape `U/wasy/b/n' in size <9.03374> not available
 ]
 \openout2 = `chapter/abstract.aux'.
 
- (./chapter/abstract.tex
-Overfull \hbox (14.88702pt too wide) in paragraph at lines 3--4
-[]\EU1/STSong(0)/m/n/12.045 本 文 是 中 国 科 学 技 术 大 学 本 硕 博 毕 业 论 文 模 板 示 例 文 件。|  
-本 模 板 由 \EU1/TimesNewRoman(0)/m/n/12.045 ywg@USTC
- []
-
-[1
+ (./chapter/abstract.tex [1
 
 
 
 ] [2
 
-]) [3] [4
-
-
-] (./main.toc
+] [3]) [4] (./main.toc
 LaTeX Font Info:    Calculating math sizes for size <14> on input line 1.
 
 
@@ -2296,29 +2286,27 @@ Overfull \hbox (0.7648pt too wide) detected at line 4
  \EU1/TimesNewRoman(0)/m/n/14 VII
  []
 
-
-Overfull \hbox (5.42691pt too wide) detected at line 7
- \EU1/TimesNewRoman(0)/m/n/14 XIII
- []
-
-LaTeX Font Info:    Calculating math sizes for size <10.5> on input line 12.
+LaTeX Font Info:    Calculating math sizes for size <10.5> on input line 11.
 
 LaTeX Font Warning: Font shape `U/wasy/m/n' in size <10.5> not available
-(Font)              size <10.95> substituted on input line 12.
+(Font)              size <10.95> substituted on input line 11.
 
 
 LaTeX Font Warning: Font shape `U/wasy/b/n' in size <10.5> not available
-(Font)              size <10.95> substituted on input line 12.
+(Font)              size <10.95> substituted on input line 11.
 
 
 LaTeX Font Warning: Font shape `U/wasy/b/n' in size <7.34996> not available
-(Font)              Font shape `U/wasy/m/n' tried instead on input line 12.
+(Font)              Font shape `U/wasy/m/n' tried instead on input line 11.
 
 
 LaTeX Font Warning: Font shape `U/wasy/b/n' in size <5.25> not available
-(Font)              Font shape `U/wasy/m/n' tried instead on input line 12.
+(Font)              Font shape `U/wasy/m/n' tried instead on input line 11.
 
-[5])
+[5
+
+
+])
 \tf@toc=\write7
 \openout7 = `main.toc'.
 
@@ -2345,20 +2333,13 @@ LaTeX Font Warning: Font shape `U/wasy/b/n' in size <5.25> not available
 
  [11
 
-]
-\openout2 = `chapter/denotation.aux'.
-
-
-(./chapter/denotation.tex [12
-
-
-]) [13] [14
-
+] [12
 
 ]
 \openout2 = `chapter/chap-intro.aux'.
 
- (./chapter/chap-intro.tex
+
+(./chapter/chap-intro.tex
 第一章
 [1
 
@@ -2503,18 +2484,13 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 ] (./main.bbl [37
 
 ] [38]) [39]
-\openout2 = `chapter/chap-req.aux'.
-
- (./chapter/chap-req.tex)
 \openout2 = `chapter/thanks.aux'.
 
-
-(./chapter/thanks.tex [40
-
+ (./chapter/thanks.tex [40
 
 
-
-]) [41]
+])
+[41]
 \openout2 = `chapter/pub.aux'.
 
  (./chapter/pub.tex [42
@@ -2524,11 +2500,10 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 ]) [43]
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 183.
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 183.
- (./main.aux
-(./chapter/abstract.aux) (./chapter/denotation.aux) (./chapter/chap-intro.aux)
-(./chapter/chap-review.aux) (./chapter/chap-wkfdor.aux)
-(./chapter/chap-essor.aux) (./chapter/chap-conclusion.aux)
-(./chapter/chap-req.aux) (./chapter/thanks.aux) (./chapter/pub.aux))
+ (./main.aux (./chapter/abstract.aux)
+(./chapter/chap-intro.aux) (./chapter/chap-review.aux)
+(./chapter/chap-wkfdor.aux) (./chapter/chap-essor.aux)
+(./chapter/chap-conclusion.aux) (./chapter/thanks.aux) (./chapter/pub.aux))
 Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 183.
 Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 183.
 
@@ -2543,12 +2518,12 @@ Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 183.
 ### simple group (level 1) entered at line 1061 ({)
 ### bottom level 
 Here is how much of TeX's memory you used:
- 33413 strings out of 493638
- 626295 string characters out of 6144792
- 677840 words of memory out of 5000000
- 36239 multiletter control sequences out of 15000+600000
+ 33389 strings out of 493638
+ 625503 string characters out of 6144792
+ 675965 words of memory out of 5000000
+ 36228 multiletter control sequences out of 15000+600000
  65482 words of font info for 275 fonts, out of 8000000 for 9000
  1328 hyphenation exceptions out of 8191
  71i,18n,79p,10411b,15840s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on main.pdf (63 pages).
+Output written on main.pdf (61 pages).

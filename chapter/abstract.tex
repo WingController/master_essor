@@ -1,17 +1,25 @@
 ﻿
 \begin{cnabstract}
-本文是中国科学技术大学本硕博毕业论文模板示例文件。本模板由ywg@USTC创建，适用于撰写学士、硕士和博士学位论文，本模板由原来的本科模板和硕博模板整合优化而来。本示例文件除了介绍本模板的基础用法外，本文还是一个简要的学位论文写作指南。
 
-\keywords{中国科学技术大学，学位论文，\LaTeX{}~通用模板，学士，硕士，博士}
+在很多实际应用中，数据的类别之间存在一种自然的序关系。例如，我们用1～5星去评价一部电影，3星评价高于2星评价，而4星评价低于5星评价。和标称数据不同，我们称这样一类数据为有序数据。有序数据的类别之间可以排序，但类别之间的差异却没有精确的定义。例如，对电影的3星评价通常被认为优于2星评价，但是3星究竟比2星好多少却难以度量。预测有序数据的序的学习问题，称之为序回归。序回归有着广泛的实际应用场景，例如情感分析、信息检索、推荐系统、信用评价、医学等。
+
+序回归问题作为机器学习、数据挖掘领域重要的问题之一，越来越受到研究者们的关注。已有的工作主要集中在研究有监督序回归问题。然而，当缺少足够的有标签数据时，该问题变得难以处理。在很多实际应用中，有标签数据往往难以获取并且校对起来代价很高。而无标签数据通常大量存在，并且易于获取。因此，同时考虑有标签数据和无标签数据的半监督序回归问题具有重要的研究意义和实际价值。本文以此为动机，对半监督序回归问题做了一定的研究和讨论。
+
+本文提出了一种基于加权核判别分析的半监督序回归技术。该算法通过一个加权策略来引入无标签数据，而权重体现了不同训练数据对于类分布的贡献大小。通过同时使用有标签数据和无标签数据，可以更准确地估计类的分布信息，从而获得更好的投影向量和阈值。该投影向量将原始数据映射到一个一维的空间，使得相邻类别之间可以分隔开、相同类别的数据可以聚合紧，同时保持正确的序关系；阈值用来预测新样例的序。该算法使用一种标签传播的方法来计算权重。然而，由于标签传播算法没有考虑数据中的序信息，导致估计的权重有时不是很准确。为了更准确地估计类的分布信息并进一步提升性能，我们提出了改进的算法——基于演化算法的半监督序回归技术。该算法通过使用演化算法来优化无标签数据的权重，优化目标是使学习器拥有良好的学习性能和泛化能力。由于同时引入了无标签数据和序信息，所以该优化问题是一个非凸且不可导的优化问题。演化算法适用于处理这类问题，我们在本文使用差分进化算法。为了降低优化问题的维度，本文提出了一种权重更新规则和个体表示方法，用来间接地演化权重。通过该方法，问题维度从无标签样例个数量级下降到序个数量级。在多个数据集上的实验结果，证明了本文提出的两个半监督序回归算法的有效性。
+
+
+\keywords{序回归，半监督学习，核判别分析，标签传播，演化算法，差分进化}
 \end{cnabstract}
 
 
 \begin{enabstract}
 
-This is USTC thesis template for bachelor, master and doctor user's guide. The template is created by ywg@USTC and a derivative of USTC Bachelor and Master-PhD templates. Besides that
-the usage of the template, a brief
-guideline for writing thesis is also provided.
+A natural order among different categories is frequently involved in many practical applications. For example, one-to-five stars are used to evaluate movies. The evaluation with three stars is higher than the evaluation with two stars, while four is lower than five. In contrast to nominal data, this kind of data are called ordinal data. The categories of ordinal data can be ranked, but the differences between each category are not exactly defined. For example, the three-star evaluation is typically considered to be better than two-star evaluation. However, it is hard to quantify the distance between them. Ordinal regression is a type of learning problem, which attempts to predict the ranks of ordinal data. It has been applied in a wide variety of practical applications, including sentiment analysis, information retrieval, recommendation system, credit rating, medical research etc.
+
+As an important research topic in machine learning and data mining, ordinal regression got more and more attention of researchers. The previous work mainly focused on the supervised ordinal regression problem. However, it is hard to tackle ordinal regression when lacking sufficient labeled data. In many practical applications, the labels are often difficult to obtain and costly to calibrate. Nevertheless, unlabeled data exist in abundance and are always easily available. Therefore, the semi-supervised ordinal regression, which considers the labeled data as well as the unlabeled data, has important research significance and practical value. With this motivation, this article did some research and discussion about semi-supervised ordinal regression.
+
+In this article, we propose a semi-supervised ordinal regression technique using weighted kernel Fisher discriminant analysis. This algorithm incorporates the unlabeled data with a weighting scheme, where the weights indicate the degrees of contributions to the class distribution by different training instances. By using both labeled and unlabeled data, the class distribution can be estimated more accurately, in order to obtain better projection and thresholds. The projection maps the original data to a one-dimensional space, which makes the adjacent classes to be separated, and the same class to be aggregated. In addition, the rank information can be preserved correctly. The thresholds are used to predict the ranks of new instances. A label propagation method is employed to calculate the weights in this algorithm. However, the estimated weights are not very accurate sometimes, because the label propagation method doesn't take the order information into account. In order to estimate the data distribution more accurately and improve the performance, we propose an improved technique, called evolutionary semi-supervised ordinal regression algorithm. This algorithm tunes the weights of unlabeled data by evolutionary algorithm, and the optimization objective is to make the learner has good learning performance and generalization ability. Due to introducing the unlabeled data and order information at the same time, the optimization problem is non-convex and non-differentiable. Evolutionary algorithm is suitable for this problem, and we use differential evolution in this article. In order to reduce the dimension of the optimization problem, we present a weight updating rule and individual representation method to evolve the weights indirectly. Through this method, the magnitude of problem dimension drops from number of instances to the number of ranks. The experimental results on various datasets demonstrate the effectiveness of our two semi-supervised algorithms. 
 
 
-\enkeywords{University of Science and Technology of China (USTC), Thesis, Universal \LaTeX{} Template, Bachelor, Master, PhD}
+\enkeywords{Ordinal Regression, Semi-Supervised Learning, Kernel Fisher Discriminant Analysis, Label Propagation, Evolutionary Algorithm, Differential Evolution}
 \end{enabstract}
