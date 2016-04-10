@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99992 (TeX Live 2015) (preloaded format=xelatex 2016.2.23)  7 APR 2016 21:00
+This is XeTeX, Version 3.14159265-2.6-0.99992 (TeX Live 2015) (preloaded format=xelatex 2016.2.23)  8 APR 2016 00:51
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1947,12 +1947,9 @@ LaTeX Info: Redefining \LaTeXe on input line 219.
 )
 (./main.aux (./chapter/abstract.aux) (./chapter/denotation.aux)
 (./chapter/chap-intro.aux) (./chapter/chap-review.aux)
-(./chapter/chap-wkfdor.aux) (./chapter/chap-essor.aux
-
-LaTeX Warning: Label `wkfdor_realData' multiply defined.
-
-) (./chapter/chap-conclusion.aux) (./chapter/chap-req.aux)
-(./chapter/thanks.aux) (./chapter/pub.aux))
+(./chapter/chap-wkfdor.aux) (./chapter/chap-essor.aux)
+(./chapter/chap-conclusion.aux) (./chapter/chap-req.aux) (./chapter/thanks.aux)
+(./chapter/pub.aux))
 \openout1 = `main.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 70.
@@ -2490,14 +2487,11 @@ File: figures/expfunc.eps Graphic file (type eps)
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[24]
-Underfull \vbox (badness 1221) has occurred while \output is active []
-
- [25]
-[26] [27] [28]) [29] [30] [31]
+[24] [25] [26] [27] [28] [29] [30]) [31]
 \openout2 = `chapter/chap-conclusion.aux'.
 
- (./chapter/chap-conclusion.tex [32
+ (./chapter/chap-conclusion.tex
+[32
 
 
 
@@ -2542,9 +2536,6 @@ Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 183.
 LaTeX Font Warning: Size substitutions with differences
 (Font)              up to 31.12pt have occurred.
 
-
-LaTeX Warning: There were multiply-defined labels.
-
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 183.
  )
 (\end occurred inside a group at level 1)
@@ -2554,7 +2545,7 @@ Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 183.
 Here is how much of TeX's memory you used:
  33410 strings out of 493638
  626205 string characters out of 6144792
- 686862 words of memory out of 5000000
+ 677824 words of memory out of 5000000
  36236 multiletter control sequences out of 15000+600000
  65482 words of font info for 275 fonts, out of 8000000 for 9000
  1328 hyphenation exceptions out of 8191

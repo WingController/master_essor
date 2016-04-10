@@ -48,7 +48,7 @@
 \label{mem_updateRule}
 u_{jk}^{'}=\frac{u_{jk}^{\lambda_{k}}}{\Sigma_{k=1}^{K} u_{jk}^{\lambda_{k}}}
 \end{equation}
-其中 \(u_{jk}\)是\autoref{alg_mem}估计的权重，将其作为初始权重。新的 \(\mathcal{M}_{k}\) 和 \(\mathcal{N}\)可以通过\autoref{M}和\autoref{N}计算得到，新的投影向量\(w\) 可以通过求解\autoref{wkfdor}的优化问题得到。根据上面的分析，\(\lambda\)引导了无标签数据权重的更新，从而将原问题转化成了搜索最优的\(\lambda\)。需要指出的是，有标签数据的权重（即直接从它们的标签可获得）在演化过程中固定不变。
+其中 \(u_{jk}\)是\autoref{alg_mem}估计的权重，将其作为初始权重。新的 \(\mathcal{M}_{k}\) 和 \(\mathcal{N}\)可以通过\autoref{M}和\autoref{N}计算得到，新的投影向量\(w\) 可以通过求解\autoref{wkfdor}的优化问题得到。根据上面的分析，\(\lambda\)引导了无标签数据权重的更新，从而将原问题转化成了搜索最优的\(\lambda\)。注意，有标签数据的权重（即直接从它们的标签可获得）在演化过程中固定不变。
 
 我们对权重更新规则\autoref{mem_updateRule}进行了一定的数学分析，下面的这些特性保证了它能够合理地调整权重：
 \begin{enumerate}
@@ -112,7 +112,7 @@ u_{jk}^{'}=\frac{u_{jk}^{\lambda_{k}}}{\Sigma_{k=1}^{K} u_{jk}^{\lambda_{k}}}
 \caption{适应度评估函数}\label{alg_fitness}
 \end{algorithm}\DecMargin{1em}
 
-通常，将在验证集（validation dataset）上的分类准确率作为适应度度量。但是，在半监督学习问题中有标签数据量很少，如果从中取出一部分用来作验证集的话将会增加学习难度并很有可能导致更差的学习性能。 因此，这里我们在有标签数据集上评估算法的MAE和MZE。在序回归问题中，我们希望预测的标签能够和实际标签尽可能相近，所以MAE比MZE更能体现算法的性能，因此这里我们给MAE更高的优先级。前两个指标用来最小化序回归学习器的经验风险（empirical risk），使其能够获得基本的识别能力。但是仅在一个小的有标签数据集上最小化分类误差很可能导致模型过拟合（over-fitting），所以这里我们还将在整个训练集上计算到的ORfval引入进来。ORfval用来最小化预测风险，它能够促进同类别的数据点更加紧凑而相邻类的数据点能够更加分散（在映射后的空间里）。总的来说，MAE和MZE指示模型已经学习正确的程度，而ORfval在概念上类似于指示学习器的潜能并用来防止过拟合\citep{liu2000evolutionary}\citep{liu2003evolutionary}。
+通常，将在验证集（validation dataset）上的分类准确率作为适应度度量。但是，在半监督学习问题中有标签数据量很少，如果从中取出一部分用来作验证集的话将会增加学习难度并很有可能导致更差的学习性能。 因此，这里我们在有标签数据集上评估算法的MAE和MZE。在序回归问题中，我们希望预测的标签能够和实际标签尽可能相近，所以MAE比MZE更能体现算法的性能，因此这里我们给MAE更高的优先级。前两个指标用来最小化序回归学习器的经验风险（empirical risk），使其能够获得基本的识别能力。但是仅在一个小的有标签数据集上最小化分类误差很可能导致模型过拟合（over-fitting），所以这里我们还将在整个训练集上计算到的ORfval引入进来。ORfval用来最小化预测风险，它能够促进同类别的数据点更加紧凑而相邻类的数据点能够更加分散（在映射后的空间里）。总的来说，在有标签数据集上评估的MAE和MZE指示了模型已经学习正确的程度，而ORfval在概念上类似于指示学习器的潜能并用来防止过拟合\citep{liu2000evolutionary}\citep{liu2003evolutionary}。
 %[C. Liu and H. Wechsler, “Evolutionary pursuit and its applica- tion to face recognition,” IEEE Transactions on Pattern Analysis and Machine Intelligence, vol. 22, no. 6, pp. 570–582, 2000.]
 %［H. Liu and S.-T. Huang, “Evolutionary semi-supervised fuzzy clustering,” Pattern Recognition Letters, vol. 24, no. 16, pp. 3105–3113, 2003.］。
 因此，由\autoref{alg_fitness}的适应度函数所驱动的演化过程可以达到良好的学习性能和泛化能力。
@@ -137,7 +137,7 @@ x_{ij}(g)& \text{其他情况}
 
 在差分进化算法中，通过变异、交叉、选择三种算子来产生新的种群。
 \begin{enumerate}
-\item[1.变异：]\autoref{DE_mutation}给出了差分进化的变异算子。对于每一个父代个体\(x_{i}(g)\)，通过该变异算子产生测试向量\(u_{i}(g)\)。其中，\(x_{i_{1}}(g)\)、\((x_{i_{2}}(g)\)、\(x_{i_{3}}(g)\)是从第\(g\)代种群中随机选择的个体，且\(i \neq i_{1} \neq i_{2} \neq i_{3}\)。比例因子\(\beta > 0\)，用来控制差分变量的放大程度。
+\item[1.变异：]\autoref{DE_mutation}给出了差分进化的变异算子。对于每一个父代个体\(x_{i}(g)\)，通过该变异算子产生测试向量\(u_{i}(g)\)。其中，\(x_{i_{1}}(g)\)、\(x_{i_{2}}(g)\)、\(x_{i_{3}}(g)\)是从第\(g\)代种群中随机选择的个体，且\(i \neq i_{1} \neq i_{2} \neq i_{3}\)。比例因子\(\beta > 0\)，用来控制差分变量的放大程度。
 
 \item[2.交叉：]通过父代个体\(x_{i}(g)\)与测试个体\(u_{i}(g)\)的离散重组产生子代个体\(x^{'}_{i}(g)\)，\autoref{DE_crossover}给出了差分进化的交叉算子。其中，\(x_{ij}(g)\)表示\(x_{i}(g)\)的第\(j\)个元素，\(J\)是交叉位的集合。常见的交叉方式有二项式交叉和指数交叉，\autoref{alg_DE_crossover}给出了二项式交叉方式生成交叉位集合的算法，其中\(p_{r}\)是重组概率。
 
@@ -155,7 +155,7 @@ x_{ij}(g)& \text{其他情况}
 \Output{交叉位集合$J$}
 \emph{$j^{*}\sim U \left( 1,n_{x} \right)$}\;
 \emph{$J = \{j^{*}\}$}\;
-\For{$j = 1$ to $n_{x}$}{
+\For{$j = 1$ \KwTo $n_{x}$}{
     \If{$U(0,1)<p_{r}$且$j\neq j^{*}$}{
         \emph{$J=J\cup \{j\}$}\;
     }
@@ -169,7 +169,7 @@ x_{ij}(g)& \text{其他情况}
 \SetKwData{Left}{left}\SetKwData{This}{this}\SetKwData{Up}{up}
 \SetKwFunction{Union}{Union}\SetKwFunction{FindCompress}{FindCompress}
 \SetKwInOut{Input}{input}\SetKwInOut{Output}{output}
-\emph{初始化种群大小$NP$、比例因此$\beta$和重组概率$p_{r}$}\;
+\emph{初始化种群大小$NP$、比例因子$\beta$和重组概率$p_{r}$}\;
 \emph{$g=0$}\;
 \emph{初始化初代种群$P(0)$}\;
         \Repeat{满足DE的停止准则}{
@@ -193,7 +193,11 @@ x_{ij}(g)& \text{其他情况}
 
 \autoref{alg_DE}给出了一般差分进化算法的步骤。差分进化是一种高效的处理连续优化问题的演化算法，简单易用，并且容易并行化。此外，差分进化算法还具有收敛好和实现快的特点\citep{price2006differential}。
 %[K. Price, R. M. Storn, and J. A. Lampinen, Differential Evolu- tion: A Practical Approach to Global Optimization. Secaucus, NJ, USA: Springer-Verlag New York, Inc., 2005.]。
-因此，我们采用差分进化算法来求解我们的优化问题，以进一步提升算法性能。在初代种群中引入一个个体\(\lambda=(1,1,\dots,1)\)，用来表示初始权重。初代种群的其它个体将在一个给定范围内随机生成。基于上面的介绍和分析，我们在\autoref{alg_ESSOR}提出了基于演化算法的半监督序回归算法——ESSOR。其中，\(\lambda_{g}^{t}\)是通过DE的交叉和变异算子产生的新的个体，用于探索解空间。权重更新规则见\autoref{mem_updateRule}，适应度函数见\autoref{alg_fitness}。在这里，DE的停止准则是迭代次数达到预设的最大代数。
+因此，我们采用差分进化算法来搜索最优的\(\lambda\)。在初代种群中引入一个个体\(\lambda=(1,1,\dots,1)\)，用来表示初始权重。初代种群的其它个体将在一个给定范围内随机生成。基于上面的介绍和分析，我们在\autoref{alg_ESSOR}提出了基于演化算法的半监督序回归算法——ESSOR。其中，\(\lambda_{g}^{t}\)是通过DE的交叉和变异算子产生的新的个体，用于探索解空间。分别将\(\lambda_{g}\)和\(\lambda_g^{t}\)代入\autoref{mem_updateRule}的权重更新规则，得到新的权重矩阵\((u_{jk}^{'})_{N \times K}\)和\((u_{jk}^{t})_{N \times K}\)。再分别将两个新的权重矩阵应用到WKFDOR算法得到半监督序回归模型（ORfval可以同时得到）。在有标签数据集上评估得到的半监督序回归模型，得到相应的MAE和MZE。结合ORfval，得到适应度的三元组。由\autoref{alg_fitness}得到适应度评价结果，根据结果决定保留子代个体还是父代个体至下一代种群。
+%权重更新规则见\autoref{mem_updateRule}，适应度函数见\autoref{alg_fitness}。
+其中，DE的停止准则是迭代次数（maximum generation）达到预设的最大代数。从最后的种群中选出最优的个体，即最优的\(\lambda\)。根据权重更新规则得到最优的权重矩阵，并应用WKFDOR算法得到最终的序回归模型。
+
+%可以将得到fitness的过程写成算法
 
 \IncMargin{1em}
 \begin{algorithm}
@@ -237,7 +241,6 @@ ESSOR算法是在WKFDOR算法基础上做了改进，它基于演化算法去优
 和\autoref{wkfdor_realData}中的做法相同，对于每个数据集，取一半的训练数据作为有标签数据，剩下的一半作为无标签数据。
 
 \subsection{处理大数据}
-ESSOR使用演化算法来优化权重，而演化算法需要通过迭代来产生新的更优的个体。对于大数据集，例如\autoref{table_realSets}中的Connect-4数据集（有7000个训练样例），如果对每代种群的每个个体都使用全部训练样例来建模、评估适应度，将会使计算量变得非常大。因此，我们使用随机采样方法来降低建模和适应度评估的计算代价。具体算法见\autoref{alg_ESSOR_sampling}，我们将其命名为ESSOR-Sampling，简称为ESSOR-S。步骤2—4从原来的数据集中随机抽取一部分用于在差分进化时建模和评估适应度。由于实验设置中有标签数据和无标签数据数量相同，所以我们在步骤2—3中使用相同的采样参数，并令\(sampling\_size = 300\)。
 
 %写抽样做的算法
 \IncMargin{1em}
@@ -273,6 +276,8 @@ ESSOR使用演化算法来优化权重，而演化算法需要通过迭代来产
 \emph{最终的序回归学习器 $\leftarrow$ WKFDOR, $(u_{jk}^{*})_{N \times K}$}\;
 \caption{ESSOR-S}\label{alg_ESSOR_sampling}
 \end{algorithm}\DecMargin{1em}
+
+ESSOR使用演化算法来优化权重，而演化算法需要通过迭代来产生新的更优的个体。对于大数据集，例如\autoref{table_realSets}中的Connect-4数据集（有7000个训练样例），如果对每代种群的每个个体都使用全部训练样例来建模、评估适应度，将会使计算量变得非常大。因此，我们使用随机采样方法来降低建模和适应度评估的计算代价。具体算法见\autoref{alg_ESSOR_sampling}，我们将其命名为ESSOR-Sampling，简称为ESSOR-S。步骤2—4从原来的数据集中随机抽取一部分用于在差分进化时建模和评估适应度。由于实验设置中有标签数据和无标签数据数量相同，所以我们在步骤2—3中使用相同的采样参数，并令\(sampling\_size = 300\)。
 
 通过随机采样的方法，可以加快建模和适应度评估的计算速度，从而使DE能够在更短的时间内收敛。但是，这样做的代价是损失了一定的算法性能（MAE和MZE）。对于一个大数据集，如果我们能在较短的时间内获得一个相对不错的结果，在一些应用场景下往往更加可取。
 
@@ -352,15 +357,9 @@ Connect-4 & 0.4505$\pm$0.0094 & {\bf 0.3752$\pm$0.0097}$^{*}$ & 0.3762$\pm$0.012
 %\end{tabular}
 %\end{table*}
 
-对于MAE指标，ESSOR在8个数据集上结果的均值最优，其中在5个数据集上显著优于KDLOR算法。对于MZE指标，ESSOR在7个数据集上结果的均值最优，其中在5个数据集上显著优于KDLOR算法。总的来说，ESSOR算法几乎在所有的真实数据集上都表现得最优，无论是MAE还是MZE指标。根据\autoref{wkfdor_realData}中的分析，我们知道WKFDOR算法在一些数据集上的MAE结果没有优于KDLOR算法。原因是计算初始权重时没有考虑序信息，并且对于不同的数据集不总是可以估计得很准确。ESSOR算法对初始权重做微调，从而得到更准确的权重。因此，即使初始权重估计得不够准确，ESSOR算法往往还能得到更优的结果。例如，在LEV数据集上，WKFDOR比KDLOR获得更差的MAE，而ESSOR的MAE值依然显著优于KDLOR。这说明了ESSOR算法对于不同的数据集能够稳定地优化初始权重，从而有效地利用无标签数据来提升性能。
+对于MAE指标，ESSOR在8个数据集上结果的均值最优，其中在5个数据集上显著优于KDLOR算法。对于MZE指标，ESSOR在7个数据集上结果的均值最优，其中在5个数据集上显著优于KDLOR算法。总的来说，ESSOR算法几乎在所有的真实数据集上都表现得最优，无论是MAE还是MZE指标。根据\autoref{wkfdor_realData}中的分析，我们知道WKFDOR算法在一些数据集上的MAE结果没有优于KDLOR算法。原因是计算初始权重时没有考虑序信息，并且对于不同的数据集不是总能估计得很准确。ESSOR算法对初始权重做微调，从而得到更准确的权重。因此，即使初始权重估计得不够准确，ESSOR算法往往还能得到更优的结果。例如，在LEV数据集上，WKFDOR比KDLOR获得更差的MAE，而ESSOR的MAE值依然显著优于KDLOR。这说明了ESSOR算法对于不同的数据集能够稳定地优化初始权重，从而有效地利用无标签数据来提升性能。
 
 \section{小结}
 
-
-
-
-
-
-
-
+本章在WKFDOR算法的基础上，提出了改进的算法——ESSOR。ESSOR用演化算法来优化\textit{mConsistency}得到的初始权重，从而更有效地利用无标签数据来提升性能。我们提出了一个有效的个体表示方法，使得问题规模从\((N-L) \times K\)减小到\(K\)。此外，我们还提出了一种组合型的适应度函数，可以兼顾序回归模型的学习性能和泛化能力。在演化算法的使用上，我们选择了差分进化算法。本章也介绍了差分进化算法以及我们选择它的原因。此外，在处理大规模数据集时，我们还提出了一种基于随机采样的加速方法（ESSOR-S）来提升算法运行速度。为了验证ESSOR的有效性，本章依然使用了\autoref{chap:wkfdor}中的真实数据集来做实验，对KDLOR、WKFDOR、ESSOR三个算法做了性能比较。实验结果显示，相比较于WKFDOR算法，ESSOR能够更有效地利用无标签数据提升性能，并且它具有良好的健壮性。据我们所知，ESSOR是第一个基于演化算法的半监督序回归技术。在处理半监督序回归问题时，演化算法不失为一种好的优化工具。
 
