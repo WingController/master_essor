@@ -5,14 +5,14 @@
 
 \section{序回归问题定义和评估指标}
 %对于一个输入的属性特征向量\(x\)，序回归问题是要预测\(x\)的标签\(y\)，其中
-考虑一个有\(K\)个有序类别的序回归问题，这\(K\)个类别（序）用一个连续的整数集合 \(Z=\{1,2,\dots,K\}\)来表示，整数的值表示相应类别在整个标签集合中的序。给定一个包含\(N\)个样例（instances）的训练集合（training set），其中可能包含有标签数据和无标签数据。样例的属性特征向量\(x_{i} \in \chi \subseteq R^{d}\)，有标签样例的标签\(y_{i} \in Z\)。问题的目标是用训练集学习到一个序回归模型，该模型可以对测试样例（testing instance）给出一个预测的标签。需要指出的是，这里的测试样例是在训练过程中未曾出现的新样例。
+考虑一个有\(K\)个有序类别的序回归问题，这\(K\)个类别（序）用一个连续的整数集合 \(Z=\{1,2,\dots,K\}\)来表示，整数的值表示相应类别在整个标签集合中的序。给定一个包含\(N\)个样例（Instances）的训练集合（Training Set），其中可能包含有标签数据和无标签数据。样例的属性特征向量\(x_{i} \in \chi \subseteq R^{d}\)，有标签样例的标签\(y_{i} \in Z\)。问题的目标是用训练集学习到一个序回归模型，该模型可以对测试样例（Testing Instance）给出一个预测的标签。需要指出的是，这里的测试样例是在训练过程中未曾出现的新样例。
 
 %丰富metric的已有研究
 
 假设序回归模型对测试集预测的标签是\(\{\hat{y_{1}},\hat{y_{2}},\dots,\hat{y_{t}}\}\)，而测试集的真实标签是 \(\{y_{1},y_{2},\dots,y_{t}\}\) ，通常采用下面两种指标来评估模型的性能：
 \begin{enumerate}
-\item[1.] \textit{Mean absolute error}: \(MAE=\frac{1}{t}\sum_{i=1}^{t}|\hat{y_{i}}-y_{i}|\), 用来量化预测标签和真实标签之间偏差的平均值。
-\item[2.] \textit{Mean zero-one error}: \(MZE=\frac{1}{t}\sum_{i=1}^{t}\mathbb{I}(\hat{y_{i}}\neq y_{i}) = 1-Acc\)，其中\(\mathbb{I}(\cdot)\)是指示函数。\(MZE\)用来量化模型的错误率（error rate）。
+\item[1.] \textit{Mean Absolute Error}: \(MAE=\frac{1}{t}\sum_{i=1}^{t}|\hat{y_{i}}-y_{i}|\), 用来量化预测标签和真实标签之间偏差的平均值。
+\item[2.] \textit{Mean Zero-One Error}: \(MZE=\frac{1}{t}\sum_{i=1}^{t}\mathbb{I}(\hat{y_{i}}\neq y_{i}) = 1-Acc\)，其中\(\mathbb{I}(\cdot)\)是指示函数。\(MZE\)用来量化模型的错误率（Error Rate）。
 \end{enumerate}
 
 \section{基于有监督学习方式的序回归技术}
@@ -21,8 +21,8 @@
 
 根据方法的特点，我们可以大致将已有的有监督序回归技术分成三类：
 \begin{enumerate}
-\item[1.]第一类方法将序回归问题当作传统的标称分类问题（nominal classification problem）或者传统的回归问题（regression problem），使用已有的分类或回归方法来处理。
-\item[2.]第二类方法先将序回归问题分解成多个二分类问题（binary classification problem），再使用传统的分类模型来处理每个子问题，最后对子问题的结果进行合并得到原问题的结果。通过设计的分解策略，序回归问题中的序信息可以保留下来。
+\item[1.]第一类方法将序回归问题当作传统的标称分类问题（Nominal Classification Problem）或者传统的回归问题（Regression Problem），使用已有的分类或回归方法来处理。
+\item[2.]第二类方法先将序回归问题分解成多个二分类子问题（Binary Classification Problem），再使用传统的分类模型来处理每个子问题，最后对子问题的结果进行合并得到原问题的结果。通过设计的分解策略，序回归问题中的序信息可以保留下来。
 \item[3.]第三类方法通过拓展传统的分类模型来使序信息可以加入到模型学习中，例如显式增加一个序关系约束条件。这种方法相比较于前两种方法，对序信息的处理更加直接，通常效果也更好。因此本节着重介绍了第三类方法。
 \end{enumerate}
 
@@ -47,7 +47,7 @@
 
 从分类的角度来考虑，当我们不考虑类别之间的序关系时，序回归问题就是一个传统的标称分类问题。有一些研究者直接使用传统的标称分类模型（例如，支持向量机、决策树、罗辑思特回归等）来处理序回归问题，由于忽略了数据中的序信息，使得问题的难度有所增加，往往需要更多的训练数据。此外，序信息可以被理解为一种先验知识，合理地利用序信息能够有效地提升预测效果。因此，出现了第三类序回归技术，即在传统的分类模型下引入序信息，这将在后面小节中介绍。
 
-另一种更精细的做法是使用代价敏感的分类技术来处理序回归问题。其主要做法是引入一个代价矩阵（cost matrix），对不同的错分给予不同的代价。例如，将序为\(1\)的标签预测成序为\(3\)的标签，其代价要大于预测成序为\(2\)的标签。Kotsiantis和Pintelas\citep{kotsiantis2004cost}
+另一种更精细的做法是使用代价敏感的分类技术来处理序回归问题。其主要做法是引入一个代价矩阵（Cost Matrix），对不同的错分给予不同的代价。例如，将序为\(1\)的标签预测成序为\(3\)的标签，其代价要大于预测成序为\(2\)的标签。Kotsiantis和Pintelas\citep{kotsiantis2004cost}
 %[S. B. Kotsiantis and P. E. Pintelas, "A cost sensitive technique for ordinal classification problems,"Proc. Methods Appl. Artif. Intell. (Proc. 3rd Hellenic Conf. Artif. Intell.), pp. 220-229, 2004 [CrossRef]]
 使用绝对值代价矩阵来处理序回归问题。假设真实标签的序为\(i\)，将其错误地预测为序是\(j\)的标签，则相应的绝对值代价\(c = \left |  i - j \right |\)。\autoref{table_costMat}列出了几种常见的代价矩阵形式，其中矩阵的列是真实标签，行是预测的标签。设计不同的代价矩阵，将对结果产生不同的影响。这种方法的主要问题和用传统回归技术来处理的方式相似，即在没有先验知识的情况下我们很难定义一个合适的代价矩阵。
 
@@ -185,21 +185,21 @@ $
 \subsection{拓展传统分类模型引入序信息的序回归技术}
 在处理序回归问题时，利用序信息能够有效地提升性能。因此，越来越多的研究直接将序信息加入模型中进行学习，即设计专门的序回归学习器。已有的研究通常是拓展传统的分类模型，使该模型能够使用序信息。
 
-近年来，支持向量机（support vector machine，SVM\citep{cortes1995support}）
+近年来，支持向量机（Support Vector Machine，SVM\citep{cortes1995support}）
 %Cortes C, Vapnik V. Support vector machine[J]. Machine learning, 1995, 20(3): 273-297.
 模型因为其优秀的泛化性能受到大家的青睐。在序回归技术的研究中，也出现了一批基于支持向量机的序回归模型。在拓展传统分类模型的序回归技术中，支持向量机是被研究者使用最多的一种模型。 Herbrich等人\citep{herbrich1999support}\citep{herbrich1999large}最先提出了基于支持向量机的序回归算法，
 %[R. Herbrich, T. Graepel and K. Obermayer, "Support vector learning for ordinal regression,"Proc. 9th Int. Conf. Artif. Neural Netw., pp. 97-102, 1999]
 % [R. Herbrich, T. Graepel and K. Obermayer, "Large margin rank boundaries for ordinal regression,"Advances in Large Margin Classifiers, pp. 115-132, 2000, MIT Press]，
-他们通过差值向量\(x_{ij} = x_{i}-x_{j}, y_{ij} = sign(y_{i} - y_{j})\)得到新的数据集，再使用一种基于样例对的方法（pairwise approach）。Shashua 和 Levin\citep{shashua2002ranking}
+他们通过差值向量\(x_{ij} = x_{i}-x_{j}, y_{ij} = sign(y_{i} - y_{j})\)得到新的数据集，再使用一种基于样例对的方法（Pairwise Approach）。Shashua 和 Levin\citep{shashua2002ranking}
 %[A. Shashua and A. Levin, "Ranking with large margin principle: Two approaches,"Proc. 17th Annu. Conf. Neural Inf. Process. Syst., pp. 937-944, 2003] 
-提出了两个基于最大间隔（large-margin）理论的算法：一种是最大化最近的相邻类别之间的间隔，另一种是最大化所有类别之间间隔之和。\citep{shashua2002ranking}的方法存在的问题是，得到的最优解不一定能保证序的正确性，因为模型中没有确保序正确的约束条件。为了解决这个问题， Chu和Keerthi\citep{chu2007support}\citep{chu2005new}
+提出了两个基于最大间隔（Large-Margin）理论的算法：一种是最大化最近的相邻类别之间的间隔，另一种是最大化所有类别之间间隔之和。\citep{shashua2002ranking}的方法存在的问题是，得到的最优解不一定能保证序的正确性，因为模型中没有确保序正确的约束条件。为了解决这个问题， Chu和Keerthi\citep{chu2007support}\citep{chu2005new}
 %[W. Chu and S. S. Keerthi, "Support vector ordinal regression,"Neural Comput., vol. 19, no. 3, pp. 792-815, 2007] 
 %[W. Chu and S. S. Keerthi, "New approaches to support vector ordinal regression,"Proc. 22nd Int. Conf. Mach. Learning, pp. 145-152, 2005 ]
 在\citep{shashua2002ranking}的基础之上做了改进。他们提出了两个算法：第一个算法显示地加入约束条件来保证序的正确性，称为显性约束支持向量序回归算法（Support Vector Ordinal Regression with Explicit Constraints, SVOREX）；第二个算法不显式增加一个序约束条件，而是通过所有类别的样例来同时决定每一个分隔面，称为隐性支持向量序回归算法（Support Vector Ordinal Regression with Explicit Constraints, SVOREX），\citep{chu2007support}理论证明了在最优解的情况下序的约束会自动满足。
 
 %Among the above methods, the kernel discriminant learning for ordinal regression (KDLOR) [7] is an efficient approach, which extends the KFD using a rank constraint to preserve the order information. In traditional classification, KFD is developed by applying the kernel method in Fisher discriminant analysis (FDA) [8, 9], which attempts to tackle the original nonlinear data. The idea of FDA is to maximize a function that will yield a large separation between the projected classes and also give a small variance within each class, thereby minimizing the class overlap [10]. In FDA and KFD, the class means, within- class covariance, and between-class covariance are calculated to represent the data distribution effectively. Since KDLOR employs KFD as the basic framework, it can also make full use of the information of data distribution. In contrast, the SVM-based ordinal regression methods suffer from the problems of ignoring the global information of data distribution, which may lead to an unreasonable solution as demonstrated in [7]. Compared to some popular supervised ordinal regression methods, KDLOR has competitive perfor- mance. Besides, the computational complexity of KDLOR is significantly lower than the approaches in [1–5].
 
-除了支持向量机之外，Fisher判别分析（Fisher Discriminant Analysis, FDA\citep{scholkopft1999fisher}）模型也被拓展来处理序回归问题。FDA的目标是求得一个最优的投影向量，使得在映射后的空间里，不同类别之间有大的间隔（即分得更开），而同一类别有小的方差（即聚得更紧），从而最小化类别之间的重叠度。FDA算法通过最大化类间协方差（between-class covariance）同时最小化类内协方差（within-class covariance）来求得这个最优的投影向量。类中心（class means）、类间协方差矩阵、类内协方差矩阵能够有效地表示数据分布特征。
+除了支持向量机之外，Fisher判别分析（Fisher Discriminant Analysis, FDA\citep{scholkopft1999fisher}）模型也被拓展来处理序回归问题。FDA的目标是求得一个最优的投影向量，使得在映射后的空间里，不同类别之间有大的间隔（即分得更开），而同一类别有小的方差（即聚得更紧），从而最小化类别之间的重叠度。FDA算法通过最大化类间协方差（Between-Class Covariance）同时最小化类内协方差（Within-Class Covariance）来求得这个最优的投影向量。类中心（Class Means）、类间协方差矩阵、类内协方差矩阵能够有效地表示数据分布特征。
 Sun等人\citep{sun2010kernel}
 %[B.-Y. Sun, J. Li, D. D. Wu, X.-M. Zhang and W.-B. Li, "Kernel discriminant learning for ordinal regression,"IEEE Trans. Knowl. Data Eng., vol. 22, no. 6, pp. 906-910, 2010]
 提出了基于FDA的序回归技术，称为核判别学习序回归算法（Kernel Discriminant Learning for Ordinal Regression, KDLOR）。为了引入序信息，KDLOR通过增加一个在相邻序类别上的约束条件来保证序的正确性，从而求得最优的序回归投影向量。由于KDLOR是基于FDA的算法，所以它也能够充分地利用数据分布信息。相反，基于支持向量机的序回归技术忽略了数据分布的全局信息，使得它们可能会找到一个不合理的分隔面\citep{sun2010kernel}。
@@ -235,7 +235,7 @@ Sun等人\citep{sun2010kernel}
 
 \subsection{演化算法及演化机器学习}
 
-在人工智能领域，演化算法（evolutionary algorithms, EA）\citep{back1996evolutionary}是演化计算的一个子集，是一类基于种群的元启发式优化算法。用种群中的个体（individual）来表示优化问题中的候选解，而适应度函数（fitness function）用于决定个体的质量。EA使用类似于生物进化的机制，例如交叉、变异、选择等来实现种群的进化，最终得到满足一定条件的优化问题的解。常见的演化算法有遗传算法（genetic algorithm，GA）、演化规划（evolutionary programming，EP）、演化策略（evolution strategy，ES）、差分进化（differential evolution, DE）等。\autoref{alg_EA}给出了演化算法的基本框架。其中，\(NP\)是种群大小，终止条件一般是代数达到预设的最大代数，或者是计算时间达到限制，或者是适应度达到一定的标准。
+在人工智能领域，演化算法（Evolutionary Algorithms, EA）\citep{back1996evolutionary}是演化计算的一个子集，是一类基于种群的元启发式优化算法。用种群中的个体（Individual）来表示优化问题中的候选解，而适应度函数（Fitness Function）用于决定个体的质量。EA使用类似于生物进化的机制，例如交叉、变异、选择等来实现种群的进化，最终得到满足一定条件的优化问题的解。常见的演化算法有遗传算法（Genetic Algorithm，GA）、演化规划（Evolutionary Programming，EP）、演化策略（Evolution Strategy，ES）、差分进化（Differential Evolution, DE）等。\autoref{alg_EA}给出了演化算法的基本框架。其中，\(NP\)是种群大小，终止条件一般是代数达到预设的最大代数，或者是计算时间达到限制，或者是适应度达到一定的标准。
 
 \IncMargin{1em}
 \begin{algorithm}
@@ -253,7 +253,7 @@ Sun等人\citep{sun2010kernel}
 \caption{演化算法的基本框架}\label{alg_EA}
 \end{algorithm}\DecMargin{1em}
 
-优化算法通常可以分为三类：解析法（calculus-based）、枚举法（enumerative）和随机法\citep{潘正君1998演化计算}。解析法在求解过程中需要使用目标函数的解析性质，例如一阶导数、二阶导数等。通常，解析法根据目标函数的梯度信息来确定下一步的搜索方向，如Newton法、共轭梯度下降法等。此外，解析法在求解非凸问题时，往往会根据最陡的方向找到一个局部最优点，而难以找到一个全局最优解。枚举法是一种暴力搜索的方法，它不使用启发信息，而直接对候选的解空间进行逐一枚举计算。对于大规模的优化问题，枚举法速度慢，难以适用。演化算法属于随机法的一种，它使用随机性的转移规则而不是确定性的转移规则，因而能跳出局部最优，搜索到全局较优的解。相比较于解析法，演化算法不需要目标的解析性质，因此它能够处理目标函数不可导的优化问题。此外，相比较于枚举法，演化算法是一种元启发式算法，它能够通过适应度函数和进化算子引导种群的进化，以较快地速度找到全局较优的解。
+优化算法通常可以分为三类：解析法（Calculus-based）、枚举法（Enumerative）和随机法\citep{潘正君1998演化计算}。解析法在求解过程中需要使用目标函数的解析性质，例如一阶导数、二阶导数等。通常，解析法根据目标函数的梯度信息来确定下一步的搜索方向，如Newton法、共轭梯度下降法等。此外，解析法在求解非凸问题时，往往会根据最陡的方向找到一个局部最优点，而难以找到一个全局最优解。枚举法是一种暴力搜索的方法，它不使用启发信息，而直接对候选的解空间进行逐一枚举计算。对于大规模的优化问题，枚举法速度慢，难以适用。演化算法属于随机法的一种，它使用随机性的转移规则而不是确定性的转移规则，因而能跳出局部最优，搜索到全局较优的解。相比较于解析法，演化算法不需要目标的解析性质，因此它能够处理目标函数不可导的优化问题。此外，相比较于枚举法，演化算法是一种元启发式算法，它能够通过适应度函数和进化算子引导种群的进化，以较快地速度找到全局较优的解。
 
 EA在求解各种优化问题时，通常都能得到不错的近似解，因为它没有对潜在的适应度曲面做任何假设。尤其是在求解一些非凸、目标函数不可导、甚至连优化目标都难以形式化定义的优化问题时，演化算法具有明显的优势。
 
@@ -275,7 +275,7 @@ EA已经被广泛应用在机器学习问题中\citep{liu2000evolutionary}\citep
 、Cruz-Ramirez等人\citep{cruz2014metrics}\citep{cruz2013multiobjective}
 %[Cruz-Ramírez M, Hervás-Martínez C, Sánchez-Monedero J, et al. Metrics to guide a multi-objective evolutionary algorithm for ordinal classification[J]. Neurocomputing, 2014, 135: 21-31.] 
 %[Cruz-Ramírez M, Fernández J C, Valero A, et al. Multiobjective Pareto ordinal classification for predictive microbiology[M]//Soft Computing Models in Industrial and Environmental Applications. Springer Berlin Heidelberg, 2013: 153-162. ] 
-将演化算法和人工神经网络结合起来处理序回归问题，它们通过使用序回归的评价指标作为演化算法适应性评估函数（fitness function），用演化算法来优化神经网络的参数。Becerra-Alonso等人\citep{becerra2012evolutionary}
+将演化算法和人工神经网络结合起来处理序回归问题，它们通过使用序回归的评价指标作为演化算法适应性评估函数，用演化算法来优化神经网络的参数。Becerra-Alonso等人\citep{becerra2012evolutionary}
 %[Becerra-Alonso D, Carbonero-Ruz M, Martínez-Estudillo F J, et al. Evolutionary extreme learning machine for ordinal regression[C]//Neural Information Processing. Springer Berlin Heidelberg, 2012: 217-227.]
 、Sanchez-Monedero等人\citep{sanchez2013evolutionary}
 %[Sánchez-Monedero J, Gutiérrez P A, Hervás-Martínez C. Evolutionary ordinal extreme learning machine[M]//Hybrid Artificial Intelligent Systems. Springer Berlin Heidelberg, 2013: 500-509.] 

@@ -9,17 +9,17 @@
 考虑一个有\(K\)个有序类别的半监督序回归问题，用一个连续的整数集合 \(Z=\{1,2,\dots,K\}\)来表示，整数的值表示相应类别在整个标签集合中的序。在半监督序回归问题中，给定一个包含\(L\)个有标签样例\((X^{l},Y^{l})=\{(x_{1:L},y_{1:L})\}\)和\(N-L\)个无标签样例\(X^{u} = {x_{L+1:N}}\)的训练集，其中\(x_{i} \in \chi \subseteq R^{d}\)，\(y_{i} \in Z\)。我们的目标是构造一个半监督序回归模型，通过用训练集来学习，使得该模型可以对测试样例给出一个预测的标签。
 
 \section{半监督学习}
-在机器学习中，半监督学习通过在训练的过程中不仅使用有标签数据，同时还使用无标签数据，从而获得比只使用有标签数据训练更好的性能。为了使用无标签数据，需要对数据的分布做一个假设，称为平滑假设（smoothness assumption）\citep{chapelle2006semi}。
+在机器学习中，半监督学习通过在训练的过程中不仅使用有标签数据，同时还使用无标签数据，从而获得比只使用有标签数据训练更好的性能。为了使用无标签数据，需要对数据的分布做一个假设，称为平滑假设（Smoothness Assumption）\citep{chapelle2006semi}。
 %[O.Chapelle,B.Scho ̈lkopf,andA.Zien,Semi-SupervisedLearn-ing. MIT Press Cambridge, 2006.]。
-基于这个假设，出现了多种半监督学习方法，例如基于图的方法（graph-based methods）、低密度分离方法（low-density separation methods）、生成模型（generative models）等\citep{zhu2005semi}。
+基于这个假设，出现了多种半监督学习方法，例如基于图的方法（Graph-based Methods）、低密度分离方法（Low-density Separation Methods）、生成模型（Generative Models）等\citep{zhu2005semi}。
 %[X. Zhu, “Semi-supervised learning literature survey,” Technical Report 1530, Department of Computer Sciences, University of Wisconsin, Madison, Tech. Rep., 2006.]。
 
-这里需要指出的是，半监督学习的目标是用训练集训练模型，在应用时预测训练时未出现的新样例的标签。和半监督学习十分类似的一种学习方式称作直推式学习（transductive learning），不同的是直推式学习是直接去预测训练集中无标签数据的标签。这里，我们只考虑半监督序回归问题。
+这里需要指出的是，半监督学习的目标是用训练集训练模型，在应用时预测训练时未出现的新样例的标签。和半监督学习十分类似的一种学习方式称作直推式学习（Transductive Learning，TL），不同的是直推式学习是直接去预测训练集中无标签数据的标签。这里，我们只考虑半监督序回归问题。
 
 \section{KDLOR算法回顾}
-基于核判别分析的序回归算法KDLOR\citep{sun2010kernel}是一种高效的有监督序回归技术。KDLOR通过一个序约束来使用序信息，将传统的核判别分析（KFD）方法拓展到序回归问题上。KFD的算法思想和FDA相同，它通过核技巧将FDA扩展到更一般的非线性情况。下面简单介绍FDA算法。
+基于核判别分析的序回归算法KDLOR\citep{sun2010kernel}是一种高效的有监督序回归技术。KDLOR通过一个序约束来使用序信息，将传统的核判别分析（Kernel Fisher Discriminant Analysis，KFD）方法拓展到序回归问题上。KFD的算法思想和FDA相同，它通过核技巧将FDA扩展到更一般的非线性情况。下面简单介绍FDA算法。
 
-FDA的目标是找到一个投影向量\(w\)，使得原始数据通过投影之后可以轻松地被分类。为方便讨论，\autoref{fda_mk}和\autoref{fda_m}、\autoref{fda_Sb}、\autoref{fda_Sw}分别定义类中心、类间协方差矩阵和类内协方差矩阵。 其中，\(m_{k}\)是第 \(k\)个类别样例的均值，\(L_{k}\) 是第\(k\)个类别有标签样例的个数，\(X_{k}\) 是第\(k\)个类别有标签样例的集合。\(m\)是所有类别样例的均值，\(L\) 是有标签样例的个数，\(X\) 所有类别有标签样例的集合。
+FDA的目标是找到一个投影向量\(w\)，使得原始数据通过投影之后可以轻松地被分类。为方便讨论，\autoref{fda_mk}和\autoref{fda_m}、\autoref{fda_Sb}、\autoref{fda_Sw}分别定义类中心、类间协方差矩阵（Between-Class Covariance Matrix）和类内协方差矩阵（Within-Class Covariance Matrix）。 其中，\(m_{k}\)是第 \(k\)个类别样例的均值，\(L_{k}\) 是第\(k\)个类别有标签样例的个数，\(X_{k}\) 是第\(k\)个类别有标签样例的集合。\(m\)是所有类别样例的均值，\(L\) 是有标签样例的个数，\(X\) 所有类别有标签样例的集合。
 
 \begin{equation}
 \label{fda_mk}
@@ -60,7 +60,7 @@ s.t. & w^{T}\cdot (m_{k+1}-m_{k})\geq\rho,{} \\
 \end{array}
 \right.
 \end{equation}
-其中 \(S_{w} = \frac{1}{L}\sum_{k=1}^{K}\sum_{x\in X_{k}}(x-m_{k})(x-m_{k})^{T}\) 是类间协方差矩阵（within-class covariance matrix），\(m_{k}=\frac{1}{L_{k}}\sum_{x\in X_{k}}x\) 是第 \(k\)个类别的样例的均值，\(L\) 是有标签样例的个数，\(X_{k}\) 是第\(k\)个类别的样例集合。该优化问题的目标是找到一个投影向量 \(w\) ，可以满足上文提到的两方面要求。惩罚系数 \(C\)用来平衡目标函数中的两项。如果\(\rho>0\)，就可以保证序关系的正确性。非线性情况下模型的形式和上面类似，使用核技巧就可以得到。
+其中 \(S_{w} = \frac{1}{L}\sum_{k=1}^{K}\sum_{x\in X_{k}}(x-m_{k})(x-m_{k})^{T}\) 是类间协方差矩阵，\(m_{k}=\frac{1}{L_{k}}\sum_{x\in X_{k}}x\) 是第 \(k\)个类别的样例的均值，\(L\) 是有标签样例的个数，\(X_{k}\) 是第\(k\)个类别的样例集合。该优化问题的目标是找到一个投影向量 \(w\) ，可以满足上文提到的两方面要求。惩罚系数 \(C\)用来平衡目标函数中的两项。如果\(\rho>0\)，就可以保证序关系的正确性。非线性情况下模型的形式和上面类似，使用核技巧就可以得到。
 
 由于KDLOR是以核判别分析为基本框架，所以它也可以充分地利用数据分布的信息。而基于支持向量机的序回归算法由于是通过支持向量来决定分类面，所以会忽略数据的全局信息，从而可能导致得到的解不合理\citep{sun2010kernel}。如\autoref{fig_kdlor_fig1}所示，基于最大间隔理论，SVM找到的最优投影向量是\(w\)（相应的分类面垂直于该投影向量）。但是\(w\)忽略了数据的全局分布信息，即没有考虑数据的分布是有一定的规律性。当考虑数据的全局分布信息时，更合理的投影向量应该是\(w^{'}\)。
 
@@ -78,7 +78,7 @@ s.t. & w^{T}\cdot (m_{k+1}-m_{k})\geq\rho,{} \\
 \begin{figure}[htb]
    \centering
    \includegraphics[width=4.5in]{figures/kdlor_fig1}
-\caption{是否考虑类的全局分布情况下的两种投影方向。其中$w$是仅考虑最大间隔的投影，$w^{'}$考虑了类的全局分布。}
+\caption{是否考虑类的全局分布情况下的两种投影方向\citep{sun2010kernel}。其中$w$是仅考虑最大间隔的投影，$w^{'}$考虑了类的全局分布。}
 \label{fig_kdlor_fig1}
 \end{figure}
 
@@ -90,10 +90,10 @@ s.t. & w^{T}\cdot (m_{k+1}-m_{k})\geq\rho,{} \\
 
 根据上一节对KDLOR的介绍和分析，我们考虑将其拓展到半监督形式，从而利用无标签数据来提升性能。值得注意的是，由于序信息的存在，已有的半监督学习模型难以直接应用到序回归问题上。
 
-对于基于FDA的方法，用训练数据估计类中心和协方差矩阵的准确性将对序回归模型的性能产生重要的影响。而当有标签数据很少的时候，仅用有标签数据很难准确地估计类分布。因此，我们考虑利用存在的无标签数据来更准确地估计类分布。本节我们提出了一种半监督核判别分析序回归技术——WKFDOR。具体的说，我们首先估计无标签数据对于每个类别的隶属度（membership），其次通过一个加权策略来计算整个训练集（包括有标签数据和无标签数据）上的类分布，再将这个加权类分布应用到KDLOR框架下得到最终模型。下面先介绍计算无标签数据隶属度的方法，再介绍我们提出的WKFDOR算法。
+对于基于FDA的方法，用训练数据估计类中心和协方差矩阵的准确性将对序回归模型的性能产生重要的影响。而当有标签数据很少的时候，仅用有标签数据很难准确地估计类分布。因此，我们考虑利用存在的无标签数据来更准确地估计类分布。本节我们提出了一种半监督核判别分析序回归技术——WKFDOR。具体的说，我们首先估计无标签数据对于每个类别的隶属度（Membership），其次通过一个加权策略来计算整个训练集（包括有标签数据和无标签数据）上的类分布，再将这个加权类分布应用到KDLOR框架下得到最终模型。下面先介绍计算无标签数据隶属度的方法，再介绍我们提出的WKFDOR算法。
 
 \subsection{估计无标签数据对每个类别的隶属度}
-这里我们使用一个标签传播（label propagation）的方法\citep{zhou2004learning}
+这里我们使用一个标签传播（Label Propagation）的方法\citep{zhou2004learning}
 %[D. Zhou, O. Bousquet, T. N. Lal, J. Weston, and B. Scho ̈lkopf,“Learning with local and global consistency,” in Advances in Neural Information Processing Systems 16. MIT Press, 2004, pp. 321–328.]）
 来估计无标签数据对于每个类别的隶属度。\autoref{alg_mem}列出了\textit{mConsistency}算法的主要步骤。
 
@@ -116,16 +116,16 @@ s.t. & w^{T}\cdot (m_{k+1}-m_{k})\geq\rho,{} \\
 \end{algorithm}
 \DecMargin{1em}
 
-该算法的主要思想是，通过让每一个数据点迭代地传播它的标签信息给邻近点，直到达到一个全局稳定的状态\citep{zhou2004learning}。其形式化表示是\(F(t+1)=\alpha SF(t)+(1-\alpha)Y\)，参数\(\alpha\)用来平衡标签信息的扩散（第一项）和原始状态的维持（第二项），\(Y\)是初始标签矩阵，\(S\)是对邻近度矩阵（affinity matrix）\(W\)的对称归一化。迭代过程会收敛到\(F^{*}=(1-\alpha)(I-\alpha S)^{-1}Y\)\citep{zhou2004learning}，所以标签传播的最终状态可以直接通过\(F^{*}\)来计算。
+该算法的主要思想是，通过让每一个数据点迭代地传播它的标签信息给邻近点，直到达到一个全局稳定的状态\citep{zhou2004learning}。其形式化表示是\(F(t+1)=\alpha SF(t)+(1-\alpha)Y\)，参数\(\alpha\)用来平衡标签信息的扩散（第一项）和原始状态的维持（第二项），\(Y\)是初始标签矩阵，\(S\)是对邻近度矩阵（Affinity Matrix）\(W\)的对称归一化。迭代过程会收敛到\(F^{*}=(1-\alpha)(I-\alpha S)^{-1}Y\)\citep{zhou2004learning}，所以标签传播的最终状态可以直接通过\(F^{*}\)来计算。
 
-由于标签信息是通过数据点之间的邻近度矩阵来扩散的，所以该算法可以被看作是一种基于图的半监督学习方法。对每个无标签数据点\(x_{i}\)，它最终接收到的标签信息存储在一个行向量\(F^{*}_{i}=[F^{*}_{i1},\dots,F^{*}_{iK}]\)里。根据平滑假设，\(F^{*}_{i}\)可以表示\(x_{i}\)属于每个类别的置信度（confidence）。因此，我们归一化\(F^{*}\)并把它作为隶属度矩阵，表示为 \(U=(u_{jk})_{N \times K}\)。这里需要指出的是，有标签数据的隶属度直接从给定的标签\(Y^{l}\)得到，具体请参\autoref{alg_mem}中的步骤6。
+由于标签信息是通过数据点之间的邻近度矩阵来扩散的，所以该算法可以被看作是一种基于图的半监督学习方法。对每个无标签数据点\(x_{i}\)，它最终接收到的标签信息存储在一个行向量\(F^{*}_{i}=[F^{*}_{i1},\dots,F^{*}_{iK}]\)里。根据平滑假设，\(F^{*}_{i}\)可以表示\(x_{i}\)属于每个类别的置信度（Confidence）。因此，我们归一化\(F^{*}\)并把它作为隶属度矩阵，表示为 \(U=(u_{jk})_{N \times K}\)。这里需要指出的是，有标签数据的隶属度直接从给定的标签\(Y^{l}\)得到，具体请参\autoref{alg_mem}中的步骤6。
 
 \textit{mConsistency}算法简单且快速，它的主要计算开销是一个矩阵求逆和一个矩阵乘法操作，时间复杂度是\(O(N^{3})\)，其中\(N\)是训练样例的个数。
 
 \subsection{基于加权核判别分析的半监督序回归技术}
 为了利用无标签数据来提升对类分布估计的准确性，我们使用一个加权策略来计算类均值和类内协方差矩阵。考虑到实际应用中的数据往往在原始空间是非线性的，所以我们在这里使用了核技巧。具体的做法是：首先通过一个非线性映射函数 \(\phi\)，将原始数据映射到一个更高维度的空间 \(\mathcal{F}\)，使得数据在该空间是线性可分的；接着类似于线性情况下的做法，在映射后的数据上求得最优的投影向量。
 
-将原始空间映射到 \(\mathcal{F}\)之后，加权类中心（weighted class means）和加权类内协方差矩阵（weighted within-class covariance matrix）定义如下：
+将原始空间映射到 \(\mathcal{F}\)之后，加权类中心（Weighted Class Means）和加权类内协方差矩阵（Weighted Within-Class Covariance Matrix）定义如下：
 \begin{gather}
 \label{weighted_mean}
 m^{\phi}_{k}=\frac{\sum_{j=1}^{N} u_{jk}\phi(x_{j})}{\sum_{j=1}^{N} u_{jk}} \\
@@ -135,7 +135,7 @@ S^{\phi}_{w}=\frac{1}{u} \sum_{k=1}^{K} \sum_{j=1}^{N} u_{jk}(\phi(x_{j})-m^{\ph
 其中所有的训练数据（包括有标签和无标签样例）都被用来估计类分布。 \(u=\sum_{k=1}^{K} \sum_{j=1}^{N} u_{jk}\)，\(u_{jk}\)是 \(x_{j}\)属于第\(k\)个类别的隶属度。通过\autoref{weighted_mean}和\autoref{weighted_cov}可以看到，那些对某个类别有更高隶属度的数据点将会对该类的类中心和类内协方差矩阵贡献更大。这两个类分布的特征分别反映了类的中心趋势和类的分布形状，无标签数据的贡献有助于更准确地估计它们，从而更好地决策最优的投影向量。假设对所有无标签数据的隶属度的估计都完全正确的话（即当\(x_{j}\)的真实标签是\(k\)时, \(u_{jk}=1\) 而\(u_{jk^{c}}=0,\;k^{c}\neq k\)），通过该加权策略，相当于额外使用了\(N-L\)个有标签数据来计算类分布，这毫无疑问会比仅使用少量的有标签数据更加准确。
 
 %翻译 lie in the span of
-下面，我们将详细推导基于加权核判别分析的半监督序回归（WKFDOR）模型的数学形式。根据再生核理论（reproducing kernels theory），任何解 \(w\in \mathcal{F}\)必须要满足如下形式：
+下面，我们将详细推导基于加权核判别分析的半监督序回归（WKFDOR）模型的数学形式。根据再生核理论（Reproducing Kernels Theory），任何解 \(w\in \mathcal{F}\)必须要满足如下形式：
 %在所有在(\mathcal{F}\)中的训练样例形成的
 \begin{equation}
 \label{kernel_w}
@@ -158,7 +158,7 @@ w^{T} \cdot S^{\phi}_{w} \cdot w=\alpha^{T} \cdot \mathcal{N} \cdot \alpha
 \label{N}
 \mathcal{N}=\frac{1}{u}\mathcal{K}\cdot[\sum_{k=1}^{K}(D_{k}-D_{k} \cdot \mathbf{1}_{u_{k}} \cdot D_{k})]\cdot \mathcal{K}
 \end{equation}
-\(\mathcal{K}=(k(x_{i},x_{j}))_{N \times N}\)表示核矩阵（kernel matrix），其中\(k(\cdot,\cdot)\)是核函数（kernel function）。\(D_{k}\)是一个对角矩阵，对角线元素 \((D_{k})_{ii}=u_{ik}\)。\(\mathbf{1}_{u_{k}}\) 是一个所有项都等于\(1/u_k\)的矩阵，其中\(u_{k}=\sum_{j=1}^{N}u_{jk}\)。
+\(\mathcal{K}=(k(x_{i},x_{j}))_{N \times N}\)表示核矩阵（Kernel Matrix），其中\(k(\cdot,\cdot)\)是核函数（Kernel Function）。\(D_{k}\)是一个对角矩阵，对角线元素 \((D_{k})_{ii}=u_{ik}\)。\(\mathbf{1}_{u_{k}}\) 是一个所有项都等于\(1/u_k\)的矩阵，其中\(u_{k}=\sum_{j=1}^{N}u_{jk}\)。
 
 WKFDOR算法的目标是找到一个最优的投影向量，使得在映射后的空间里，同类数据点能够相聚紧凑，并且相邻类别的数据点可以分隔开，同时能够保证序的正确性。通过上面的推导和分析，WKFDOR算法的数学形式描述如下：
 \begin{equation}
@@ -171,10 +171,10 @@ s.t. & \alpha^{T}\cdot (\mathcal{M}_{k+1}-\mathcal{M}_{k})\geq\rho,{} \\
 \end{array}
 \right.
 \end{equation}
-为了保证矩阵\(\mathcal{N}\)是正定的（ positive definite）， 令\(\mathcal{N}_{\mu}=\mathcal{N}+\mu I\)，其中
+为了保证矩阵\(\mathcal{N}\)是正定的（ Positive Definite）， 令\(\mathcal{N}_{\mu}=\mathcal{N}+\mu I\)，其中
 \(I\)是单位矩阵。
 
-通过拉格朗日乘数法（Lagrange multipliers），可以将WKFDOR模型转化成一个有线性约束的二次规划问题（quadratic programming, QP），而该问题能够很容易得到求解。需要指出的是，通过投影向量映射后的空间是一个一维空间。求解出\(\alpha\)之后（相当于得到最优投影向量\(w\)，由于在核函数的作用下，我们无需显式地计算出\(w\)），相邻类别之间的阈值根据下式计算：
+通过拉格朗日乘数法（Lagrange Multipliers），可以将WKFDOR模型转化成一个有线性约束的二次规划问题（Quadratic Programming，QP），而该问题能够很容易得到求解。需要指出的是，通过投影向量映射后的空间是一个一维空间。求解出\(\alpha\)之后（相当于得到最优投影向量\(w\)，由于在核函数的作用下，我们无需显式地计算出\(w\)），相邻类别之间的阈值根据下式计算：
 \begin{equation}
 \label{threshold_wkfdor}
 b_{k}=\begin{cases}
@@ -205,7 +205,7 @@ r(x)=\min \limits_{k \in \{1,2,\dots,K\}} \{k\mid p(x)-b_{k}<0\}
 \label{Gaussian_kernel}
 k(x,y)=\exp(-\frac{\parallel x-y \parallel^{2}}{2\sigma^{2}})
 \end{equation}
-KDLOR算法的超参数\(\mu\)、\(C\)、 \(\sigma\)，以及\textit{mConsistency}算法的超参数\(\alpha\)、\(\varepsilon\) 通过五折交叉验证（5-fold cross validation）来确定。在这里，WKFDOR算法的\(\mu\)、\(C\)、 \(\sigma\)采用和KDLOR算法相同的值。使用相同的超参值来比较这两个算法看上去是公平的，但实际上WKFDOR算法可能存在更优的参数设置。
+KDLOR算法的超参数\(\mu\)、\(C\)、 \(\sigma\)，以及\textit{mConsistency}算法的超参数\(\alpha\)、\(\varepsilon\) 通过五折交叉验证（5-Fold Cross Validation）来确定。在这里，WKFDOR算法的\(\mu\)、\(C\)、 \(\sigma\)采用和KDLOR算法相同的值。使用相同的超参值来比较这两个算法看上去是公平的，但实际上WKFDOR算法可能存在更优的参数设置。
 
 对于所有的数据集，我们采用统一的数据预处理方法。我们采用0-1编码来处理数据集中的离散属性，并使用z-score方式来做归一化（即将数据归一化成\((0,1)\)高斯分布）。
 % 数据预处理：对于离散属性（categorical）通过0-1编码来处理，使用z-score归一化数据（归一化成(0,1)高斯分布）
@@ -258,7 +258,7 @@ Connect-4 & 42 & 3 & 7000 & 3000\\
 \end{table}
 
 % 可以详细描述一下数据集
-在这一小节中，我们使用10个真实的有序数据集（见\autoref{table_realSets}）来比较WKFDOR算法和KDLOR算法。TAE、Thyroid-new、Balance、Car、Connect-4取自UCI机器学习库（UCI machine learning repository）\footnote{Car和Connect-4分别从原始数据集随机抽取一部分样例用于本实验。}\citep{Bache+Lichman:2013}。
+在这一小节中，我们使用10个真实的有序数据集（见\autoref{table_realSets}）来比较WKFDOR算法和KDLOR算法。TAE、Thyroid-new、Balance、Car、Connect-4取自UCI机器学习库（UCI Machine Learning Repository）\footnote{Car和Connect-4分别从原始数据集随机抽取一部分样例用于本实验。}\citep{Bache+Lichman:2013}。
 %[M. Lichman, “UCI machine learning repository,” 2013. [Online]. Available: http://archive.ics.uci.edu/ml]。
 SWD、LEV、ESL、ERA是真实的人类决策数据集，其中属性和标签都是有序值\citep{ben2006generating}。
 %［A. Ben-David and L. Sterling, “Generating rules from examples of human multiattribute decision making should be simple,” Expert Systems with Applications, vol. 31, no. 2, pp. 390–396, 2006.］。
@@ -268,7 +268,7 @@ Sushi数据集\citep{kamishima2009efficient}是通过问卷调查获取的用户
 
 %记得加上统计测试的结果＊
 \begin{table*}[htbp]
-\caption{KDLOR和WKFDOR在真实数据集上的测试结果。该结果是由运行20次的均值和方差组成，包括MAE和MZE两个指标。每组数据集的最优均值用粗体来表示。用秩和检验（Wilcoxon rank-sum test）做统计测试，其中显著性水平设为0.05，表中显著优于KDLOR的结果用$*$号来标记。}
+\caption{KDLOR和WKFDOR在真实数据集上的测试结果。该结果是由运行20次的均值和方差组成，包括MAE和MZE两个指标。每组数据集的最优均值用粗体来表示。用秩和检验（Wilcoxon Rank-Sum Test）做统计测试，其中显著性水平设为0.05，表中显著优于KDLOR的结果用$*$号来标记。}
 \label{table_realResults20m}
 \centering
 \begin{tabular}{l|cc|cc}

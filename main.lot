@@ -7,10 +7,10 @@
 \contentsline {table}{\numberline {2.2}{\ignorespaces 5类别序回归问题的二元分解策略举例\relax }}{7}{table.caption.8}
 \addvspace {10\p@ }
 \contentsline {table}{\numberline {3.1}{\ignorespaces 真实数据集\relax }}{21}{table.caption.13}
-\contentsline {table}{\numberline {3.2}{\ignorespaces KDLOR和WKFDOR在真实数据集上的测试结果。该结果是由运行20次的均值和方差组成，包括MAE和MZE两个指标。每组数据集的最优均值用粗体来表示。用秩和检验（Wilcoxon rank-sum test）做统计测试，其中显著性水平设为0.05，表中显著优于KDLOR的结果用$*$号来标记。\relax }}{21}{table.caption.14}
+\contentsline {table}{\numberline {3.2}{\ignorespaces KDLOR和WKFDOR在真实数据集上的测试结果。该结果是由运行20次的均值和方差组成，包括MAE和MZE两个指标。每组数据集的最优均值用粗体来表示。用秩和检验（Wilcoxon Rank-Sum Test）做统计测试，其中显著性水平设为0.05，表中显著优于KDLOR的结果用$*$号来标记。\relax }}{22}{table.caption.14}
 \addvspace {10\p@ }
-\contentsline {table}{\numberline {4.1}{\ignorespaces KDLOR、WKFDOR、ESSOR在真实数据集上的测试MAE，由运行20次的均值和方差组成。每组数据集的最优均值用粗体来表示。用秩和检验（Wilcoxon rank-sum test）做统计测试，其中显著性水平设为0.05，表中显著优于KDLOR的结果用$*$号来标记。\relax }}{30}{table.caption.21}
-\contentsline {table}{\numberline {4.2}{\ignorespaces KDLOR、WKFDOR、ESSOR在真实数据集上的测试MZE，由运行20次的均值和方差组成。每组数据集的最优均值用粗体来表示。用秩和检验（Wilcoxon rank-sum test）做统计测试，其中显著性水平设为0.05，表中显著优于KDLOR的结果用$*$号来标记。\relax }}{31}{table.caption.22}
+\contentsline {table}{\numberline {4.1}{\ignorespaces KDLOR、WKFDOR、ESSOR在真实数据集上的测试MAE，由运行20次的均值和方差组成。每组数据集的最优均值用粗体来表示。用秩和检验（Wilcoxon Rank-Sum Test）做统计测试，其中显著性水平设为0.05，表中显著优于KDLOR的结果用$*$号来标记。\relax }}{30}{table.caption.21}
+\contentsline {table}{\numberline {4.2}{\ignorespaces KDLOR、WKFDOR、ESSOR在真实数据集上的测试MZE，由运行20次的均值和方差组成。每组数据集的最优均值用粗体来表示。用秩和检验（Wilcoxon Rank-Sum Test）做统计测试，其中显著性水平设为0.05，表中显著优于KDLOR的结果用$*$号来标记。\relax }}{31}{table.caption.22}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }

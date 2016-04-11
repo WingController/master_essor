@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99992 (TeX Live 2015) (preloaded format=xelatex 2016.2.23)  10 APR 2016 22:44
+This is XeTeX, Version 3.14159265-2.6-0.99992 (TeX Live 2015) (preloaded format=xelatex 2016.2.23)  12 APR 2016 00:49
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -2341,11 +2341,18 @@ LaTeX Font Warning: Font shape `U/wasy/b/n' in size <5.25> not available
 
 (./chapter/chap-intro.tex
 第一章
+
+Overfull \hbox (6.57462pt too wide) in paragraph at lines 37--38
+\EU1/STSong(0)/m/n/12.045 始，|  逐 渐 受 到 研 究 者 的 关 注，|  并 涌 现 了 许 多 序 回 归 技 术 \EU
+1/TimesNewRoman(0)/m/n/12.045 [[]][[]][[]][[]][[]][[]][[]]\EU1/STSong(0)/m/n/12
+.045 。| 
+ []
+
 [1
 
 
 ]
-Underfull \vbox (badness 10000) has occurred while \output is active []
+Underfull \vbox (badness 2213) has occurred while \output is active []
 
  [2])
 [3]
@@ -2377,8 +2384,16 @@ Fisher Discriminant Analysis, FDA[[]]\EU1/STSong(0)/m/n/12.045 ）|
 ]
 第三章
 [13] [14]
+Overfull \hbox (4.27275pt too wide) in paragraph at lines 62--64
+\EU1/STSong(0)/m/n/12.045 其 中 $\U/zeur/m/n/12.045 S[] \U/zeus/m/n/12.045 ½ [] [
+][] [][]¨\U/zeur/m/n/12.045 x \U/zeus/m/n/12.045 ^^@ \U/zeur/m/n/12.045 m[]\U/z
+eus/m/n/12.045 ©¨\U/zeur/m/n/12.045 x \U/zeus/m/n/12.045 ^^@ \U/zeur/m/n/12.045
+ m[]\U/zeus/m/n/12.045 ©[]$ \EU1/STSong(0)/m/n/12.045 是 类 间 协 方 差 矩 阵，| $\U/zeu
+r/m/n/12.045 m[] \U/zeus/m/n/12.045 ½ [] [][] \U/zeur/m/n/12.045 x$
+ []
+
 File: figures/kdlor_fig1.pdf Graphic file (type QTm)
- <use  "figures/kdlor_fig1.pdf" > [15] [16] [17] [18] [19]
+<use  "figures/kdlor_fig1.pdf" > [15] [16] [17] [18] [19]
 Invalid UTF-8 byte or sequence at line 221 replaced by U+FFFD.
 Invalid UTF-8 byte or sequence at line 221 replaced by U+FFFD.
 Invalid UTF-8 byte or sequence at line 221 replaced by U+FFFD.
@@ -2431,10 +2446,14 @@ Overfull \hbox (16.50247pt too wide) in paragraph at lines 221--231
  []
 
 
+Underfull \vbox (badness 6016) has occurred while \output is active []
+
+ [20]
+
 LaTeX Font Warning: Font shape `U/wasy/b/n' in size <5> not available
 (Font)              Font shape `U/wasy/m/n' tried instead on input line 261.
 
-[20]
+
 Overfull \hbox (19.39983pt too wide) in paragraph at lines 274--293
  [][] 
  []
@@ -2520,7 +2539,7 @@ Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 183.
 Here is how much of TeX's memory you used:
  33389 strings out of 493638
  625503 string characters out of 6144792
- 675965 words of memory out of 5000000
+ 676981 words of memory out of 5000000
  36228 multiletter control sequences out of 15000+600000
  65482 words of font info for 275 fonts, out of 8000000 for 9000
  1328 hyphenation exceptions out of 8191

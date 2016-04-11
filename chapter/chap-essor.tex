@@ -6,7 +6,7 @@
 
 然而，当权重作为\autoref{wkfdor}中的优化变量时，该优化问题是一个非凸且不可导的问题。在\autoref{chap:review}中，我们分析了演化算法在处理这类问题中的优势。所以，我们使用演化算法来改善权重，提出了一种基于演化算法的半监督序回归技术。
 
-在本章中，我们将首先提出基于演化算法的半监督核判别分析序回归算法（evolutionary semi-supervised ordinal regression using weighted kernel Fisher discriminant analysis, ESSOR）。其次，我们将通过实验来验证演化算法在进一步提升学习性能上的有效性。本章还将介绍在处理大规模数据集上的加速方法。
+在本章中，我们将首先提出基于演化算法的半监督核判别分析序回归算法（Evolutionary Semi-Supervised Ordinal Regression Using Weighted Kernel Fisher Discriminant Analysis，ESSOR）。其次，我们将通过实验来验证演化算法在进一步提升学习性能上的有效性。本章还将介绍在处理大规模数据集上的加速方法。
 
 %然而，当权重作为\autoref{wkfdor}中的优化变量时，该优化问题是一个非凸且不可导的问题。传统的优化算法（例如梯度下降算法）难以处理这种类型的问题，而演化算法（evolutionary algorithm, EA）适用于处理。所以，在这一章中我们使用了演化算法来改善权重，具体的说是差分进化（differential evolution, DE）算法[R. Storn and K. Price, “Differential evolution–a simple and effi- cient heuristic for global optimization over continuous spaces,” Journal of Global Optimization, vol. 11, no. 4, pp. 341–359, 1997.]。差分进化算法是一种高效的处理连续优化问题的演化算法，它简单易用，并且容易并行化。此外，差分进化算法具有收敛好和实现快的属性[K. Price, R. M. Storn, and J. A. Lampinen, Differential Evolu- tion: A Practical Approach to Global Optimization. Secaucus, NJ, USA: Springer-Verlag New York, Inc., 2005.]。因此，我们采用差分进化算法。下面我们首先介绍个体表示（individual representation）方法，即如何表示我们需要优化的变量；其次我们介绍适应度评估函数（fitness function），最后介绍我们提出的基于演化算法的半监督核判别分析序回归算法（evolutionary semi-supervised ordinal regression using weighted kernel Fisher discriminant analysis, ESSOR）。
 
@@ -38,7 +38,7 @@
 
 \section{基于演化算法的半监督核判别分析序回归算法}
 %当权重作为\autoref{wkfdor}中的优化变量时，该优化问题是一个非凸且不可导的问题。传统的优化算法（例如梯度下降算法）难以处理这种类型的问题，而演化算法（evolutionary algorithm, EA）适用于处理。
-根据前面的分析可知，我们需要借助演化算法来优化权重，进而提升WKFDOR算法的性能。本节我们基于WKFDOR提出改进的算法——ESSOR。下面我们首先介绍个体表示方法，即如何表示我们需要优化的变量；其次介绍适应度评估函数；最后根据问题特点，我们选择了一种处理连续优化问题的演化算法——差分进化算法（differential evolution, DE），并给出了ESSOR的算法步骤。
+根据前面的分析可知，我们需要借助演化算法来优化权重，进而提升WKFDOR算法的性能。本节我们基于WKFDOR提出改进的算法——ESSOR。下面我们首先介绍个体表示方法，即如何表示我们需要优化的变量；其次介绍适应度评估函数；最后根据问题特点，我们选择了一种处理连续优化问题的演化算法——差分进化算法（Differential Evolution，DE），并给出了ESSOR的算法步骤。
 
 \subsection{个体表示}
 最简单直接的方法就是将整个无标签数据的权重矩阵作为一个个体，但是这样的话每个个体的维度将是\((N-L)\times K\)（注意，有标签数据的权重是固定的，我们只需要去优化无标签数据的权重），即和无标签数据量成正比。可以想象，当我们使用大量的无标签数据时，每个个体的维度将非常高，这对演化算法来说无疑是个灾难。因此，我们提出了一个新颖的个体表示方法，它能够将个体大小减小到\(K\)（即序的个数）。
@@ -112,14 +112,14 @@ u_{jk}^{'}=\frac{u_{jk}^{\lambda_{k}}}{\Sigma_{k=1}^{K} u_{jk}^{\lambda_{k}}}
 \caption{适应度评估函数}\label{alg_fitness}
 \end{algorithm}\DecMargin{1em}
 
-通常，将在验证集（validation dataset）上的分类准确率作为适应度度量。但是，在半监督学习问题中有标签数据量很少，如果从中取出一部分用来作验证集的话将会增加学习难度并很有可能导致更差的学习性能。 因此，这里我们在有标签数据集上评估算法的MAE和MZE。在序回归问题中，我们希望预测的标签能够和实际标签尽可能相近，所以MAE比MZE更能体现算法的性能，因此这里我们给MAE更高的优先级。前两个指标用来最小化序回归学习器的经验风险（empirical risk），使其能够获得基本的识别能力。但是仅在一个小的有标签数据集上最小化分类误差很可能导致模型过拟合（over-fitting），所以这里我们还将在整个训练集上计算到的ORfval引入进来。ORfval用来最小化预测风险，它能够促进同类别的数据点更加紧凑而相邻类的数据点能够更加分散（在映射后的空间里）。总的来说，在有标签数据集上评估的MAE和MZE指示了模型已经学习正确的程度，而ORfval在概念上类似于指示学习器的潜能并用来防止过拟合\citep{liu2000evolutionary}\citep{liu2003evolutionary}。
+通常，将在验证集（Validation Dataset）上的分类准确率作为适应度度量。但是，在半监督学习问题中有标签数据量很少，如果从中取出一部分用来作验证集的话将会增加学习难度并很有可能导致更差的学习性能。 因此，这里我们在有标签数据集上评估算法的MAE和MZE。在序回归问题中，我们希望预测的标签能够和实际标签尽可能相近，所以MAE比MZE更能体现算法的性能，因此这里我们给MAE更高的优先级。前两个指标用来最小化序回归学习器的经验风险（Empirical Risk），使其能够获得基本的识别能力。但是仅在一个小的有标签数据集上最小化分类误差很可能导致模型过拟合（Over-Fitting），所以这里我们还将在整个训练集上计算到的ORfval引入进来。ORfval用来最小化预测风险，它能够促进同类别的数据点更加紧凑而相邻类的数据点能够更加分散（在映射后的空间里）。总的来说，在有标签数据集上评估的MAE和MZE指示了模型已经学习正确的程度，而ORfval在概念上类似于指示学习器的潜能并用来防止过拟合\citep{liu2000evolutionary}\citep{liu2003evolutionary}。
 %[C. Liu and H. Wechsler, “Evolutionary pursuit and its applica- tion to face recognition,” IEEE Transactions on Pattern Analysis and Machine Intelligence, vol. 22, no. 6, pp. 570–582, 2000.]
 %［H. Liu and S.-T. Huang, “Evolutionary semi-supervised fuzzy clustering,” Pattern Recognition Letters, vol. 24, no. 16, pp. 3105–3113, 2003.］。
 因此，由\autoref{alg_fitness}的适应度函数所驱动的演化过程可以达到良好的学习性能和泛化能力。
 
 \subsection{差分进化}
 
-我们选择差分进化（differential evolution, DE）算法\citep{storn1995differential}来优化参数向量\(\lambda\)，由此来间接获得微调的权重。差分进化算法是由Storn和Price在1995年提出\citep{storn1995differential}，当时是为了处理Chebychev问题。与传统的演化算法不同，DE从当前种群获得距离和方向信息用以指导搜索方向。这主要体现在差分进化的变异步长受当前种群的个体间差异影响，而在遗传算法、演化策略等演化算法中变异步长以相同的概率分布函数抽样。
+我们选择差分进化算法\citep{storn1995differential}来优化参数向量\(\lambda\)，由此来间接获得微调的权重。差分进化算法是由Storn和Price在1995年提出\citep{storn1995differential}，当时是为了处理Chebychev问题。与传统的演化算法不同，差分进化从当前种群获得距离和方向信息用以指导搜索方向。这主要体现在差分进化的变异步长受当前种群的个体间差异影响，而在遗传算法、演化策略等演化算法中变异步长以相同的概率分布函数抽样。
 
 \begin{equation}
 \label{DE_mutation}
@@ -195,7 +195,7 @@ x_{ij}(g)& \text{其他情况}
 %[K. Price, R. M. Storn, and J. A. Lampinen, Differential Evolu- tion: A Practical Approach to Global Optimization. Secaucus, NJ, USA: Springer-Verlag New York, Inc., 2005.]。
 因此，我们采用差分进化算法来搜索最优的\(\lambda\)。在初代种群中引入一个个体\(\lambda=(1,1,\dots,1)\)，用来表示初始权重。初代种群的其它个体将在一个给定范围内随机生成。基于上面的介绍和分析，我们在\autoref{alg_ESSOR}提出了基于演化算法的半监督序回归算法——ESSOR。其中，\(\lambda_{g}^{t}\)是通过DE的交叉和变异算子产生的新的个体，用于探索解空间。分别将\(\lambda_{g}\)和\(\lambda_g^{t}\)代入\autoref{mem_updateRule}的权重更新规则，得到新的权重矩阵\((u_{jk}^{'})_{N \times K}\)和\((u_{jk}^{t})_{N \times K}\)。再分别将两个新的权重矩阵应用到WKFDOR算法得到半监督序回归模型（ORfval可以同时得到）。在有标签数据集上评估得到的半监督序回归模型，得到相应的MAE和MZE。结合ORfval，得到适应度的三元组。由\autoref{alg_fitness}得到适应度评价结果，根据结果决定保留子代个体还是父代个体至下一代种群。
 %权重更新规则见\autoref{mem_updateRule}，适应度函数见\autoref{alg_fitness}。
-其中，DE的停止准则是迭代次数（maximum generation）达到预设的最大代数。从最后的种群中选出最优的个体，即最优的\(\lambda\)。根据权重更新规则得到最优的权重矩阵，并应用WKFDOR算法得到最终的序回归模型。
+其中，DE的停止准则是迭代次数（Maximum Generation）达到预设的最大代数。从最后的种群中选出最优的个体，即最优的\(\lambda\)。根据权重更新规则得到最优的权重矩阵，并应用WKFDOR算法得到最终的序回归模型。
 
 %可以将得到fitness的过程写成算法
 
@@ -288,7 +288,7 @@ ESSOR使用演化算法来优化权重，而演化算法需要通过迭代来产
 
 %MAE
 \begin{table*}[!htbp]
-\caption{KDLOR、WKFDOR、ESSOR在真实数据集上的测试MAE，由运行20次的均值和方差组成。每组数据集的最优均值用粗体来表示。用秩和检验（Wilcoxon rank-sum test）做统计测试，其中显著性水平设为0.05，表中显著优于KDLOR的结果用$*$号来标记。}
+\caption{KDLOR、WKFDOR、ESSOR在真实数据集上的测试MAE，由运行20次的均值和方差组成。每组数据集的最优均值用粗体来表示。用秩和检验（Wilcoxon Rank-Sum Test）做统计测试，其中显著性水平设为0.05，表中显著优于KDLOR的结果用$*$号来标记。}
 \label{table_essor_mae}
 \centering
 \begin{tabular}{l|ccc}
@@ -313,7 +313,7 @@ Connect-4 & 0.4982$\pm$0.0087 & 0.4828$\pm$0.0112$^{*}$ & {\bf 0.4820$\pm$0.0212
 
 %MZE
 \begin{table*}[!htbp]
-\caption{KDLOR、WKFDOR、ESSOR在真实数据集上的测试MZE，由运行20次的均值和方差组成。每组数据集的最优均值用粗体来表示。用秩和检验（Wilcoxon rank-sum test）做统计测试，其中显著性水平设为0.05，表中显著优于KDLOR的结果用$*$号来标记。}
+\caption{KDLOR、WKFDOR、ESSOR在真实数据集上的测试MZE，由运行20次的均值和方差组成。每组数据集的最优均值用粗体来表示。用秩和检验（Wilcoxon Rank-Sum Test）做统计测试，其中显著性水平设为0.05，表中显著优于KDLOR的结果用$*$号来标记。}
 \label{table_essor_mze}
 \centering
 \begin{tabular}{l|ccc}
