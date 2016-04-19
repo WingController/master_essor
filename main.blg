@@ -1,0 +1,74 @@
+This is BibTeX, Version 0.99d (TeX Live 2015)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+The top-level auxiliary file: main.aux
+A level-1 auxiliary file: chapter/abstract.aux
+A level-1 auxiliary file: chapter/chap-intro.aux
+A level-1 auxiliary file: chapter/chap-review.aux
+A level-1 auxiliary file: chapter/chap-wkfdor.aux
+A level-1 auxiliary file: chapter/chap-essor.aux
+A level-1 auxiliary file: chapter/chap-conclusion.aux
+The style file: ustcbib.bst
+A level-1 auxiliary file: chapter/thanks.aux
+A level-1 auxiliary file: chapter/pub.aux
+Database file #1: bib/tex.bib
+Warning--there's a publisher but no address in frank2001simple
+Warning--there's a publisher but no address in kotsiantis2004cost
+Warning--there's a publisher but no address in bishop2006pattern
+Warning--there's a publisher but no address in murphy2012machine
+Warning--there's a publisher but no address in quinlan2014c4
+Warning--empty journal in rasmussen2006gaussian
+Warning--there's a number but no volume in jain1996artificial
+Warning--there's a publisher but no address in srijith2013semi
+Warning--empty journal in back1996evolutionary
+Warning--can't use both volume and number fields in 潘正君1998演化计算
+Warning--there's a publisher but no address in 潘正君1998演化计算
+Warning--there's a publisher but no address in dorado2012ordinal
+Warning--there's a publisher but no address in cruz2013multiobjective
+Warning--there's a publisher but no address in sanchez2013evolutionary
+Warning--there's a publisher but no address in deb2001multi
+Warning--there's a publisher but no address in chapelle2006semi
+Warning--there's a publisher but no address in zhou2004learning
+Warning--there's a publisher but no address in kamishima2009efficient
+Warning--there's a publisher but no address in storn1995differential
+You've used 62 entries,
+            2219 wiz_defined-function locations,
+            892 strings with 15215 characters,
+and the built_in function-call counts, 33323 in all, are:
+= -- 3436
+> -- 713
+< -- 24
++ -- 330
+- -- 165
+* -- 2679
+:= -- 4279
+add.period$ -- 152
+call.type$ -- 62
+change.case$ -- 1
+chr.to.int$ -- 0
+cite$ -- 81
+duplicate$ -- 2457
+empty$ -- 3516
+format.name$ -- 218
+if$ -- 7658
+int.to.chr$ -- 0
+int.to.str$ -- 62
+missing$ -- 69
+newline$ -- 386
+num.names$ -- 62
+pop$ -- 288
+preamble$ -- 1
+purify$ -- 0
+quote$ -- 0
+skip$ -- 563
+stack$ -- 0
+substring$ -- 4722
+swap$ -- 197
+text.length$ -- 24
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 0
+warning$ -- 19
+while$ -- 340
+width$ -- 64
+write$ -- 755
+(There were 19 warnings)

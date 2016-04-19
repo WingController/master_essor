@@ -17,6 +17,23 @@
 
 \section{基于有监督学习方式的序回归技术}
 % 从篇幅角度考虑加上用回归来做的方法综述
+
+\begin{table}[!htbp]
+\newcommand{\tabincell}[2]{\begin{tabular}{@{}#1@{}}#2\end{tabular}}
+\caption{有监督序回归技术分类}
+\label{table_supOR}
+%\centering
+\begin{tabular}{l|c}
+\toprule
+类型 & 代表性算法及参考文献\\
+\midrule
+type1 & Regression\citep{kramer2001prediction}, Classification(SVM, DT, LR), Cost-Sensitive Learning\citep{kotsiantis2004cost}\\ \hline
+type2 & \tabincell{c}{OrderedPartitions\citep{frank2001simple}, OneVsNext, OneVsFollowers, OneVsPrevious\citep{kwon1997ordinal}, \\ ExtendedBinaryClassification\citep{li2006ordinal}, DataReplication\citep{cardoso2007learning}} \\ \hline
+type3 & \tabincell{c}{SVLOR\citep{herbrich1999support}\citep{herbrich1999large}, SLA\citep{shashua2002ranking},   SVOREX, SVORIM\citep{chu2005new},  KDLOR\citep{sun2010kernel}, GPOR\citep{chu2005gaussian}, \\ NNRank\citep{cheng2008neural}, ORELM\citep{deng2010ordinal}} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
 在机器学习里，通常使用已知真实标签的样例去训练模型，再用训练好的模型去预测新样例的标签。这种学习方式称作有监督学习。在序回归问题的研究中，基于有监督学习方式的序回归技术已有相当长的研究历史。下文我们将基于有监督学习方式的序回归技术简称为有监督序回归技术。
 
 根据方法的特点，我们可以大致将已有的有监督序回归技术分成三类：
@@ -26,7 +43,7 @@
 \item[3.]第三类方法通过拓展传统的分类模型来使序信息可以加入到模型学习中，例如显式增加一个序关系约束条件。这种方法相比较于前两种方法，对序信息的处理更加直接，通常效果也更好。因此本节着重介绍了第三类方法。
 \end{enumerate}
 
-下面将分别介绍这三类有监督序回归技术。
+\autoref{table_supOR}列出了这三类有监督序回归技术中比较有代表性的算法及其参考文献，下面我们将分别详细介绍这三类有监督序回归技术。
 
 %\subsection{有监督序回归问题定义}
 %考虑一个有\(K\)个类别的序回归问题，该问题的目标是预测一个输入向量\(x\in \chi \subseteq R^{d}\)的标签（label）\(y\in \)
@@ -41,15 +58,11 @@
 然后使用标准的回归技术\citep{bishop2006pattern}\citep{murphy2012machine}
 %[C. M. Bishop, Pattern Recognition and Machine Learning, 2007, Springer]
 %[Murphy K P. Machine learning: a probabilistic perspective[M]. MIT press, 2012.]
-来处理（例如，支持向量回归、树模型、神经网络等）。例如，Kramer等人\citep{kramer2001prediction}
+来处理（例如，支持向量回归（Support Vector Regression，SVR）、树模型（Tree Model）、神经网络（Neural Network）等）。例如，Kramer等人\citep{kramer2001prediction}
 %[S. Kramer, G. Widmer, B. Pfahringer and M. D. Groeve, "Prediction of ordinal classes using regression trees,"Fundamenta Inf., vol. 47, no. 1-2, pp. 1-13, 2001]
 通过给序附上特定的数值，应用树模型来学习，在预测新样例时，通过四舍五入树模型得到的实数值给出新样例的标签。在\autoref{intro_back}中，我们分析了序回归问题的特点之一是类别之间的差别没有精确的定义，所以这类方法的一个主要问题是很难在没有先验知识的情况下对标签进行准确的度量。
 
-从分类的角度来考虑，当我们不考虑类别之间的序关系时，序回归问题就是一个传统的标称分类问题。有一些研究者直接使用传统的标称分类模型（例如，支持向量机、决策树、罗辑思特回归等）来处理序回归问题，由于忽略了数据中的序信息，使得问题的难度有所增加，往往需要更多的训练数据。此外，序信息可以被理解为一种先验知识，合理地利用序信息能够有效地提升预测效果。因此，出现了第三类序回归技术，即在传统的分类模型下引入序信息，这将在后面小节中介绍。
-
-另一种更精细的做法是使用代价敏感的分类技术来处理序回归问题。其主要做法是引入一个代价矩阵（Cost Matrix），对不同的错分给予不同的代价。例如，将序为\(1\)的标签预测成序为\(3\)的标签，其代价要大于预测成序为\(2\)的标签。Kotsiantis和Pintelas\citep{kotsiantis2004cost}
-%[S. B. Kotsiantis and P. E. Pintelas, "A cost sensitive technique for ordinal classification problems,"Proc. Methods Appl. Artif. Intell. (Proc. 3rd Hellenic Conf. Artif. Intell.), pp. 220-229, 2004 [CrossRef]]
-使用绝对值代价矩阵来处理序回归问题。假设真实标签的序为\(i\)，将其错误地预测为序是\(j\)的标签，则相应的绝对值代价\(c = \left |  i - j \right |\)。\autoref{table_costMat}列出了几种常见的代价矩阵形式，其中矩阵的列是真实标签，行是预测的标签。设计不同的代价矩阵，将对结果产生不同的影响。这种方法的主要问题和用传统回归技术来处理的方式相似，即在没有先验知识的情况下我们很难定义一个合适的代价矩阵。
+从分类的角度来考虑，当我们不考虑类别之间的序关系时，序回归问题就是一个传统的标称分类问题。有一些研究者直接使用传统的标称分类模型（例如，支持向量机（Support Vector Machine，SVM\citep{cortes1995support}）、决策树（Decision Tree，DT）、罗辑思特回归（Logistic Regression，LR）等）来处理序回归问题，由于忽略了数据中的序信息，使得问题的难度有所增加，往往需要更多的训练数据。此外，序信息可以被理解为一种先验知识，合理地利用序信息能够有效地提升预测效果。因此，出现了第三类序回归技术，即在传统的分类模型下引入序信息，这将在后面小节中介绍。
 
 \begin{table}[!htbp]
 \caption{5类别序回归问题的不同代价矩阵举例}
@@ -100,6 +113,13 @@ $
 \end{tabular}
 \end{table}
 
+
+另一种更精细的做法是使用代价敏感的分类技术来处理序回归问题。其主要做法是引入一个代价矩阵（Cost Matrix），对不同的错分给予不同的代价。例如，将序为\(1\)的标签预测成序为\(3\)的标签，其代价要大于预测成序为\(2\)的标签。Kotsiantis和Pintelas\citep{kotsiantis2004cost}
+%[S. B. Kotsiantis and P. E. Pintelas, "A cost sensitive technique for ordinal classification problems,"Proc. Methods Appl. Artif. Intell. (Proc. 3rd Hellenic Conf. Artif. Intell.), pp. 220-229, 2004 [CrossRef]]
+使用绝对值代价矩阵来处理序回归问题。假设真实标签的序为\(i\)，将其错误地预测为序是\(j\)的标签，则相应的绝对值代价\(c = \left |  i - j \right |\)。\autoref{table_costMat}列出了几种常见的代价矩阵形式，其中矩阵的列是真实标签，行是预测的标签。设计不同的代价矩阵，将对结果产生不同的影响。这种方法的主要问题和用传统回归技术来处理的方式相似，即在没有先验知识的情况下我们很难定义一个合适的代价矩阵。
+
+
+
 \subsection{先分解成二分类问题再进行处理的序回归技术}
 序信息的存在使得我们能够直观地比较两个不同的标签。对于一个给定的序\(q\)，一个直接的问题就是，“样例\(x\)的标签的序是否大于\(q\)？”\citep{lin2012reduction}。
 %[H.-T. Lin and L. Li, "Reduction from Cost-sensitive ordinal ranking to weighted binary classification,"Neural Comput., vol. 24, no. 5, pp. 1329-1367, 2012 [CrossRef] ]。
@@ -107,7 +127,9 @@ $
 
 Frank和Hall\citep{frank2001simple}
 %[E. Frank and M. Hall, “A simple approach to ordinal classifica- tion,” in Proceedings of the European Conference on Machine Learning. Springer Berlin Heidelberg, 2001, pp. 145–156.] 
-提出了一种叫OrderedPartitions的分解方法，并使用C4.5来处理每个二分类问题，最后通过概率的形式得到最终的结果。还有一些其它的分解策略被提出来\citep{kwon1997ordinal}
+提出了一种叫OrderedPartitions的分解方法，并使用C4.5\citep{quinlan2014c4}
+%Quinlan J R. C4. 5: programs for machine learning[M]. Elsevier, 2014.
+来处理每个二分类问题，最后通过概率的形式得到最终的结果。还有一些其它的分解策略被提出来\citep{kwon1997ordinal}
 %[Y. Kwon, I. Han and K. Lee, "Ordinal pairwise partitioning (OPP) approach to neural networks training in bond rating,"Intell. Syst. Accounting Finance Manag., vol. 6, no. 1, pp. 23-40, 1997]
 ，见\autoref{table_decMat}。其中矩阵的每一列对应一个二分类子问题，行对应每个类在子问题中的角色。+表示正类，－表示负类，空白表示该类别在当前的子问题中没有用到。
 
@@ -195,7 +217,37 @@ $
 提出了两个基于最大间隔（Large-Margin）理论的算法：一种是最大化最近的相邻类别之间的间隔，另一种是最大化所有类别之间间隔之和。\citep{shashua2002ranking}的方法存在的问题是，得到的最优解不一定能保证序的正确性，因为模型中没有确保序正确的约束条件。为了解决这个问题， Chu和Keerthi\citep{chu2007support}\citep{chu2005new}
 %[W. Chu and S. S. Keerthi, "Support vector ordinal regression,"Neural Comput., vol. 19, no. 3, pp. 792-815, 2007] 
 %[W. Chu and S. S. Keerthi, "New approaches to support vector ordinal regression,"Proc. 22nd Int. Conf. Mach. Learning, pp. 145-152, 2005 ]
-在\citep{shashua2002ranking}的基础之上做了改进。他们提出了两个算法：第一个算法显示地加入约束条件来保证序的正确性，称为显性约束支持向量序回归算法（Support Vector Ordinal Regression with Explicit Constraints, SVOREX）；第二个算法不显式增加一个序约束条件，而是通过所有类别的样例来同时决定每一个分隔面，称为隐性支持向量序回归算法（Support Vector Ordinal Regression with Explicit Constraints, SVOREX），\citep{chu2007support}理论证明了在最优解的情况下序的约束会自动满足。
+在\citep{shashua2002ranking}的基础之上做了改进。他们提出了两个算法：第一个算法显示地加入约束条件来保证序的正确性，称为显性约束支持向量序回归算法（Support Vector Ordinal Regression with Explicit Constraints, SVOREX）；第二个算法不显式增加一个序约束条件，而是通过所有类别的样例来同时决定每一个分隔面，称为隐性支持向量序回归算法（Support Vector Ordinal Regression with Implicit Constraints, SVORIM）。
+
+\autoref{svorex}给出了SVOREX算法的数学形式，其中\(b_{j-1} \leq b_{j}\)保证了得到的阈值之间有正确的序关系。\(K\)是序回归问题中序的个数；\(\phi(x)\)是一个映射函数，用于核函数来处理非线性情况；\(\xi_{i}^{*j}\)和\(\xi_{i}^{j}\)分别对应第\(j\)个分类面上、下间隔的松弛变量。
+
+\begin{equation}
+\label{svorex}
+\left\{\begin{array}{rll} \mathop{\min}\limits_{w,b,\xi,\xi^{*}} & {\frac{1}{2}\left \langle w \cdot w  \right \rangle + C\mathop{\sum}\limits_{j=1}\limits^{K}\mathop{\sum}\limits_{i=1}\limits^{n^{j}}\left (\xi_{i}^{j}+\xi_{i}^{*j}\right )}  & \\
+\\
+s.t. & \left \langle w \cdot \phi(x_{i}^{j})  \right \rangle - b_{j} \leq -1 + \xi_{i}^{j}, \; \xi_{i}^{j} \geq 0,\forall i,j; \\ \\
+     & \left \langle w \cdot \phi(x_{i}^{j})  \right \rangle - b_{j-1} \geq +1 - \xi_{i}^{*j}, \; \xi_{i}^{*j} \geq 0,\forall i,j;\\ \\
+     & b_{j-1} \leq b_{j}, \; \forall j.
+
+\end{array}
+\right.
+\end{equation}
+
+\autoref{svorim}给出了SVORIM算法的数学形式，它将关于\(K-1\)个阈值的所有误差都考虑进来，其中\(j\)从\(1\)运行到\(K-1\)。\citep{chu2007support}理论证明了在最优解的情况下序的约束会自动满足。
+
+\begin{equation}
+\label{svorim}
+\left\{\begin{array}{rll} \mathop{\min}\limits_{w,b,\xi,\xi^{*}} & {\frac{1}{2}\left \langle w \cdot w  \right \rangle + C\mathop{\sum}\limits_{j=1}\limits^{K-1}{\left (\mathop{\sum}\limits_{k=1}^{j}{\mathop{\sum}\limits_{i=1}\limits^{n^{k}}{\xi_{ki}^{j}}} + \mathop{\sum}\limits_{k=j+1}\limits^{K}{\mathop{\sum}\limits_{i=1}\limits^{n^{k}}{\xi_{ki}^{*j}}}\right)}}  & \\
+\\
+s.t. & \left \langle w \cdot \phi(x_{i}^{k})  \right \rangle - b_{j} \leq -1 + \xi_{ki}^{j}, \; \xi_{ki}^{j} \geq 0, \\
+     & for\; k=1,\dots,j\; and\; i=1,\dots,n^{k}; \\ \\
+     & \left \langle w \cdot \phi(x_{i}^{k})  \right \rangle - b_{j} \geq +1 - \xi_{ki}^{*j}, \; \xi_{ki}^{*j} \geq 0, \\
+     & for\; k=j+1,\dots,K,\; and \; i=1,\dots,n^{k};
+
+\end{array}
+\right.
+\end{equation}
+
 
 %Among the above methods, the kernel discriminant learning for ordinal regression (KDLOR) [7] is an efficient approach, which extends the KFD using a rank constraint to preserve the order information. In traditional classification, KFD is developed by applying the kernel method in Fisher discriminant analysis (FDA) [8, 9], which attempts to tackle the original nonlinear data. The idea of FDA is to maximize a function that will yield a large separation between the projected classes and also give a small variance within each class, thereby minimizing the class overlap [10]. In FDA and KFD, the class means, within- class covariance, and between-class covariance are calculated to represent the data distribution effectively. Since KDLOR employs KFD as the basic framework, it can also make full use of the information of data distribution. In contrast, the SVM-based ordinal regression methods suffer from the problems of ignoring the global information of data distribution, which may lead to an unreasonable solution as demonstrated in [7]. Compared to some popular supervised ordinal regression methods, KDLOR has competitive perfor- mance. Besides, the computational complexity of KDLOR is significantly lower than the approaches in [1–5].
 
@@ -206,7 +258,7 @@ Sun等人\citep{sun2010kernel}
 
 此外，还有很多其他传统的分类模型被拓展成序回归模型。Chu和Ghahramani\citep{chu2005gaussian}
 %[W. Chu and Z. Ghahramani, "Gaussian processes for ordinal regression,"J. Mach. Learning Res., vol. 6, pp. 1019-1041, 2005] 
-提出了基于高斯过程（Gaussian Processes, GP\citep{rasmussen2006gaussian}）的序回归技术，称作高斯过程序回归算法（Gaussian Processes for Ordinal Regression, GPOR）；Cheng等人]\citep{cheng2008neural}
+提出了基于高斯过程（Gaussian Processes, GP\citep{rasmussen2006gaussian}）的序回归技术，称作高斯过程序回归算法（Gaussian Processes for Ordinal Regression, GPOR）；Cheng等人\citep{cheng2008neural}
 %[Cheng J, Wang Z, Pollastri G. A neural network approach to ordinal regression[C]//Neural Networks, 2008. IJCNN 2008.(IEEE World Congress on Computational Intelligence). IEEE International Joint Conference on. IEEE, 2008: 1279-1284.]
 、Fernandez等人\citep{fernandez2013negative}
 %[Fernandez-Navarro F, Gutiérrez P A, Hervás-Martínez C, et al. Negative correlation ensemble learning for ordinal regression[J]. 2013.] 
@@ -222,7 +274,23 @@ Sun等人\citep{sun2010kernel}
 %[Seah C W, Tsang I W, Ong Y S. Transductive ordinal regression[J]. Neural Networks and Learning Systems, IEEE Transactions on, 2012, 23(7): 1074-1086. ] 
 提出了一种直推式的序回归技术（Transductive Ordinal Regression, TOR），这个方法可以被看作是将直推式支持向量机（Transductive Support Vector Machines, TSVM\citep{joachims1999transductive}）
 %[Thorsten Joachims. Transductive inference for text classification using support vector machines. In ICML, volume 99, pages 200–209, 1999.]）
-应用到序回归问题上。Liu等人\citep{liu2011semi}
+应用到序回归问题上。
+
+\autoref{tor}给出了TOR算法的数学形式，算法的目标是推导\(N-L\)个无标签数据的标签\(y^{*}\)，同时建立预测函数\(h(x)\)。其中，\(x_{1},\dots,x_{L}\)是有标签数据，\(x_{L+1},\dots,x_{N}\)是无标签数据。\(\tau\)是用于控制\(h\)复杂度的正则化器，防止模型出现过拟合。参数\(C_{1}\)和\(C_{2}\)用来平衡正则化项、在有标签数据上的损失和在无标签数据上的损失，\(l(\cdot)\)是损失函数（Loss Function）。值得注意的是\autoref{tor}是一个非凸优化问题。
+
+
+\begin{equation}
+\label{tor}
+\left\{\begin{array}{rll} \mathop{\min}\limits_{h,\theta,y^{*}} & \tau \left( h \right) + C_{1}\mathop{\sum}\limits_{i=1}\limits^{L} l \left( h(x_{i}),y_{i},\theta \right) + C_{2}\mathop{\sum}\limits_{j=L+1}\limits^{N} l \left( h(x_{j}),y_{j}^{*},\theta \right) & \\
+\\
+s.t. & \theta_{i} < \theta_{i+1} \; \forall i \in \left \{ 1,\dots,K-2 \right \} \\
+
+\end{array}
+\right.
+\end{equation}
+
+
+此外，Liu等人\citep{liu2011semi}
 % [Liu Y, Liu Y, Zhong S, et al. Semi-supervised manifold ordinal regression for image ranking[C]//Proceedings of the 19th ACM international conference on Multimedia. ACM, 2011: 1393-1396. ]
 提出了一种半监督流形序回归技术（ Semi-Supervised Manifold Ordinal Regression, SS-MOR），他们先使用一种基于图的半监督学习方法来预测无标签数据的标签，再将带有预测标签的数据加入到流形模型中去学习。Srijith 等人\citep{srijith2013semi}
 %[Srijith P K, Shevade S, Sundararajan S. Semi-supervised Gaussian process ordinal regression[M]//Machine Learning and Knowledge Discovery in Databases. Springer Berlin Heidelberg, 2013: 144-159. ] 
@@ -259,7 +327,7 @@ EA在求解各种优化问题时，通常都能得到不错的近似解，因为
 
 “优化”是机器学习领域经常听到的一个词，最常见的主要有两方面：
 \begin{enumerate}
-\item[1.]很多机器学习模型的学习过程就是求解一个优化问题。例如，SVM通过优化一个目标函数使得分类器能够尽可能分对训练数据同时能够获得一个最大的间隔，线性回归通过优化一个目标函数使得模型能够尽可能拟合训练数据同时又具有良好的泛化性能。
+\item[1.]很多机器学习模型的学习过程就是求解一个优化问题。例如，SVM通过优化一个目标函数使得分类器能够尽可能分对训练数据，同时能够获得一个最大的间隔；线性回归通过优化一个目标函数使得模型能够尽可能拟合训练数据同时又具有良好的泛化性能。
 \item[2.]机器学习中通常会存在一些令人头疼的参数，而这些参数的设置将会影响模型的性能。例如，神经网络中隐层结点的个数，核函数中的参数。
 \end{enumerate}
 第一种情况下，如果优化问题是凸优化或者目标函数可导，可以使用拉格朗日乘数法、梯度下降等优化算法。但如果优化问题目标函数不可导或者有多个局部最优解（非凸），传统的优化算法将无法处理或者难以给出一个较好的解。第二种情况下，现有的最常见的调参方法是使用网格搜索，但这种类似于蛮力搜素的方法通常速度慢，尤其是在搜索空间很大的时候。对于这些棘手的情况，演化算法是一类值得考虑的算法。

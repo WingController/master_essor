@@ -1,5 +1,12 @@
 \begin{thebibliography}{10}
 
+\bibitem{sun2010kernel}
+Sun B~Y, Li J, Wu D~D, et~al.
+\newblock Kernel discriminant learning for ordinal regression.
+\newblock Knowledge and Data Engineering, IEEE Transactions on, 2010,
+  22(6):906--910
+\unskip.
+
 \bibitem{kwon1997ordinal}
 Kwon Y~S, Han I, Lee K~C.
 \newblock Ordinal pairwise partitioning (OPP) approach to neural networks
@@ -78,6 +85,52 @@ P{\'e}rez-Ortiz M, Cruz-Ram{\'\i}rez M, Ayllon-Ter{\'a}n M, et~al.
 \newblock Applied Soft Computing, 2014, 14:88--98
 \unskip.
 
+\bibitem{frank2001simple}
+Frank E, Hall M.
+\newblock A simple approach to ordinal classification.
+\newblock Springer, 2001
+\unskip.
+
+\bibitem{herbrich1999support}
+Herbrich R, Graepel T, Obermayer K.
+\newblock Support vector learning for ordinal regression.
+\newblock Proceedings of Artificial Neural Networks, 1999. ICANN 99. Ninth
+  International Conference on (Conf. Publ. No. 470), volume~1. IET, 1999.
+\newblock  97--102
+\unskip.
+
+\bibitem{shashua2002ranking}
+Shashua A, Levin A.
+\newblock Ranking with large margin principle: Two approaches.
+\newblock Proceedings of Advances in neural information processing systems,
+  2002.
+\newblock  937--944
+\unskip.
+
+\bibitem{chu2005new}
+Chu W, Keerthi S~S.
+\newblock New approaches to support vector ordinal regression.
+\newblock Proceedings of Proceedings of the 22nd international conference on
+  Machine learning. ACM, 2005.
+\newblock  145--152
+\unskip.
+
+\bibitem{chu2005gaussian}
+Chu W, Ghahramani Z.
+\newblock Gaussian processes for ordinal regression.
+\newblock Proceedings of Journal of Machine Learning Research, 2005.
+\newblock  1019--1041
+\unskip.
+
+\bibitem{cheng2008neural}
+Cheng J, Wang Z, Pollastri G.
+\newblock A neural network approach to ordinal regression.
+\newblock Proceedings of Neural Networks, 2008. IJCNN 2008.(IEEE World Congress
+  on Computational Intelligence). IEEE International Joint Conference on. IEEE,
+  2008.
+\newblock  1279--1284
+\unskip.
+
 \bibitem{wu2015evolutionary}
 Wu Y, Sun Y, Liang X, et~al.
 \newblock Evolutionary semi-supervised ordinal regression using weighted kernel
@@ -85,6 +138,45 @@ Wu Y, Sun Y, Liang X, et~al.
 \newblock Proceedings of Evolutionary Computation (CEC), 2015 IEEE Congress on.
   IEEE, 2015.
 \newblock  3279--3286
+\unskip.
+
+\bibitem{kramer2001prediction}
+Kramer S, Widmer G, Pfahringer B, et~al.
+\newblock Prediction of ordinal classes using regression trees.
+\newblock Fundamenta Informaticae, 2001, 47(1-2):1--13
+\unskip.
+
+\bibitem{kotsiantis2004cost}
+Kotsiantis S~B, Pintelas P~E.
+\newblock A cost sensitive technique for ordinal classification problems.
+\newblock Proceedings of Methods and applications of artificial intelligence.
+  Springer, 2004: 220--229
+\unskip.
+
+\bibitem{li2006ordinal}
+Li L, Lin H~T.
+\newblock Ordinal regression by extended binary classification.
+\newblock Proceedings of Advances in neural information processing systems,
+  2006.
+\newblock  865--872
+\unskip.
+
+\bibitem{cardoso2007learning}
+Cardoso J~S, Da~Costa J~F~P.
+\newblock Learning to Classify Ordinal Data: The Data Replication Method.
+\newblock Journal of Machine Learning Research, 2007, 8(1393-1429):6
+\unskip.
+
+\bibitem{herbrich1999large}
+Herbrich R, Graepel T, Obermayer K.
+\newblock Large margin rank boundaries for ordinal regression.
+\newblock Advances in neural information processing systems, 1999. 115--132
+\unskip.
+
+\bibitem{deng2010ordinal}
+Deng W~Y, Zheng Q~H, Lian S, et~al.
+\newblock Ordinal extreme learning machine.
+\newblock Neurocomputing, 2010, 74(1):447--456
 \unskip.
 
 \bibitem{torra2006regression}
@@ -106,17 +198,10 @@ Murphy K~P.
 \newblock MIT press, 2012
 \unskip.
 
-\bibitem{kramer2001prediction}
-Kramer S, Widmer G, Pfahringer B, et~al.
-\newblock Prediction of ordinal classes using regression trees.
-\newblock Fundamenta Informaticae, 2001, 47(1-2):1--13
-\unskip.
-
-\bibitem{kotsiantis2004cost}
-Kotsiantis S~B, Pintelas P~E.
-\newblock A cost sensitive technique for ordinal classification problems.
-\newblock Proceedings of Methods and applications of artificial intelligence.
-  Springer, 2004: 220--229
+\bibitem{cortes1995support}
+Cortes C, Vapnik V.
+\newblock Support vector machine.
+\newblock Machine learning, 1995, 20(3):273--297
 \unskip.
 
 \bibitem{lin2012reduction}
@@ -126,52 +211,10 @@ Lin H~T, Li L.
 \newblock Neural Computation, 2012, 24(5):1329--1367
 \unskip.
 
-\bibitem{frank2001simple}
-Frank E, Hall M.
-\newblock A simple approach to ordinal classification.
-\newblock Springer, 2001
-\unskip.
-
-\bibitem{li2006ordinal}
-Li L, Lin H~T.
-\newblock Ordinal regression by extended binary classification.
-\newblock Proceedings of Advances in neural information processing systems,
-  2006.
-\newblock  865--872
-\unskip.
-
-\bibitem{cardoso2007learning}
-Cardoso J~S, Da~Costa J~F~P.
-\newblock Learning to Classify Ordinal Data: The Data Replication Method.
-\newblock Journal of Machine Learning Research, 2007, 8(1393-1429):6
-\unskip.
-
-\bibitem{cortes1995support}
-Cortes C, Vapnik V.
-\newblock Support vector machine.
-\newblock Machine learning, 1995, 20(3):273--297
-\unskip.
-
-\bibitem{herbrich1999support}
-Herbrich R, Graepel T, Obermayer K.
-\newblock Support vector learning for ordinal regression.
-\newblock Proceedings of Artificial Neural Networks, 1999. ICANN 99. Ninth
-  International Conference on (Conf. Publ. No. 470), volume~1. IET, 1999.
-\newblock  97--102
-\unskip.
-
-\bibitem{herbrich1999large}
-Herbrich R, Graepel T, Obermayer K.
-\newblock Large margin rank boundaries for ordinal regression.
-\newblock Advances in neural information processing systems, 1999. 115--132
-\unskip.
-
-\bibitem{shashua2002ranking}
-Shashua A, Levin A.
-\newblock Ranking with large margin principle: Two approaches.
-\newblock Proceedings of Advances in neural information processing systems,
-  2002.
-\newblock  937--944
+\bibitem{quinlan2014c4}
+Quinlan J~R.
+\newblock C4. 5: programs for machine learning.
+\newblock Elsevier, 2014
 \unskip.
 
 \bibitem{chu2007support}
@@ -180,47 +223,16 @@ Chu W, Keerthi S~S.
 \newblock Neural computation, 2007, 19(3):792--815
 \unskip.
 
-\bibitem{chu2005new}
-Chu W, Keerthi S~S.
-\newblock New approaches to support vector ordinal regression.
-\newblock Proceedings of Proceedings of the 22nd international conference on
-  Machine learning. ACM, 2005.
-\newblock  145--152
-\unskip.
-
 \bibitem{scholkopft1999fisher}
 Scholkopft B, Mullert K~R.
 \newblock Fisher discriminant analysis with kernels.
 \newblock Neural networks for signal processing IX, 1999, 1(1):1
 \unskip.
 
-\bibitem{sun2010kernel}
-Sun B~Y, Li J, Wu D~D, et~al.
-\newblock Kernel discriminant learning for ordinal regression.
-\newblock Knowledge and Data Engineering, IEEE Transactions on, 2010,
-  22(6):906--910
-\unskip.
-
-\bibitem{chu2005gaussian}
-Chu W, Ghahramani Z.
-\newblock Gaussian processes for ordinal regression.
-\newblock Proceedings of Journal of Machine Learning Research, 2005.
-\newblock  1019--1041
-\unskip.
-
 \bibitem{rasmussen2006gaussian}
 Rasmussen C~E.
 \newblock Gaussian processes for machine learning.
 \newblock 2006.
-\unskip.
-
-\bibitem{cheng2008neural}
-Cheng J, Wang Z, Pollastri G.
-\newblock A neural network approach to ordinal regression.
-\newblock Proceedings of Neural Networks, 2008. IJCNN 2008.(IEEE World Congress
-  on Computational Intelligence). IEEE International Joint Conference on. IEEE,
-  2008.
-\newblock  1279--1284
 \unskip.
 
 \bibitem{fernandez2013negative}
@@ -234,12 +246,6 @@ Fernandez-Navarro F, Guti{\'e}rrez P~A, Hervas-Martinez C, et~al.
 Jain A~K, Mao J, Mohiuddin K.
 \newblock Artificial neural networks: A tutorial.
 \newblock Computer, 1996, (3):31--44
-\unskip.
-
-\bibitem{deng2010ordinal}
-Deng W~Y, Zheng Q~H, Lian S, et~al.
-\newblock Ordinal extreme learning machine.
-\newblock Neurocomputing, 2010, 74(1):447--456
 \unskip.
 
 \bibitem{huang2006extreme}
@@ -405,17 +411,17 @@ Storn R, Price K.
 \newblock ICSI Berkeley, 1995
 \unskip.
 
-\bibitem{price2006differential}
-Price K, Storn R~M, Lampinen J~A.
-\newblock Differential Evolution: A Practical Approach to Global Optimization.
-\newblock Secaucus, NJ, USA: Springer-Verlag New York, Inc., 2005
-\unskip.
-
 \bibitem{storn1997differential}
 Storn R, Price K.
 \newblock Differential evolution--a simple and efficient heuristic for global
   optimization over continuous spaces.
 \newblock Journal of Global Optimization, 1997, 11(4):341--359
+\unskip.
+
+\bibitem{price2006differential}
+Price K, Storn R~M, Lampinen J~A.
+\newblock Differential Evolution: A Practical Approach to Global Optimization.
+\newblock Secaucus, NJ, USA: Springer-Verlag New York, Inc., 2005
 \unskip.
 
 \end{thebibliography}

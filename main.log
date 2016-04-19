@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99992 (TeX Live 2015) (preloaded format=xelatex 2016.2.23)  12 APR 2016 00:49
+This is XeTeX, Version 3.14159265-2.6-0.99992 (TeX Live 2015) (preloaded format=xelatex 2016.2.23)  20 APR 2016 02:09
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -2342,7 +2342,7 @@ LaTeX Font Warning: Font shape `U/wasy/b/n' in size <5.25> not available
 (./chapter/chap-intro.tex
 第一章
 
-Overfull \hbox (6.57462pt too wide) in paragraph at lines 37--38
+Overfull \hbox (0.55212pt too wide) in paragraph at lines 37--38
 \EU1/STSong(0)/m/n/12.045 始，|  逐 渐 受 到 研 究 者 的 关 注，|  并 涌 现 了 许 多 序 回 归 技 术 \EU
 1/TimesNewRoman(0)/m/n/12.045 [[]][[]][[]][[]][[]][[]][[]]\EU1/STSong(0)/m/n/12
 .045 。| 
@@ -2364,26 +2364,39 @@ Underfull \vbox (badness 2213) has occurred while \output is active []
 
 ]
 第二章
-[5] [6]
-Underfull \vbox (badness 1122) has occurred while \output is active []
 
- [7]
-Overfull \hbox (0.16978pt too wide) in paragraph at lines 202--206
+Overfull \hbox (12.44257pt too wide) in paragraph at lines 26--35
+[][] 
+ []
+
+[5] [6]
+Overfull \hbox (3.28694pt too wide) in paragraph at lines 128--135
+[]\EU1/TimesNewRoman(0)/m/n/12.045 Frank \EU1/STSong(0)/m/n/12.045 和 \EU1/Times
+NewRoman(0)/m/n/12.045 Hall[[]] \EU1/STSong(0)/m/n/12.045 提 出 了 一 种 叫 \EU1/Time
+sNewRoman(0)/m/n/12.045 OrderedPartitions \EU1/STSong(0)/m/n/12.045 的 分 解 方 法，|
+  并 使 用 \EU1/TimesNewRoman(0)/m/n/12.045 C4.5[[]]
+ []
+
+[7]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [8]
+Overfull \hbox (0.16978pt too wide) in paragraph at lines 254--258
 []\EU1/STSong(0)/m/n/12.045 除 了 支 持 向 量 机 之 外，| \EU1/TimesNewRoman(0)/m/n/12.04
 5 Fisher \EU1/STSong(0)/m/n/12.045 判 别 分 析  |（\EU1/TimesNewRoman(0)/m/n/12.045 
 Fisher Discriminant Analysis, FDA[[]]\EU1/STSong(0)/m/n/12.045 ）|
  []
 
-[8] [9] [10]) [11]
+[9] [10] [11] [12]) [13]
 \openout2 = `chapter/chap-wkfdor.aux'.
 
- (./chapter/chap-wkfdor.tex [12
+ (./chapter/chap-wkfdor.tex [14
 
 
 
 ]
 第三章
-[13] [14]
+[15] [16]
 Overfull \hbox (4.27275pt too wide) in paragraph at lines 62--64
 \EU1/STSong(0)/m/n/12.045 其 中 $\U/zeur/m/n/12.045 S[] \U/zeus/m/n/12.045 ½ [] [
 ][] [][]¨\U/zeur/m/n/12.045 x \U/zeus/m/n/12.045 ^^@ \U/zeur/m/n/12.045 m[]\U/z
@@ -2393,7 +2406,7 @@ r/m/n/12.045 m[] \U/zeus/m/n/12.045 ½ [] [][] \U/zeur/m/n/12.045 x$
  []
 
 File: figures/kdlor_fig1.pdf Graphic file (type QTm)
-<use  "figures/kdlor_fig1.pdf" > [15] [16] [17] [18] [19]
+<use  "figures/kdlor_fig1.pdf" > [17] [18] [19] [20] [21]
 Invalid UTF-8 byte or sequence at line 221 replaced by U+FFFD.
 Invalid UTF-8 byte or sequence at line 221 replaced by U+FFFD.
 Invalid UTF-8 byte or sequence at line 221 replaced by U+FFFD.
@@ -2448,101 +2461,127 @@ Overfull \hbox (16.50247pt too wide) in paragraph at lines 221--231
 
 Underfull \vbox (badness 6016) has occurred while \output is active []
 
- [20]
+ [22]
 
 LaTeX Font Warning: Font shape `U/wasy/b/n' in size <5> not available
 (Font)              Font shape `U/wasy/m/n' tried instead on input line 261.
 
-
-Overfull \hbox (19.39983pt too wide) in paragraph at lines 274--293
+[23]
+Overfull \hbox (19.39983pt too wide) in paragraph at lines 278--297
  [][] 
  []
 
-[21]) [22]
+) [24]
 \openout2 = `chapter/chap-essor.aux'.
 
  (./chapter/chap-essor.tex
 第四章
-[23
+[25
 
 
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 55--56
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 58--59
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 61--62
-
- []
-
 File: figures/expfunc.eps Graphic file (type eps)
-<figures/expfunc.eps>
+ <figures/expfunc.eps>
+Underfull \hbox (badness 10000) in paragraph at lines 63--64
 
-LaTeX Warning: `h' float specifier changed to `ht'.
+ []
 
-[24] [25] [26] [27] [28] [29] [30]) [31]
+
+Underfull \hbox (badness 10000) in paragraph at lines 66--67
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 69--70
+
+ []
+
+[26] [27] [28] [29]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [30]
+Underfull \hbox (badness 10000) in paragraph at lines 275--279
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 275--279
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 275--279
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 275--279
+
+ []
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+[31] [32]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [33])
+[34]
 \openout2 = `chapter/chap-conclusion.aux'.
 
  (./chapter/chap-conclusion.tex
-[32
-
-
-
-]
 第五章
-[33] [34]) [35] [36
+[35
 
 
-] (./main.bbl [37
 
-] [38]) [39]
+] [36]) [37] [38
+
+
+] (./main.bbl [39
+
+] [40]) [41]
 \openout2 = `chapter/thanks.aux'.
 
- (./chapter/thanks.tex [40
+ (./chapter/thanks.tex [42
 
 
 ])
-[41]
+[43]
 \openout2 = `chapter/pub.aux'.
 
- (./chapter/pub.tex [42
+ (./chapter/pub.tex [44
 
 
 
-]) [43]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 183.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 183.
+]) [45]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 184.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 184.
  (./main.aux (./chapter/abstract.aux)
 (./chapter/chap-intro.aux) (./chapter/chap-review.aux)
 (./chapter/chap-wkfdor.aux) (./chapter/chap-essor.aux)
 (./chapter/chap-conclusion.aux) (./chapter/thanks.aux) (./chapter/pub.aux))
-Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 183.
-Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 183.
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 184.
+Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 184.
 
 
 LaTeX Font Warning: Size substitutions with differences
 (Font)              up to 31.12pt have occurred.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 183.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 184.
  )
 (\end occurred inside a group at level 1)
 
 ### simple group (level 1) entered at line 1061 ({)
 ### bottom level 
 Here is how much of TeX's memory you used:
- 33389 strings out of 493638
- 625503 string characters out of 6144792
- 676981 words of memory out of 5000000
- 36228 multiletter control sequences out of 15000+600000
+ 33398 strings out of 493638
+ 625634 string characters out of 6144792
+ 677197 words of memory out of 5000000
+ 36237 multiletter control sequences out of 15000+600000
  65482 words of font info for 275 fonts, out of 8000000 for 9000
  1328 hyphenation exceptions out of 8191
- 71i,18n,79p,10411b,15840s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 71i,18n,79p,10411b,15843s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on main.pdf (61 pages).
+Output written on main.pdf (63 pages).
