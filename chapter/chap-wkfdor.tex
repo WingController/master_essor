@@ -95,7 +95,7 @@ s.t. & w^{T}\cdot (m_{k+1}-m_{k})\geq\rho,{} \\
 \subsection{估计无标签数据对每个类别的隶属度}
 这里我们使用一个标签传播（Label Propagation）的方法\citep{zhou2004learning}
 %[D. Zhou, O. Bousquet, T. N. Lal, J. Weston, and B. Scho ̈lkopf,“Learning with local and global consistency,” in Advances in Neural Information Processing Systems 16. MIT Press, 2004, pp. 321–328.]）
-来估计无标签数据对于每个类别的隶属度。\autoref{alg_mem}列出了\textit{mConsistency}算法的主要步骤。
+来估计无标签数据对于每个类别的隶属度。算法 \ref{alg_mem}列出了\textit{mConsistency}算法的主要步骤。
 
 \IncMargin{1em}
 \begin{algorithm}
@@ -118,7 +118,7 @@ s.t. & w^{T}\cdot (m_{k+1}-m_{k})\geq\rho,{} \\
 
 该算法的主要思想是，通过让每一个数据点迭代地传播它的标签信息给邻近点，直到达到一个全局稳定的状态\citep{zhou2004learning}。其形式化表示是\(F(t+1)=\alpha SF(t)+(1-\alpha)Y\)，参数\(\alpha\)用来平衡标签信息的扩散（第一项）和原始状态的维持（第二项），\(Y\)是初始标签矩阵，\(S\)是对邻近度矩阵（Affinity Matrix）\(W\)的对称归一化。迭代过程会收敛到\(F^{*}=(1-\alpha)(I-\alpha S)^{-1}Y\)\citep{zhou2004learning}，所以标签传播的最终状态可以直接通过\(F^{*}\)来计算。
 
-由于标签信息是通过数据点之间的邻近度矩阵来扩散的，所以该算法可以被看作是一种基于图的半监督学习方法。对每个无标签数据点\(x_{i}\)，它最终接收到的标签信息存储在一个行向量\(F^{*}_{i}=[F^{*}_{i1},\dots,F^{*}_{iK}]\)里。根据平滑假设，\(F^{*}_{i}\)可以表示\(x_{i}\)属于每个类别的置信度（Confidence）。因此，我们归一化\(F^{*}\)并把它作为隶属度矩阵，表示为 \(U=(u_{jk})_{N \times K}\)。这里需要指出的是，有标签数据的隶属度直接从给定的标签\(Y^{l}\)得到，具体请参\autoref{alg_mem}中的步骤6。
+由于标签信息是通过数据点之间的邻近度矩阵来扩散的，所以该算法可以被看作是一种基于图的半监督学习方法。对每个无标签数据点\(x_{i}\)，它最终接收到的标签信息存储在一个行向量\(F^{*}_{i}=[F^{*}_{i1},\dots,F^{*}_{iK}]\)里。根据平滑假设，\(F^{*}_{i}\)可以表示\(x_{i}\)属于每个类别的置信度（Confidence）。因此，我们归一化\(F^{*}\)并把它作为隶属度矩阵，表示为 \(U=(u_{jk})_{N \times K}\)。这里需要指出的是，有标签数据的隶属度直接从给定的标签\(Y^{l}\)得到，具体请参见算法 \ref{alg_mem}中的步骤6。
 
 \textit{mConsistency}算法简单且快速，它的主要计算开销是一个矩阵求逆和一个矩阵乘法操作，时间复杂度是\(O(N^{3})\)，其中\(N\)是训练样例的个数。
 
@@ -193,7 +193,7 @@ p(x)=w^{T} \cdot \phi(x)=\sum_{i=1}^{N} \alpha_{i} k(x_{i},x)
 r(x)=\min \limits_{k \in \{1,2,\dots,K\}} \{k\mid p(x)-b_{k}<0\}
 \end{equation}
 
-不同于KDLOR算法，WKFDOR算法不仅使用了有标签数据，同时还利用了无标签数据来估计类均值和类内协方差矩阵。我们通过计算隶属度（\autoref{alg_mem}）和加权策略来使用这些无标签数据。由于在实际应用中通常存在大量的无标签数据，所以合理利用它们能够更加准确地估计潜在的数据分布。因此，我们提出的WKFDOR算法能够在KDLOR的基础上获得一个更好的性能。下一节中，我们将会通过实验来验证算法的有效性。
+不同于KDLOR算法，WKFDOR算法不仅使用了有标签数据，同时还利用了无标签数据来估计类均值和类内协方差矩阵。我们通过计算隶属度（算法 \ref{alg_mem}）和加权策略来使用这些无标签数据。由于在实际应用中通常存在大量的无标签数据，所以合理利用它们能够更加准确地估计潜在的数据分布。因此，我们提出的WKFDOR算法能够在KDLOR的基础上获得一个更好的性能。下一节中，我们将会通过实验来验证算法的有效性。
 
 \section{实验验证}
 为了验证我们提出的WKFDOR算法能够通过加权策略有效地使用无标签数据，我们设计了两组实验。首先，我们在人工合成的数据集上比较WKFDOR算法和KDLOR算法，并对结果可视化。其次，我们在10组真实的有序数据集上评估WKFDOR算法和KDLOR算法的性能。
@@ -203,7 +203,7 @@ r(x)=\min \limits_{k \in \{1,2,\dots,K\}} \{k\mid p(x)-b_{k}<0\}
 本实验采用下面的高斯核函数来做非线性映射：
 \begin{equation}
 \label{Gaussian_kernel}
-k(x,y)=\exp(-\frac{\parallel x-y \parallel^{2}}{2\sigma^{2}})
+k(x,y)=\exp \left ( -\frac{\parallel x-y \parallel^{2}}{2\sigma^{2}} \right )
 \end{equation}
 KDLOR算法的超参数\(\mu\)、\(C\)、 \(\sigma\)，以及\textit{mConsistency}算法的超参数\(\alpha\)、\(\varepsilon\) 通过五折交叉验证（5-Fold Cross Validation）来确定。在这里，WKFDOR算法的\(\mu\)、\(C\)、 \(\sigma\)采用和KDLOR算法相同的值。使用相同的超参值来比较这两个算法看上去是公平的，但实际上WKFDOR算法可能存在更优的参数设置。
 
