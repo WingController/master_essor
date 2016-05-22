@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99992 (TeX Live 2015) (preloaded format=xelatex 2016.2.23)  19 MAY 2016 16:31
+This is XeTeX, Version 3.14159265-2.6-0.99992 (TeX Live 2015) (preloaded format=xelatex 2016.2.23)  22 MAY 2016 21:05
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -2397,81 +2397,69 @@ Fisher Discriminant Analysis, FDA[[]]\EU1/STSong(0)/m/n/12.045 ）|
 ]
 第三章
 [15] [16]
-Overfull \hbox (4.27275pt too wide) in paragraph at lines 62--64
-\EU1/STSong(0)/m/n/12.045 其 中 $\U/zeur/m/n/12.045 S[] \U/zeus/m/n/12.045 ½ [] [
-][] [][]¨\U/zeur/m/n/12.045 x \U/zeus/m/n/12.045 ^^@ \U/zeur/m/n/12.045 m[]\U/z
-eus/m/n/12.045 ©¨\U/zeur/m/n/12.045 x \U/zeus/m/n/12.045 ^^@ \U/zeur/m/n/12.045
- m[]\U/zeus/m/n/12.045 ©[]$ \EU1/STSong(0)/m/n/12.045 是 类 间 协 方 差 矩 阵，| $\U/zeu
-r/m/n/12.045 m[] \U/zeus/m/n/12.045 ½ [] [][] \U/zeur/m/n/12.045 x$
- []
-
 File: figures/kdlor_fig1.pdf Graphic file (type QTm)
-<use  "figures/kdlor_fig1.pdf" > [17] [18] [19] [20] [21]
-Invalid UTF-8 byte or sequence at line 221 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 221 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 221 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 221 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 221 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 221 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 221 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 221 replaced by U+FFFD.
+ <use  "figures/kdlor_fig1.pdf" > [17] [18] [19] [20] [21]
+Invalid UTF-8 byte or sequence at line 222 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 222 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 222 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 222 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 222 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 222 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 222 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 222 replaced by U+FFFD.
 File: figures/syn_labeled3.eps Graphic file (type eps)
 
 <figures/syn_labeled3.eps>
-Invalid UTF-8 byte or sequence at line 224 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 224 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 224 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 224 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 224 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 224 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 224 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 224 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 225 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 225 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 225 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 225 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 225 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 225 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 225 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 225 replaced by U+FFFD.
 File: figures/syn_weightedMeans3.eps Graphic file (type eps)
  <figures/syn_weightedMeans3.eps>
-Invalid UTF-8 byte or sequence at line 227 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 227 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 227 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 227 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 227 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 227 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 227 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 227 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 228 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 228 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 228 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 228 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 228 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 228 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 228 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 228 replaced by U+FFFD.
 File: figures/kdlor_proj3.eps Graphic file (type eps)
 
 <figures/kdlor_proj3.eps>
-Invalid UTF-8 byte or sequence at line 230 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 230 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 230 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 230 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 230 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 230 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 230 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 230 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 231 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 231 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 231 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 231 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 231 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 231 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 231 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 231 replaced by U+FFFD.
 File: figures/wkfdor_proj3.eps Graphic file (type eps)
  <figures/wkfdor_proj3.eps>
-Overfull \hbox (16.50247pt too wide) in paragraph at lines 221--231
+Overfull \hbox (16.50247pt too wide) in paragraph at lines 222--232
 [][] [][]
  []
 
 
-Overfull \hbox (16.50247pt too wide) in paragraph at lines 221--231
+Overfull \hbox (16.50247pt too wide) in paragraph at lines 222--232
 [][] [][] 
  []
 
 
-Underfull \vbox (badness 6016) has occurred while \output is active []
-
- [22]
-
 LaTeX Font Warning: Font shape `U/wasy/b/n' in size <5> not available
-(Font)              Font shape `U/wasy/m/n' tried instead on input line 261.
+(Font)              Font shape `U/wasy/m/n' tried instead on input line 262.
 
-[23]
-Overfull \hbox (19.39983pt too wide) in paragraph at lines 278--297
+[22]
+Overfull \hbox (19.39983pt too wide) in paragraph at lines 275--294
  [][] 
  []
 
-) [24]
+[23]) [24]
 \openout2 = `chapter/chap-essor.aux'.
 
  (./chapter/chap-essor.tex
@@ -2483,24 +2471,21 @@ Overfull \hbox (19.39983pt too wide) in paragraph at lines 278--297
 ]
 File: figures/expfunc.eps Graphic file (type eps)
  <figures/expfunc.eps>
-Underfull \hbox (badness 10000) in paragraph at lines 63--64
+Underfull \hbox (badness 10000) in paragraph at lines 62--63
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 66--67
+Underfull \hbox (badness 10000) in paragraph at lines 65--66
 
  []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 69--70
+[26]
+Underfull \hbox (badness 10000) in paragraph at lines 68--69
 
  []
 
-[26] [27] [28] [29]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [30]
+[27] [28] [29] [30]
 Underfull \hbox (badness 10000) in paragraph at lines 275--279
 
  []
@@ -2578,7 +2563,7 @@ Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 184.
 Here is how much of TeX's memory you used:
  33398 strings out of 493638
  625634 string characters out of 6144792
- 677197 words of memory out of 5000000
+ 681197 words of memory out of 5000000
  36237 multiletter control sequences out of 15000+600000
  65482 words of font info for 275 fonts, out of 8000000 for 9000
  1328 hyphenation exceptions out of 8191

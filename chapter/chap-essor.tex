@@ -1,6 +1,6 @@
 \chapter{基于演化算法的半监督序回归技术}
 \label{chap:essor}
-根据前面对序回归问题的介绍可知，序回归问题中的无标签数据相比较于传统的分类问题缺失了更多的信息，所以如何利用这些无标签数据的挑战更大。上一章介绍了我们提出的基于加权核判别分析的半监督序回归技术（WKFDOR），它通过计算无标签数据的隶属度和加权策略来利用无标签数据，从而更准确地估计类分布。因为WKFDOR算法中使用的权重是否准确将会对学习性能产生重要的影响，所以这一章节中我们将对算法 \ref{alg_mem}得到的权重进行优化，从而改进WKFDOR算法的性能。优化权重主要通过结合序信息来更准确地估计权重。一方面，这样能够更充分地使用序回归问题的数据信息；另一方面，引入序信息能够更准确地估计权重，最终提升学习性能。
+在序回归问题中，数据的标签不仅体现它所属的类别，同时也表示了它在整个数据集上的序信息。因此，相比较于传统的分类问题，序回归中的无标签数据缺失了更多的信息，所以如何利用这些无标签数据的挑战更大。上一章介绍了我们提出的基于加权核判别分析的半监督序回归技术（WKFDOR），它通过计算无标签数据的隶属度和加权策略来利用无标签数据，从而更准确地估计类分布。因为WKFDOR算法中使用的权重是否准确将会对学习性能产生重要的影响，所以这一章节中我们将对算法 \ref{alg_mem}得到的权重进行优化，从而改进WKFDOR算法的性能。优化权重主要通过结合序信息来更准确地估计权重。一方面，这样能够更充分地使用序回归问题的数据信息；另一方面，引入序信息能够更准确地估计权重，最终提升学习性能。
 %序回归问题中，同时引入无标签数据和序信息往往使得问题非凸不可导
 %To further improve the overall performance, an evolutionary algorithm (i.e., differential evolution) is employed to evolve the weights.
 
@@ -57,7 +57,6 @@ u_{jk}^{'}=\frac{u_{jk}^{\lambda_{k}}}{\Sigma_{k=1}^{K} u_{jk}^{\lambda_{k}}}
 \label{fig_expFunc}
 \end{figure}
 
-
 我们对权重更新规则\autoref{mem_updateRule}进行了一定的数学分析，下面的这些特性保证了它能够合理地调整权重：
 \begin{enumerate}
 \item[1.]对每一个数据点，权重更新规则能够改变它属于两个不同类别的权重的相对值。
@@ -71,6 +70,7 @@ u_{jk}^{'}=\frac{u_{jk}^{\lambda_{k}}}{\Sigma_{k=1}^{K} u_{jk}^{\lambda_{k}}}
 \end{enumerate}
 
 为了进一步观察权重更新规则的特性，假设\(\lambda_{k}\)随机取值于一个\([0,2]\)范围内的均匀分布，\autoref{fig_expFunc}画出了一组以不同\(u\)值为底数的指数函数。通过\autoref{fig_expFunc}中不同曲线的形状可以看出，当初始权重有相对比较极端的值时（即接近\(1\)或\(0\)的数值，表示该无标签数据点有很大的置信度属于或不属于相应的类别），它将有相对更大的概率保持在初始值附近。权重更新规则的这个特性体现了其在一定程度上相信初始权重值，所以这个演化过程可以看作是对初始权重的一种微调。
+
 
 \subsection{适应度函数}
 通常，演化过程是由一个适应度评估函数来驱动的。这一节中，我们定义了算法使用的适应度函数，它是由以下三个指标以递减的优先级组合而成：
@@ -102,9 +102,7 @@ u_{jk}^{'}=\frac{u_{jk}^{\lambda_{k}}}{\Sigma_{k=1}^{K} u_{jk}^{\lambda_{k}}}
 适应度的计算过程见算法 \ref{alg_fitness_calculation}。其中，求解\autoref{wkfdor}的优化问题即可得到ORfval。通常，将在验证集（Validation Dataset）上的分类准确率作为适应度度量。但是，在半监督学习问题中有标签数据量很少，如果从中取出一部分用来作验证集的话将会增加学习难度并很有可能导致更差的学习性能。 因此，这里我们在有标签数据集上评估算法的MAE和MZE。在序回归问题中，我们希望预测的标签能够和实际标签尽可能相近，所以MAE比MZE更能体现算法的性能，因此这里我们给MAE更高的优先级。前两个指标用来最小化序回归学习器的经验风险（Empirical Risk），使其能够获得基本的识别能力。但是仅在一个小的有标签数据集上最小化分类误差很可能导致模型过拟合（Over-Fitting），所以这里我们还将在整个训练集上计算到的ORfval引入进来。ORfval用来最小化预测风险，它能够促进同类别的数据点更加紧凑而相邻类的数据点能够更加分散（在映射后的空间里）。总的来说，在有标签数据集上评估的MAE和MZE指示了模型已经学习正确的程度，而ORfval在概念上类似于指示学习器的潜能并用来防止过拟合\citep{liu2000evolutionary}\citep{liu2003evolutionary}。
 %[C. Liu and H. Wechsler, “Evolutionary pursuit and its applica- tion to face recognition,” IEEE Transactions on Pattern Analysis and Machine Intelligence, vol. 22, no. 6, pp. 570–582, 2000.]
 %［H. Liu and S.-T. Huang, “Evolutionary semi-supervised fuzzy clustering,” Pattern Recognition Letters, vol. 24, no. 16, pp. 3105–3113, 2003.］。
-因此，由算法 \ref{alg_fitness_calculation}的适应度函数所驱动的演化过程可以达到良好的学习性能和泛化能力。
-
-在比较两个个体适应度大小时，我们依次通过这三个不同优先级的指标来比较以决定哪个个体适应度更高，其具体实现见算法 \ref{alg_fitness}。
+因此，由算法 \ref{alg_fitness_calculation}的适应度函数所驱动的演化过程可以达到良好的学习性能和泛化能力。在比较两个个体适应度大小时，我们依次通过这三个不同优先级的指标来比较以决定哪个个体适应度更高，其具体实现见算法 \ref{alg_fitness}。
 
 
 %fitness大小比较
@@ -147,14 +145,14 @@ u_{jk}^{'}=\frac{u_{jk}^{\lambda_{k}}}{\Sigma_{k=1}^{K} u_{jk}^{\lambda_{k}}}
 在差分进化算法中，通过变异、交叉、选择三种算子来产生新的种群。
 \begin{enumerate}
 
-\item[1.变异：]\autoref{DE_mutation}给出了差分进化的变异算子。对于每一个父代个体\(x_{i}(g)\)，通过该变异算子产生测试向量\(u_{i}(g)\)。其中，\(x_{i_{1}}(g)\)、\(x_{i_{2}}(g)\)、\(x_{i_{3}}(g)\)是从第\(g\)代种群中随机选择的个体，且\(i \neq i_{1} \neq i_{2} \neq i_{3}\)。比例因子\(\beta > 0\)，用来控制差分变量的放大程度。
+\item[1.变异：]式 \ref{DE_mutation}给出了差分进化的变异算子。对于每一个父代个体\(x_{i}(g)\)，通过该变异算子产生测试向量\(u_{i}(g)\)。其中，\(x_{i_{1}}(g)\)、\(x_{i_{2}}(g)\)、\(x_{i_{3}}(g)\)是从第\(g\)代种群中随机选择的个体，且\(i \neq i_{1} \neq i_{2} \neq i_{3}\)。比例因子\(\beta > 0\)，用来控制差分变量的放大程度。
 
 \begin{equation}
 \label{DE_mutation}
 u_{i}(g) = x_{i_{1}}(g)+\beta(x_{i_{2}}(g)-x_{i_{3}}(g))
 \end{equation}
 
-\item[2.交叉：]通过父代个体\(x_{i}(g)\)与测试个体\(u_{i}(g)\)的离散重组产生子代个体\(x^{'}_{i}(g)\)，\autoref{DE_crossover}给出了差分进化的交叉算子。其中，\(x_{ij}(g)\)表示\(x_{i}(g)\)的第\(j\)个元素，\(J\)是交叉位的集合。常见的交叉方式有二项式交叉和指数交叉，算法 \ref{alg_DE_crossover}给出了二项式交叉方式生成交叉位集合的算法，其中\(p_{r}\)是重组概率。
+\item[2.交叉：]通过父代个体\(x_{i}(g)\)与测试个体\(u_{i}(g)\)的离散重组产生子代个体\(x^{'}_{i}(g)\)，式 \ref{DE_crossover}给出了差分进化的交叉算子。其中，\(x_{ij}(g)\)表示\(x_{i}(g)\)的第\(j\)个元素，\(J\)是交叉位的集合。常见的交叉方式有二项式交叉和指数交叉，算法 \ref{alg_DE_crossover}给出了二项式交叉方式生成交叉位集合的算法，其中\(p_{r}\)是重组概率。
 
 
 \begin{equation}
@@ -215,14 +213,16 @@ x_{ij}(g)& \text{其他情况}
 \emph{返回适应度最好的个体}\;
 \caption{差分进化算法}\label{alg_DE}
 \end{algorithm}\DecMargin{1em}
-% 详细介绍差分进化算法
-%[R. Storn and K. Price, “Differential evolution–a simple and effi- cient heuristic for global optimization over continuous spaces,” Journal of Global Optimization, vol. 11, no. 4, pp. 341–359, 1997.]。
+
 
 算法 \ref{alg_DE}给出了一般差分进化算法的步骤。差分进化是一种高效的处理连续优化问题的演化算法，简单易用，并且容易并行化\citep{storn1997differential}。此外，差分进化算法还具有收敛好和实现快的特点\citep{price2006differential}。
 %[K. Price, R. M. Storn, and J. A. Lampinen, Differential Evolu- tion: A Practical Approach to Global Optimization. Secaucus, NJ, USA: Springer-Verlag New York, Inc., 2005.]。
-因此，我们采用差分进化算法来搜索最优的\(\lambda\)。在初代种群中引入一个个体\(\lambda=(1,1,\dots,1)\)，用来表示初始权重。初代种群的其它个体将在一个给定范围内随机生成。基于上面的介绍和分析，我们在算法 \ref{alg_ESSOR}提出了基于演化算法的半监督序回归算法——ESSOR。其中，\(\lambda_{g}^{t}\)是通过DE的交叉和变异算子产生的新的个体，用于探索解空间。分别将\(\lambda_{g}\)和\(\lambda_g^{t}\)代入\autoref{mem_updateRule}的权重更新规则，得到新的权重矩阵\((u_{jk}^{'})_{N \times K}\)和\((u_{jk}^{t})_{N \times K}\)。再分别将两个新的权重矩阵应用到WKFDOR算法得到半监督序回归模型（ORfval可以同时得到）。在有标签数据集上评估得到的半监督序回归模型，得到相应的MAE和MZE。结合ORfval，得到适应度的三元组。由算法 \ref{alg_fitness}得到适应度评价结果，根据结果决定保留子代个体还是父代个体至下一代种群。
+因此，我们采用差分进化算法来搜索最优的\(\lambda\)。在初代种群中引入一个个体\(\lambda=(1,1,\dots,1)\)，用来表示初始权重。初代种群的其它个体在一个给定范围内随机生成。基于上面的介绍和分析，我们在算法 \ref{alg_ESSOR}提出了基于演化算法的半监督序回归算法——ESSOR。其中，\(\lambda_{g}^{t}\)是通过差分进化的交叉和变异算子产生的新的个体，用于探索解空间。分别将\(\lambda_{g}\)和\(\lambda_g^{t}\)代入\autoref{mem_updateRule}的权重更新规则，得到新的权重矩阵\((u_{jk}^{'})_{N \times K}\)和\((u_{jk}^{t})_{N \times K}\)。再分别将两个新的权重矩阵应用到WKFDOR算法得到半监督序回归模型（ORfval可以同时得到）。在有标签数据集上评估得到的半监督序回归模型，得到相应的MAE和MZE。结合ORfval，得到适应度的三元组。由算法 \ref{alg_fitness}得到适应度评价结果，根据结果决定保留子代个体还是父代个体至下一代种群。
 %权重更新规则见\autoref{mem_updateRule}，适应度函数见\autoref{alg_fitness}。
-其中，DE的停止准则是迭代次数（Maximum Generation）达到预设的最大代数。从最后的种群中选出最优的个体，即最优的\(\lambda\)。根据权重更新规则得到最优的权重矩阵，并应用WKFDOR算法得到最终的序回归模型。
+其中，差分进化的停止准则是迭代次数（Maximum Generation）达到预设的最大代数。从最后的种群中选出最优的个体，即最优的\(\lambda\)。根据权重更新规则得到最优的权重矩阵，并应用WKFDOR算法得到最终的序回归模型。
+
+% 详细介绍差分进化算法
+%[R. Storn and K. Price, “Differential evolution–a simple and effi- cient heuristic for global optimization over continuous spaces,” Journal of Global Optimization, vol. 11, no. 4, pp. 341–359, 1997.]。
 
 
 \IncMargin{1em}

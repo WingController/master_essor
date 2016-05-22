@@ -1,7 +1,7 @@
 \chapter{序回归技术发展回顾}
 \label{chap:review}
 
-序回归问题在过去十几年的时间里，受到了研究者的广泛关注，并涌现了一系列序回归技术。本章将对序回归技术的发展做回顾，对已有的比较有代表性的研究成果根据方法的特点进行分类。首先我们将给出序回归问题的形式化定义，以及常用的算法评估指标。接着我们将分别从以下三个方向回顾已有的序回归技术：基于有监督学习方式的序回归技术、基于半监督学习方式的序回归技术、基于演化算法的序回归技术。最后我们将总结序回归技术发展的趋势和不足。
+序回归问题在过去十几年的时间里，受到了研究者的广泛关注，并涌现了一系列序回归技术。本章将对序回归技术的发展做回顾，对已有的比较有代表性的研究成果根据方法的特点进行分类。首先我们将给出序回归问题的形式化定义，以及常用的算法评估指标。接着我们将分别从以下三个方向介绍已有的序回归技术：基于有监督学习方式的序回归技术、基于半监督学习方式的序回归技术、基于演化算法的序回归技术。最后我们将总结序回归技术发展的趋势和不足。
 
 \section{序回归问题定义和评估指标}
 %对于一个输入的属性特征向量\(x\)，序回归问题是要预测\(x\)的标签\(y\)，其中
@@ -251,10 +251,10 @@ s.t. & \left \langle w \cdot \phi(x_{i}^{k})  \right \rangle - b_{j} \leq -1 + \
 
 %Among the above methods, the kernel discriminant learning for ordinal regression (KDLOR) [7] is an efficient approach, which extends the KFD using a rank constraint to preserve the order information. In traditional classification, KFD is developed by applying the kernel method in Fisher discriminant analysis (FDA) [8, 9], which attempts to tackle the original nonlinear data. The idea of FDA is to maximize a function that will yield a large separation between the projected classes and also give a small variance within each class, thereby minimizing the class overlap [10]. In FDA and KFD, the class means, within- class covariance, and between-class covariance are calculated to represent the data distribution effectively. Since KDLOR employs KFD as the basic framework, it can also make full use of the information of data distribution. In contrast, the SVM-based ordinal regression methods suffer from the problems of ignoring the global information of data distribution, which may lead to an unreasonable solution as demonstrated in [7]. Compared to some popular supervised ordinal regression methods, KDLOR has competitive perfor- mance. Besides, the computational complexity of KDLOR is significantly lower than the approaches in [1–5].
 
-除了支持向量机之外，Fisher判别分析（Fisher Discriminant Analysis, FDA\citep{scholkopft1999fisher}）模型也被拓展来处理序回归问题。FDA的目标是求得一个最优的投影向量，使得在映射后的空间里，不同类别之间有大的间隔（即分得更开），而同一类别有小的方差（即聚得更紧），从而最小化类别之间的重叠度。FDA算法通过最大化类间协方差（Between-Class Covariance）同时最小化类内协方差（Within-Class Covariance）来求得这个最优的投影向量。类中心（Class Means）、类间协方差矩阵、类内协方差矩阵能够有效地表示数据分布特征。
+除了支持向量机之外，Fisher判别分析（Fisher Discriminant Analysis, FDA\citep{scholkopft1999fisher}）模型也被拓展来处理序回归问题。FDA的目标是求得一个最优的投影向量，使得在映射后的空间里，不同类别之间有大的间隔（即分得开），而同一类别有小的方差（即聚得紧），从而最小化类别之间的重叠度。FDA算法通过最大化类间协方差（Between-Class Covariance）同时最小化类内协方差（Within-Class Covariance）来求得这个最优的投影向量。类中心（Class Means）、类间协方差矩阵、类内协方差矩阵能够有效地表示数据分布特征。
 Sun等人\citep{sun2010kernel}
 %[B.-Y. Sun, J. Li, D. D. Wu, X.-M. Zhang and W.-B. Li, "Kernel discriminant learning for ordinal regression,"IEEE Trans. Knowl. Data Eng., vol. 22, no. 6, pp. 906-910, 2010]
-提出了基于FDA的序回归技术，称为核判别学习序回归算法（Kernel Discriminant Learning for Ordinal Regression, KDLOR）。为了引入序信息，KDLOR通过增加一个在相邻序类别上的约束条件来保证序的正确性，从而求得最优的序回归投影向量。由于KDLOR是基于FDA的算法，所以它也能够充分地利用数据分布信息。相反，基于支持向量机的序回归技术忽略了数据分布的全局信息，使得它们可能会找到一个不合理的分隔面\citep{sun2010kernel}。
+提出了基于FDA的序回归技术，称为核判别学习序回归算法（Kernel Discriminant Learning for Ordinal Regression, KDLOR）。为了引入序信息，KDLOR通过增加一个在相邻序上的约束条件来保证序的正确性，从而求得最优的序回归投影向量。由于KDLOR是基于FDA的算法，所以它也能够充分地利用数据分布信息。相反，基于支持向量机的序回归技术忽略了数据分布的全局信息，使得它们可能会找到一个不合理的分隔面\citep{sun2010kernel}。
 
 此外，还有很多其他传统的分类模型被拓展成序回归模型。Chu和Ghahramani\citep{chu2005gaussian}
 %[W. Chu and Z. Ghahramani, "Gaussian processes for ordinal regression,"J. Mach. Learning Res., vol. 6, pp. 1019-1041, 2005] 
@@ -268,11 +268,11 @@ Sun等人\citep{sun2010kernel}
 %如果内容不够，可以添加Ensembles方法，或者将GP、ELM方法详细化
 
 \section{基于半监督学习方式的序回归技术}
-有监督序回归技术的研究已较为深入，并且成果也相当丰富。但由于有监督学习的局限性，它存在对有标签数据的依赖性，会导致在缺乏有标签数据的场景中难以适用。在有监督序回归问题中，随着序个数的增加，将需要更多有标签的有序数据来确定不同序的类别之间的边界。然而，在很多实际应用中，有标记数据往往难以获取并且校对起来代价昂贵。例如，在一个音乐推荐系统中，绝大多数用户没有兴趣去评价他们已经听过的音乐，从而导致有标记数据缺乏。而无标签数据却有很多，并且很容易获取，在使用的过程中也不需要耗费人力物力去进行校对。 如何使用这些无标签数据来提升性能具有广泛的应用价值。
+有监督序回归技术的研究已较为深入，并且成果也相当丰富。但由于有监督学习的局限性，它存在对有标签数据的依赖性，会导致在缺乏有标签数据的场景中难以适用。在有监督序回归问题中，随着序个数的增加，将需要更多有标签的有序数据来确定不同序的类别之间的边界。然而，在很多实际应用中，有标签数据往往难以获取并且校对起来代价昂贵。例如，在一个音乐推荐系统中，绝大多数用户没有兴趣去评价他们已经听过的音乐，从而导致有标签数据缺乏。而无标签数据却有很多，并且很容易获取，在使用的过程中也不需要耗费人力物力去进行校对。 如何使用这些无标签数据来提升性能具有广泛的应用价值。
 
 针对有监督序回归技术的局限性，一些基于半监督学习方式的序回归技术被提出来，我们在下文将其简称为半监督序回归技术。半监督序回归技术通过同时使用有标签数据和无标签数据来训练模型，得到的模型的学习能力往往会强于只用有标签数据训练而来的模型。例如，Seah 等人\citep{seah2012transductive}
 %[Seah C W, Tsang I W, Ong Y S. Transductive ordinal regression[J]. Neural Networks and Learning Systems, IEEE Transactions on, 2012, 23(7): 1074-1086. ] 
-提出了一种直推式的序回归技术（Transductive Ordinal Regression, TOR），这个方法可以被看作是将直推式支持向量机（Transductive Support Vector Machines, TSVM\citep{joachims1999transductive}）
+提出了一种直推式序回归技术（Transductive Ordinal Regression, TOR），这个方法可以被看作是将直推式支持向量机（Transductive Support Vector Machines, TSVM\citep{joachims1999transductive}）
 %[Thorsten Joachims. Transductive inference for text classification using support vector machines. In ICML, volume 99, pages 200–209, 1999.]）
 应用到序回归问题上。
 
@@ -292,9 +292,9 @@ s.t. & \theta_{i} < \theta_{i+1} \; \forall i \in \left \{ 1,\dots,K-2 \right \}
 
 此外，Liu等人\citep{liu2011semi}
 % [Liu Y, Liu Y, Zhong S, et al. Semi-supervised manifold ordinal regression for image ranking[C]//Proceedings of the 19th ACM international conference on Multimedia. ACM, 2011: 1393-1396. ]
-提出了一种半监督流形序回归技术（ Semi-Supervised Manifold Ordinal Regression, SS-MOR），他们先使用一种基于图的半监督学习方法来预测无标签数据的标签，再将带有预测标签的数据加入到流形模型中去学习。Srijith 等人\citep{srijith2013semi}
+提出了一种半监督流形学习序回归技术（ Semi-Supervised Manifold Ordinal Regression, SS-MOR），他们先使用一种基于图的半监督学习方法来预测无标签数据的标签，再将带有预测标签的数据加入到流形模型中去学习。Srijith 等人\citep{srijith2013semi}
 %[Srijith P K, Shevade S, Sundararajan S. Semi-supervised Gaussian process ordinal regression[M]//Machine Learning and Knowledge Discovery in Databases. Springer Berlin Heidelberg, 2013: 144-159. ] 
-提出了一种半监督高斯过程序回归技术（Semi-Supervised Gaussian Processes for Ordinal Regression, SSGPOR），可以将其看作是GPOR\citep{chu2005gaussian}的一个半监督拓展形式。
+提出了一种半监督高斯过程序回归技术（Semi-Supervised Gaussian Processes for Ordinal Regression, SSGPOR），可以将其看作是GPOR\citep{chu2005gaussian}的一种半监督拓展形式。
 
 对半监督序回归问题的研究时间比较短，已有的成果较少。但由于半监督序回归技术具有重要的实际应用价值，所以这是个值得去继续探索挖掘的研究方向。考虑到这点，本文主要就是研究半监督序回归问题，试图在该方向提供一些研究思路和成果，具体工作将在后续的章节中详细介绍。 
 %对于有序数据来说，无标记数据不仅缺失了类别信息，同时也缺失了在整个数据集上的序信息。如何在序回归中使用无标记数据是一大挑战。
@@ -303,7 +303,7 @@ s.t. & \theta_{i} < \theta_{i+1} \; \forall i \in \left \{ 1,\dots,K-2 \right \}
 
 \subsection{演化算法及演化机器学习}
 
-在人工智能领域，演化算法（Evolutionary Algorithms, EA）\citep{back1996evolutionary}是演化计算的一个子集，是一类基于种群的元启发式优化算法。用种群中的个体（Individual）来表示优化问题中的候选解，而适应度函数（Fitness Function）用于决定个体的质量。EA使用类似于生物进化的机制，例如交叉、变异、选择等来实现种群的进化，最终得到满足一定条件的优化问题的解。常见的演化算法有遗传算法（Genetic Algorithm，GA）、演化规划（Evolutionary Programming，EP）、演化策略（Evolution Strategy，ES）、差分进化（Differential Evolution, DE）等。算法 \ref{alg_EA}给出了演化算法的基本框架。其中，\(NP\)是种群大小，终止条件一般是代数达到预设的最大代数，或者是计算时间达到限制，或者是适应度达到一定的标准。
+在人工智能领域，演化算法（Evolutionary Algorithms, EA）\citep{back1996evolutionary}是演化计算的一个子集，它是一类基于种群的元启发式优化算法。用种群中的个体（Individual）来表示优化问题中的候选解，而适应度函数（Fitness Function）用于决定个体的质量。EA使用类似于生物进化的机制，例如交叉、变异、选择等来实现种群的进化，最终得到满足一定条件的优化问题的解。常见的演化算法有遗传算法（Genetic Algorithm，GA）、演化规划（Evolutionary Programming，EP）、演化策略（Evolution Strategy，ES）、差分进化（Differential Evolution, DE）等。算法 \ref{alg_EA}给出了演化算法的基本框架。其中，\(NP\)是种群大小，终止条件一般是代数达到预设的最大代数，或者是计算时间达到限制，或者是适应度达到一定的标准。
 
 \IncMargin{1em}
 \begin{algorithm}
@@ -321,7 +321,7 @@ s.t. & \theta_{i} < \theta_{i+1} \; \forall i \in \left \{ 1,\dots,K-2 \right \}
 \caption{演化算法的基本框架}\label{alg_EA}
 \end{algorithm}\DecMargin{1em}
 
-优化算法通常可以分为三类：解析法（Calculus-based）、枚举法（Enumerative）和随机法\citep{潘正君1998演化计算}。解析法在求解过程中需要使用目标函数的解析性质，例如一阶导数、二阶导数等。通常，解析法根据目标函数的梯度信息来确定下一步的搜索方向，如Newton法、共轭梯度下降法等。此外，解析法在求解非凸问题时，往往会根据最陡的方向找到一个局部最优点，而难以找到一个全局最优解。枚举法是一种暴力搜索的方法，它不使用启发信息，而直接对候选的解空间进行逐一枚举计算。对于大规模的优化问题，枚举法速度慢，难以适用。演化算法属于随机法的一种，它使用随机性的转移规则而不是确定性的转移规则，因而能跳出局部最优，搜索到全局较优的解。相比较于解析法，演化算法不需要目标的解析性质，因此它能够处理目标函数不可导的优化问题。此外，相比较于枚举法，演化算法是一种元启发式算法，它能够通过适应度函数和进化算子引导种群的进化，以较快地速度找到全局较优的解。
+优化算法通常可以分为三类：解析法（Calculus-based）、枚举法（Enumerative）和随机法\citep{潘正君1998演化计算}。解析法在求解过程中需要使用目标函数的解析性质，例如一阶导数、二阶导数等。通常，解析法根据目标函数的梯度信息来确定下一步的搜索方向，如Newton法、共轭梯度下降法等。此外，解析法在求解非凸问题时，往往会根据最陡的方向找到一个局部最优点，而难以找到一个全局最优解。枚举法是一种暴力搜索的方法，它不使用启发信息，而直接对候选的解空间进行逐一枚举计算。对于大规模的优化问题，枚举法效率低，难以适用。演化算法属于随机法的一种，它使用随机性的转移规则而不是确定性的转移规则，因而能跳出局部最优，搜索到全局较优的解。相比较于解析法，演化算法不需要目标的解析性质，因此它能够处理目标函数不可导的优化问题。此外，相比较于枚举法，演化算法是一种元启发式算法，它能够通过适应度函数和进化算子引导种群的进化，以较快地速度找到全局较优的解。
 
 EA在求解各种优化问题时，通常都能得到不错的近似解，因为它没有对潜在的适应度曲面做任何假设。尤其是在求解一些非凸、目标函数不可导、甚至连优化目标都难以形式化定义的优化问题时，演化算法具有明显的优势。
 
@@ -330,24 +330,24 @@ EA在求解各种优化问题时，通常都能得到不错的近似解，因为
 \item[1.]很多机器学习模型的学习过程就是求解一个优化问题。例如，SVM通过优化一个目标函数使得分类器能够尽可能分对训练数据，同时能够获得一个最大的间隔；线性回归通过优化一个目标函数使得模型能够尽可能拟合训练数据同时又具有良好的泛化性能。
 \item[2.]机器学习中通常会存在一些令人头疼的参数，而这些参数的设置将会影响模型的性能。例如，神经网络中隐层结点的个数，核函数中的参数。
 \end{enumerate}
-第一种情况下，如果优化问题是凸优化或者目标函数可导，可以使用拉格朗日乘数法、梯度下降等优化算法。但如果优化问题目标函数不可导或者有多个局部最优解（非凸），传统的优化算法将无法处理或者难以给出一个较好的解。第二种情况下，现有的最常见的调参方法是使用网格搜索，但这种类似于蛮力搜素的方法通常速度慢，尤其是在搜索空间很大的时候。对于这些棘手的情况，演化算法是一类值得考虑的算法。
+第一种情况下，如果优化问题是凸优化或者目标函数可导，可以使用拉格朗日乘数法、梯度下降等优化算法。但如果优化问题目标函数不可导或者有多个局部最优解（非凸），传统的优化算法将无法处理或者难以给出一个较好的解。第二种情况下，现有的最常见的调参方法是使用网格搜索，但这种类似于蛮力搜素的方法通常速度慢、效率低，尤其是在搜索空间很大的时候。对于这些棘手的情况，EA是一类值得考虑的算法。
 %（evolutionary algorithms, EA）\citep{back1996evolutionary}
 %EA是一类类似于生物种群进化的启发式优化算法，它能够有效地求解非凸、不可导、甚至没有明确数学形式的优化问题。
-EA已经被广泛应用在机器学习问题中\citep{liu2000evolutionary}\citep{tang2005linear}\citep{liu2000ensemble}。
+事实上，EA已经被广泛应用在机器学习问题中\citep{liu2000evolutionary}\citep{tang2005linear}\citep{liu2000ensemble}。
 
 
 \subsection{演化算法在序回归问题中的应用}
 
-在序回归问题中，当我们引入无标签数据时，往往使得问题非凸且不可导。例如在\citep{chu2005new}\citep{sun2010kernel}的模型中加入无标签数据。EA适用于解决这种问题，它能够得到一个近似的全局最优解。此外，当我们还可以使用EA来优化序回归模型的参数。例如，Dorado-Moreno 等人\citep{dorado2012ordinal}
+在序回归问题中，当我们引入无标签数据时，往往使得问题非凸且不可导。例如在\citep{chu2005new}\citep{sun2010kernel}的模型中加入无标签数据。EA适用于解决这种问题，它能够得到一个近似的全局最优解。此外，我们还可以使用EA来优化序回归模型的参数。例如，Dorado-Moreno 等人\citep{dorado2012ordinal}
 %[Dorado-Moreno M, Gutiérrez P A, Hervás-Martínez C. Ordinal classification using hybrid artificial neural networks with projection and kernel basis functions[M]//Hybrid Artificial Intelligent Systems. Springer Berlin Heidelberg, 2012: 319-330.]，
 、Cruz-Ramirez等人\citep{cruz2014metrics}\citep{cruz2013multiobjective}
 %[Cruz-Ramírez M, Hervás-Martínez C, Sánchez-Monedero J, et al. Metrics to guide a multi-objective evolutionary algorithm for ordinal classification[J]. Neurocomputing, 2014, 135: 21-31.] 
 %[Cruz-Ramírez M, Fernández J C, Valero A, et al. Multiobjective Pareto ordinal classification for predictive microbiology[M]//Soft Computing Models in Industrial and Environmental Applications. Springer Berlin Heidelberg, 2013: 153-162. ] 
-将演化算法和人工神经网络结合起来处理序回归问题，它们通过使用序回归的评价指标作为演化算法适应性评估函数，用演化算法来优化神经网络的参数。Becerra-Alonso等人\citep{becerra2012evolutionary}
+将演化算法和人工神经网络结合起来处理序回归问题。他们将神经网络的参数表示成个体，并使用序回归的评价指标作为适应性评估函数，从而用演化算法来优化神经网络的参数。Becerra-Alonso等人\citep{becerra2012evolutionary}
 %[Becerra-Alonso D, Carbonero-Ruz M, Martínez-Estudillo F J, et al. Evolutionary extreme learning machine for ordinal regression[C]//Neural Information Processing. Springer Berlin Heidelberg, 2012: 217-227.]
 、Sanchez-Monedero等人\citep{sanchez2013evolutionary}
 %[Sánchez-Monedero J, Gutiérrez P A, Hervás-Martínez C. Evolutionary ordinal extreme learning machine[M]//Hybrid Artificial Intelligent Systems. Springer Berlin Heidelberg, 2013: 500-509.] 
-将演化算法和极限学习机结合起来，类似地来优化极限学习机的参数。此外，多目标演化算法\citep{deb2001multi}也被使用到序回归技术的研究中\citep{cruz2013multiobjective}\citep{cruz2014metrics}。
+将演化算法和极限学习机结合起来，类似地来优化极限学习机的参数。此外，多目标演化算法\citep{deb2001multi}也被应用到序回归问题中\citep{cruz2013multiobjective}\citep{cruz2014metrics}。
 %[Cruz-Ramírez M, Hervás-Martínez C, Sánchez-Monedero J, et al. Metrics to guide a multi-objective evolutionary algorithm for ordinal classification[J]. Neurocomputing, 2014, 135: 21-31.] 
 %[Cruz-Ramírez M, Fernández J C, Valero A, et al. Multiobjective Pareto ordinal classification for predictive microbiology[M]//Soft Computing Models in Industrial and Environmental Applications. Springer Berlin Heidelberg, 2013: 153-162. ]。
 
@@ -355,11 +355,11 @@ EA已经被广泛应用在机器学习问题中\citep{liu2000evolutionary}\citep
 
 %\section{小结}
 \section{发展趋势及不足}
-对于序回归技术的研究，从最开始的用传统的分类和回归技术来处理，发展到利用序信息设计专门的序回归技术，再到使用无标记数据来设计半监督序回归技术来提升性能并拓宽其应用场景，一直到将演化算法和机器学习结合起来处理。可以看到，半监督序回归技术还有待更多更深的研究，而且目前还没有使用演化算法来处理半监督序回归的相关工作。在互联网时代，应用数据剧增，并且在很多序回归的实际应用场景下有标签数据难以获得。针对这个现状，本文将研究半监督序回归问题。
+对于序回归问题的研究，从最开始的用传统的分类和回归技术来处理，发展到利用序信息设计专门的序回归技术，再到使用无标签数据设计半监督序回归技术来提升性能并拓宽其应用场景，一直到将演化算法和机器学习结合起来处理。可以看到，半监督序回归问题还有待更多更深的研究，而且目前还没有使用演化算法来处理半监督序回归问题的相关工作。在互联网时代，应用数据剧增，并且在很多序回归的实际应用场景下有标签数据难以获得。针对这个现状，本文将研究半监督序回归问题。
 %此外，目前基于演化算法的序回归技术大多是使用演化算法来优化传统模型的参数，而不是直接面向有序数据。如何更深层次地挖掘有序数据的特点，基于演化算法设计更直接的序回归技术将是一个值得探索的问题。
 
 \section{小结}
-本章我们介绍了序回归问题的形式化定义以及常用的算法评估指标，并回顾了序回归技术的发展历程。对有监督序回归问题的研究已比较完善，根据方法的特点，我们将有监督序回归技术分成三类：直接用传统分类或回归方法处理的序回归技术、先分解成二分类问题再进行处理的序回归技术、拓展传统分类模型引入序信息的序回归技术。半监督序回归问题具有重要的研究意义和实际应用价值，因此我们还介绍了一些已有的半监督序回归技术。由于对半监督序回归问题的研究尚浅，因此后面章节我们将进一步研究半监督序回归问题，并提出我们的半监督序回归算法。此外，我们还介绍了利用演化算法来处理序回归问题的一些相关工作。在处理序回归问题时，演化算法会在传统优化算法难以处理的优化问题上有所帮助。
+本章我们介绍了序回归问题的形式化定义以及常用的算法评估指标，并介绍了序回归技术的发展历程。对有监督序回归问题的研究已比较完善，根据方法的特点，我们将有监督序回归技术分成三类：直接用传统分类或回归方法处理的序回归技术、先分解成二分类问题再进行处理的序回归技术、拓展传统分类模型引入序信息的序回归技术。半监督序回归问题具有重要的研究意义和实际应用价值，因此我们还介绍了一些已有的半监督序回归技术。对半监督序回归问题的研究尚浅，相关成果很少。我们将在后面章节研究半监督序回归问题，并提出我们的半监督序回归算法。此外，我们还介绍了利用演化算法来处理序回归问题的一些相关工作。在处理序回归问题时，演化算法会在传统优化算法难以处理的优化问题上有所帮助。
 
 %封面是按照制本厂的要求制作的，其中行宽和行高都是固定的，中文标题最多占两行，英文标题最多占三行。如果您的题目超过了这个限制，请缩减题目长度，不要擅自修改模板中的相关配置参数。
 

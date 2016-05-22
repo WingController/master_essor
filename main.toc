@@ -23,17 +23,17 @@
 \contentsline {subsection}{\numberline {2.4.2}演化算法在序回归问题中的应用}{12}{subsection.2.4.2}
 \contentsline {section}{\numberline {2.5}发展趋势及不足}{12}{section.2.5}
 \contentsline {section}{\numberline {2.6}小结}{13}{section.2.6}
-\contentsline {chapter}{\numberline {第三章\hspace {0.3em}}基于加权核判别分析的半监督序回归算法}{15}{chapter.3}
+\contentsline {chapter}{\numberline {第三章\hspace {0.3em}}基于加权核判别分析的半监督序回归技术}{15}{chapter.3}
 \contentsline {section}{\numberline {3.1}半监督序回归问题定义}{15}{section.3.1}
 \contentsline {section}{\numberline {3.2}半监督学习}{15}{section.3.2}
 \contentsline {section}{\numberline {3.3}KDLOR算法回顾}{15}{section.3.3}
-\contentsline {section}{\numberline {3.4}基于加权核判别分析的半监督序回归技术}{18}{section.3.4}
+\contentsline {section}{\numberline {3.4}基于加权核判别分析的半监督序回归算法}{17}{section.3.4}
 \contentsline {subsection}{\numberline {3.4.1}估计无标签数据对每个类别的隶属度}{18}{subsection.3.4.1}
-\contentsline {subsection}{\numberline {3.4.2}基于加权核判别分析的半监督序回归技术}{19}{subsection.3.4.2}
+\contentsline {subsection}{\numberline {3.4.2}基于加权核判别分析的半监督序回归算法}{19}{subsection.3.4.2}
 \contentsline {section}{\numberline {3.5}实验验证}{21}{section.3.5}
 \contentsline {subsection}{\numberline {3.5.1}实验设置}{21}{subsection.3.5.1}
 \contentsline {subsection}{\numberline {3.5.2}合成数据集}{21}{subsection.3.5.2}
-\contentsline {subsection}{\numberline {3.5.3}真实数据集}{23}{subsection.3.5.3}
+\contentsline {subsection}{\numberline {3.5.3}真实数据集}{22}{subsection.3.5.3}
 \contentsline {section}{\numberline {3.6}小结}{24}{section.3.6}
 \contentsline {chapter}{\numberline {第四章\hspace {0.3em}}基于演化算法的半监督序回归技术}{25}{chapter.4}
 \contentsline {section}{\numberline {4.1}基于演化算法的半监督核判别分析序回归算法}{25}{section.4.1}
