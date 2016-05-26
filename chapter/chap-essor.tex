@@ -315,7 +315,7 @@ ESSOR使用演化算法来优化权重，而演化算法需要通过迭代来产
 
 \subsection{实验结果}
 
-我们分别将KDLOR、WKFDOR和ESSOR在\autoref{table_realSets}中的每个数据集上跑20遍，统计MAE和MZE的平均值和标准差。具体结果见\autoref{table_essor_mae}和\autoref{table_essor_mze}。
+我们分别将KDLOR、WKFDOR和ESSOR在\autoref{table_realSets}中的每个数据集上跑20遍，统计MAE和MZE的平均值和标准差。具体结果见\autoref{table_essor_mae}和\autoref{table_essor_mze}。其中，每组数据集的最优均值用粗体来表示。我们使用秩和检验（Wilcoxon Rank-Sum Test）做统计测试，显著性水平设为0.05，表中显著优于KDLOR的结果用\(*\)号来标记。
 
 对于MAE指标，ESSOR在9个数据集上结果的均值最优，其中在6个数据集上显著优于KDLOR算法。对于MZE指标，ESSOR在8个数据集上结果的均值最优，其中在6个数据集上显著优于KDLOR算法。总的来说，ESSOR算法几乎在所有的真实数据集上都表现得最优，无论是MAE还是MZE指标。根据\autoref{wkfdor_realData}中的分析，我们知道WKFDOR算法在一些数据集上的MAE结果没有优于KDLOR算法。原因是计算初始权重时没有考虑序信息，并且对于不同的数据集不是总能估计得很准确。对比\autoref{table_essor_mae}和\autoref{table_essor_mze}中ESSOR和WKFDOR的实验结果，可以看到ESSOR在8个数据集上提升了MAE指标的效果，在7个数据集上提升了MZE指标的效果。该结果说明了ESSOR算法能够有效地对初始权重做微调，从而得到更准确的权重。即使初始权重估计得不够准确，ESSOR算法往往还能相对于有监督序回归技术KDLOR获得更优的结果。例如，在LEV数据集上，WKFDOR比KDLOR获得更差的MAE，而ESSOR的MAE值依然显著优于KDLOR。这说明了ESSOR算法对于不同的数据集能够稳定地优化初始权重，从而有效地利用无标签数据来提升性能。
 
@@ -324,7 +324,7 @@ ESSOR使用演化算法来优化权重，而演化算法需要通过迭代来产
 
 %MAE
 \begin{table*}[!h]
-\caption{KDLOR、WKFDOR、ESSOR在真实数据集上的测试MAE，由运行20次的均值和方差组成。每组数据集的最优均值用粗体来表示。用秩和检验（Wilcoxon Rank-Sum Test）做统计测试，其中显著性水平设为0.05，表中显著优于KDLOR的结果用$*$号来标记。}
+\caption{KDLOR、WKFDOR、ESSOR在真实数据集上测试的MAE结果}
 \label{table_essor_mae}
 \centering
 \begin{tabular}{l|ccc}
@@ -349,7 +349,7 @@ Connect-4 & 0.4982$\pm$0.0087 & 0.4828$\pm$0.0112$^{*}$ & {\bf 0.4820$\pm$0.0212
 
 %MZE
 \begin{table*}[!h]
-\caption{KDLOR、WKFDOR、ESSOR在真实数据集上的测试MZE，由运行20次的均值和方差组成。每组数据集的最优均值用粗体来表示。用秩和检验（Wilcoxon Rank-Sum Test）做统计测试，其中显著性水平设为0.05，表中显著优于KDLOR的结果用$*$号来标记。}
+\caption{KDLOR、WKFDOR、ESSOR在真实数据集上测试的MZE结果}
 \label{table_essor_mze}
 \centering
 \begin{tabular}{l|ccc}

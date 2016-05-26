@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99992 (TeX Live 2015) (preloaded format=xelatex 2016.2.23)  22 MAY 2016 21:05
+This is XeTeX, Version 3.14159265-2.6-0.99992 (TeX Live 2015) (preloaded format=xelatex 2016.2.23)  26 MAY 2016 12:58
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -2508,11 +2508,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 275--279
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[31] [32]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [33])
-[34]
+[31] [32] [33]) [34]
 \openout2 = `chapter/chap-conclusion.aux'.
 
  (./chapter/chap-conclusion.tex
@@ -2561,12 +2557,12 @@ Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 184.
 ### simple group (level 1) entered at line 1061 ({)
 ### bottom level 
 Here is how much of TeX's memory you used:
- 33398 strings out of 493638
- 625634 string characters out of 6144792
- 681197 words of memory out of 5000000
- 36237 multiletter control sequences out of 15000+600000
+ 33380 strings out of 493638
+ 624715 string characters out of 6144792
+ 680867 words of memory out of 5000000
+ 36219 multiletter control sequences out of 15000+600000
  65482 words of font info for 275 fonts, out of 8000000 for 9000
  1328 hyphenation exceptions out of 8191
- 71i,18n,79p,10411b,15844s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 71i,18n,79p,10411b,15849s stack positions out of 5000i,500n,10000p,200000b,80000s
 
 Output written on main.pdf (63 pages).

@@ -265,11 +265,11 @@ SWD、LEV、ESL、ERA是真实的人类决策数据集，其中属性和标签�
 %［A. Ben-David and L. Sterling, “Generating rules from examples of human multiattribute decision making should be simple,” Expert Systems with Applications, vol. 31, no. 2, pp. 390–396, 2006.］。
 Sushi数据集\citep{kamishima2009efficient}是通过问卷调查获取的用户对各种寿司的偏好程度数据。其中我们综合了用户属性数据和寿司属性数据，并剔除了不完整的样例（比如用户A对寿司B没有填写偏好程度，则删除该行数据），再从中随机抽取10000个作为我们的实验数据。
 
-对于每个数据集，取一半的训练数据作为有标签数据，剩下的一半作为无标签数据。分别将WKFDOR算法和KDLOR算法在每个数据集上跑20遍，统计MAE和MZE的平均值和标准差。具体结果见\autoref{table_realResults20m}。
+对于每个数据集，取一半的训练数据作为有标签数据，剩下的一半作为无标签数据。分别将WKFDOR算法和KDLOR算法在每个数据集上跑20遍，统计MAE和MZE的平均值和标准差，具体结果见\autoref{table_realResults20m}。其中，每组数据集的最优均值用粗体来表示。我们使用秩和检验（Wilcoxon Rank-Sum Test）做统计测试，显著性水平设为0.05，表中显著优于KDLOR的结果用\(*\)号来标记。
 
 %记得加上统计测试的结果＊
 \begin{table*}[!h]
-\caption{KDLOR和WKFDOR在真实数据集上的测试结果。该结果是由运行20次的均值和方差组成，包括MAE和MZE两个指标。每组数据集的最优均值用粗体来表示。用秩和检验（Wilcoxon Rank-Sum Test）做统计测试，其中显著性水平设为0.05，表中显著优于KDLOR的结果用$*$号来标记。}
+\caption{KDLOR和WKFDOR在真实数据集上的测试结果}
 \label{table_realResults20m}
 \centering
 \begin{tabular}{l|cc|cc}
